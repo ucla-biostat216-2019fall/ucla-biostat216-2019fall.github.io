@@ -61,8 +61,7 @@ There will be a final take-home exam.
 
 ### Final Grade
 
-Grades will be based on homework (75%) and attendance (25%).
-
+Grades will be based on attendance (5%), homework (65%) and final exam (take-home) (30%).
 
 ### UCLA ADA Policy 
 
