@@ -1,13 +1,13 @@
 ---
 layout: course
-title: BIOSTAT M280
+title: BIOSTAT 216
 ---
 
 ## Syllabus
 
 ### Lecture
 
-Tue/Thu 1pm-2:50pm @ CHS 33-105A    
+Thu 10am-12pm @ CHS 51-279    
 
 ### Instructor
 
@@ -15,12 +15,12 @@ Tue/Thu 1pm-2:50pm @ CHS 33-105A
 Office: CHS 21-254A  
 Phone: (310)794-7835  
 Email: <huazhou@ucla.edu>  
-Office hours: Tue/Thu @ 4:15pm-5:15pm
+Office hours: Thu @ 1pm-2pm
 
 ### Teaching Assistant
 
-Chris German <germc3@ucla.edu>  
-Office hours: Wed 11a-1p @ CHS A1-279 (Consulting Room)
+TBA <XXX@ucla.edu>  
+Office hours: TBA @ ???
 
 ### Course Topics
 
@@ -35,7 +35,6 @@ This is a tentative list of topics:
 
 ### Prerequisite
 
-The prerequisite for this course is linear algebra (MATH 115A) and linear models (STAT 100C or BIOSTAT 250A). Those wishing to enroll without these prerequisites will need to obtain consent from the instructor.  Homework will use the technical computing language [Julia](http://julialang.org).
 
 ### Course Webpage
 
@@ -58,7 +57,7 @@ You will be required to hand in 4-6 homework assignments throughout the quarter.
 
 ### Exam
 
-There are no exams.
+There will be a final take-home exam.
 
 ### Final Grade
 
@@ -118,6 +117,3 @@ While you are here at UCLA, if you are unsure whether what you are considering d
 •	See a counselor at Student Psychological Services, and/or your school, college or department – UCLA has many resources for students who are feeling the stresses of academic and personal pressures. 
 
 If you would like more information, please come see us at the Dean of Students’ Office in 1206 Murphy Hall, call us at (310)825-3871 or visit their website at <https://www.deanofstudents.ucla.edu>.
-
-
-
