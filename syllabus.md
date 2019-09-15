@@ -1,15 +1,15 @@
 ---
 layout: course
-title: BIOSTAT 216
+title: Biostat 216
 ---
 
-## Syllabus
+# Syllabus
 
-### Lecture
+## Lecture
 
 Thu 10am-12pm @ CHS 51-279    
 
-### Instructor
+## Instructor
 
 [Dr. Hua Zhou](http://hua-zhou.github.io/)  
 Office: CHS 21-254A  
@@ -17,56 +17,54 @@ Phone: (310)794-7835
 Email: <huazhou@ucla.edu>  
 Office hours: Thu @ 1pm-2pm
 
-### Teaching Assistant
+## Teaching Assistant
 
 TBA <XXX@ucla.edu>  
 Office hours: TBA @ ???
 
-### Course Topics
+## Course Description
 
-This is a tentative list of topics:  
+This 2-unit course is designed for incoming first year biostatistics MS and PhD students. It will review, and in some cases introduce, specialized topics in Linear Algebra, Multivariable Calculus and Scientific Computing that are considered to be particularly pertinent for the subsequent courses in our MS and PhD curriculum. It will not be a required course, and incoming students with more than the core mathematical preparation required for admission into the MS program may not need to take it.
 
-* Julia programming  
-* Reproducible research and Jupyter Notebook  
-* Computer arithmetic  
-* Numerical linear algebra  
-* Numerical optimization  
-* Convex optimization  
+See the [schedule](https://ucla-biostat216-2019fall.github.io/schedule.html) page for a tentative list of topics.
 
-### Prerequisite
+## Prerequisites
 
+Prerequisites are the same as those for admission into our MS program. Students should have seen one course in basic linear algebra at the level of UCLA’s Math 33A (using a textbook such as O. Bretscher, _Linear Algebra_, 5th Ed., Prentice Hall.) and a Calculus sequence at the level of UCLA’s Math 31AB (e.g. J. Rogawski, _Calculus_, 3rd Edition , W.H. Freeman & Co). Biostatistics MPH students will need to obtain consent from the instructor to take this course. Students with more advanced mathematical preparation prior to admission may not need to take this course and should consult with their academic advisors.  
 
-### Course Webpage
+## Course Webpage
 
-[http://hua-zhou.github.io/teaching/biostatm280-2019spring/](http://hua-zhou.github.io/teaching/biostatm280-2019spring/)
+[https://ucla-biostat216-2019fall.github.io/](https://ucla-biostat216-2019fall.github.io/)
 
-### Course Materials
+## Course Materials
 
-Some useful resources are listed below. Required book:  
+Required book:  
 
 * Banerjee and Roy, _Linear Algebra And Matrix Analysis For Statistics_, 2nd Edition, CRC Press (2014), [UCLA library link](https://catalog.library.ucla.edu/vwebv/holdingsInfo?searchId=967&recCount=50&recPointer=5&bibId=7443480)  
 
-Recommended readings:
+Recommended books (not required):
 
-* Magnus and Neudecker, _Matrix Differential Calculus With Applications in Statistics and Econometrics_, John Wiley & Sons, Inc. (2019), [UCLA library link](https://catalog.library.ucla.edu/vwebv/holdingsInfo?searchId=970&recCount=50&recPointer=1&bibId=8893048)     
+* Magnus and Neudecker, _Matrix Differential Calculus With Applications in Statistics and Econometrics_, John Wiley & Sons, Inc. (2019), [UCLA library link](https://catalog.library.ucla.edu/vwebv/holdingsInfo?searchId=970&recCount=50&recPointer=1&bibId=8893048)
 
-### Attendance
+* Strang, _Linear Algebra and Learning From Data_, Wellesley Cambridge Press, (2019), [Amazon link](https://www.amazon.com/Linear-Algebra-Learning-Gilbert-Strang/dp/0692196382/ref=sr_1_1?crid=8GPCRTFEQJNL&keywords=linear+algebra+and+learning+from+data&qid=1568517219&s=gateway&sprefix=linear+algebra+and%2Caps%2C193&sr=8-1)
+
+## Attendance
 
 Class attendance is **mandatory**.
 
-### Homework
+## Homework
 
 You will be required to hand in 4-6 homework assignments throughout the quarter.  
 
-### Exam
+## Exam
 
 There will be a take-home final exam.
 
-### Final Grade
+## Final Grade
 
 Grades will be based on attendance (5%), homework (65%) and final exam (take-home) (30%).
 
-### UCLA ADA Policy 
+## UCLA ADA Policy 
 
 Students needing academic accommodation based on a disability should contact the Center for Accessible Education (CAE) at (310)825-1501 or in person at Murphy Hall A255. When possible, students should contact the CAE within the first two weeks of the term as reasonable notice is needed to coordinate accommodations. For more information visit <https://www.cae.ucla.edu>.
 
@@ -78,12 +76,11 @@ Phone: (310)825-1501
 TTY/TTD: (310)206-6083  
 Fax: (310)825-9656  
 
-### Inclusivity
+## Inclusivity
 
 UCLA’s Office for Equity, Diversity, and Inclusion provides resources, events, and information about current initiatives at UCLA to support equality for all members of the UCLA community. I hope that you will communicate with me or your TA if you experience anything in this course that does not support an inclusive environment, and you can also report any incidents you may witness or experience on campus to the Office of Equity, Diversity, and Inclusion on their website <https://equity.ucla.edu>.
 
-
-### Academic Integrity
+## Academic Integrity
 
 **Message about Academic Integrity to All UCLA Students from UCLA Dean of Students**: UCLA is a community of scholars. In this community, all members including faculty staff and students alike are responsible for maintaining standards of academic honesty. As a student and member of the University community, you are here to get an education and are, therefore, expected to demonstrate integrity in your academic endeavors. You are evaluated on your own merits. Cheating, plagiarism, collaborative work, multiple submissions without the permission of the professor, or other kinds of academic dishonesty are considered unacceptable behavior and will result in formal disciplinary proceedings usually resulting in suspension or dismissal.
 
