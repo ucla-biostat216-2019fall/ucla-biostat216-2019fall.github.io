@@ -9,7 +9,7 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 
 | Week | Thursday | Homework |
 |:-----------|:------------|:------------|
-| 1 | [9/26](http://ucla-biostat216-2019fall.github.io/2019/09/26/week1-day1.html) (BR 4,5,6) vector space, rank, matrix inverse | HW1 \[[Rmd](), [html]()\] |  
+| 1 | [9/26](http://ucla-biostat216-2019fall.github.io/2019/09/26/week1.html) (BR 4,5,6) vector space, rank, matrix inverse | HW1 \[[Rmd](), [html]()\] |  
 | 2 | 10/3 (BR 7,8) orthogonality, idemponent matrix, projection |   |  
 | 3 | 10/10 (BR 2,3,8,9) GE/LU, Cholesky, QR | HW2 |  
 | 4 | 10/17 (BR 11,12) eigenvalues, eigenvectors, SVD | |  
