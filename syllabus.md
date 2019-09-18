@@ -30,7 +30,7 @@ See the [schedule](https://ucla-biostat216-2019fall.github.io/schedule.html) pag
 
 ## Prerequisites
 
-Prerequisites are the same as those for admission into our MS program. Students should have seen one course in basic linear algebra at the level of UCLA’s Math 33A (using a textbook such as O. Bretscher, _Linear Algebra_, 5th Ed., Prentice Hall.) and a Calculus sequence at the level of UCLA’s Math 31AB (e.g. J. Rogawski, _Calculus_, 3rd Edition , W.H. Freeman & Co). Biostatistics MPH students will need to obtain consent from the instructor to take this course. Students with more advanced mathematical preparation prior to admission may not need to take this course and should consult with their academic advisors.  
+Prerequisites are the same as those for admission into biostatistics MS program. Students should have seen one course in basic linear algebra at the level of UCLA’s Math 33A (using a textbook such as O. Bretscher, _Linear Algebra_, 5th Ed., Prentice Hall.) and a Calculus sequence at the level of UCLA’s Math 31AB (e.g. J. Rogawski, _Calculus_, 3rd Edition , W.H. Freeman & Co). Biostatistics MPH students will need to obtain consent from the instructor to take this course. Students with more advanced mathematical preparation prior to admission may not need to take this course and should consult with their academic advisors.  
 
 ## Course Webpage
 
@@ -46,7 +46,12 @@ Recommended books (not required):
 
 * Magnus and Neudecker, _Matrix Differential Calculus With Applications in Statistics and Econometrics_, John Wiley & Sons, Inc. (2019), [UCLA library link](https://catalog.library.ucla.edu/vwebv/holdingsInfo?searchId=970&recCount=50&recPointer=1&bibId=8893048)
 
+* Minka, _Old And New Matrix Algebra Useful for Statistics_, (2000) <https://tminka.github.io/papers/matrix/minka-matrix.pdf>
+
+* Peterson and Pedersen, _The Matrix Cookbook_, version 2012-11-15, <https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf>
+
 * Strang, _Linear Algebra and Learning From Data_, Wellesley Cambridge Press, (2019), [Amazon link](https://www.amazon.com/Linear-Algebra-Learning-Gilbert-Strang/dp/0692196382/ref=sr_1_1?crid=8GPCRTFEQJNL&keywords=linear+algebra+and+learning+from+data&qid=1568517219&s=gateway&sprefix=linear+algebra+and%2Caps%2C193&sr=8-1)
+
 
 ## Attendance
 
