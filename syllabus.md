@@ -15,7 +15,7 @@ Thu 10am-12pm @ CHS 51-279
 Office: CHS 21-254A  
 Phone: (310)794-7835  
 Email: <huazhou@ucla.edu>  
-Office hours: Thu @ 1pm-3pm
+Office hours: Thu @ 1pm-3pm  
 
 ## Teaching Assistant
 
@@ -49,9 +49,6 @@ Recommended books (not required):
 * Minka, _Old And New Matrix Algebra Useful for Statistics_, (2000) <https://tminka.github.io/papers/matrix/minka-matrix.pdf>
 
 * Peterson and Pedersen, _The Matrix Cookbook_, version 2012-11-15, <https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf>
-
-* Strang, _Linear Algebra and Learning From Data_, Wellesley Cambridge Press, (2019), [Amazon link](https://www.amazon.com/Linear-Algebra-Learning-Gilbert-Strang/dp/0692196382/ref=sr_1_1?crid=8GPCRTFEQJNL&keywords=linear+algebra+and+learning+from+data&qid=1568517219&s=gateway&sprefix=linear+algebra+and%2Caps%2C193&sr=8-1)
-
 
 ## Attendance
 
