@@ -13179,27 +13179,32 @@ Or equivalently the set is closed under <em>axpy</em> operation. $\alpha \mathbf
 <li><p>Examples of vector space:</p>
 <ul>
 <li>Origin: $\{\mathbf{0}\}$.  </li>
-<li>Line: $\{\alpha \mathbf{x}: \alpha \in \mathbb{R}\}$ for a fixed vector $\mathbf{x} \in \mathbb{R}^n$.  </li>
-<li>Plane: $\{\alpha_1 \mathbf{x}_1 + \alpha_2 \mathbf{x}_2: \alpha_1, \alpha_2 \in \mathbb{R}\}$ for two fixed vectors $\mathbf{x}_1, \mathbf{x}_2 \in \mathbb{R}^n$.</li>
+<li>Line passing origin: $\{\alpha \mathbf{x}: \alpha \in \mathbb{R}\}$ for a fixed vector $\mathbf{x} \in \mathbb{R}^n$.  </li>
+<li>Plane passing origin: $\{\alpha_1 \mathbf{x}_1 + \alpha_2 \mathbf{x}_2: \alpha_1, \alpha_2 \in \mathbb{R}\}$ for two fixed vectors $\mathbf{x}_1, \mathbf{x}_2 \in \mathbb{R}^n$.</li>
 <li>Euclidean space: $\mathbb{R}^n$.</li>
 </ul>
 </li>
-<li><p>Order and dimension. The <strong>order</strong> of a vectors space is simply the length of the vectors in that space. The <strong>dimension</strong> of a vector space is the maximum number of <em>linearly independent</em> vectors in that space.</p>
+<li><p>Order and dimension. The <strong>order</strong> of a vectors space is simply the length of the vectors in that space. Not to be confused with the <strong>dimension</strong> of a vector space, which we later define as the maximum number of linearly independent vectors in that space.</p>
 </li>
 <li><p>BR Theorem 4.2. If $\mathcal{S}_1$ and $\mathcal{S}_2$ are two vector spaces of same order, then their <strong>intersection</strong> $\mathcal{S}_1 \cap \mathcal{S}_2$ is a vector space.</p>
-<p>Proof: Let $\mathbf{x}, \mathbf{y}$ be two arbitrary vectors in $\mathcal{S}_1 \cap \mathcal{S}_2$ and $\alpha \in \mathbb{R}$. Then $\alpha \mathbf{x} + \mathbf{y} \in \mathcal{S}_1$ because $\mathbf{x}, \mathbf{y} \in \mathcal{S}_1$ and $\mathbf{S}_1$ is a vector space. Similarly $\alpha \mathbf{x} + \mathbf{y} \in \mathcal{S}_2$. Therefore $\alpha \mathbf{x} + \mathbf{y} \in \mathcal{S}_1 \cap \mathcal{S}_2$.</p>
+<p>Proof: Let $\mathbf{x}, \mathbf{y}$ be two arbitrary vectors in $\mathcal{S}_1 \cap \mathcal{S}_2$ and $\alpha \in \mathbb{R}$. Then $\alpha \mathbf{x} + \mathbf{y} \in \mathcal{S}_1$ because $\mathbf{x}, \mathbf{y} \in \mathcal{S}_1$ and $\mathcal{S}_1$ is a vector space. Similarly $\alpha \mathbf{x} + \mathbf{y} \in \mathcal{S}_2$. Therefore $\alpha \mathbf{x} + \mathbf{y} \in \mathcal{S}_1 \cap \mathcal{S}_2$.</p>
 </li>
 <li><p>Two vector spaces $\mathcal{S}_1$ and $\mathcal{S}_2$ are <strong>essentially disjoint</strong> or <strong>virtually disjoint</strong> if the only element in $\mathcal{S}_1 \cap \mathcal{S}_2$ is the zero vector $\mathbf{0}$.</p>
 </li>
 <li><p>If $\mathcal{S}_1$ and $\mathcal{S}_2$ are two vector spaces of same order, then their <strong>union</strong> $\mathcal{S}_1 \cup \mathcal{S}_2$ is not necessarily a vector space.</p>
 <p>TODO: Give a counter example.</p>
 </li>
-<li><p>BR Theorem 4.3. Define the <strong>sum</strong> of two vector spaces $\mathcal{S}_1$ and $\mathcal{S}_2$ by 
+<li><p>BR Theorem 4.3. Define the <strong>sum</strong> of two vector spaces $\mathcal{S}_1$ and $\mathcal{S}_2$ of same order by 
 $$
   \mathcal{S}_1 + \mathcal{S}_2 = \{\mathbf{x}_1 + \mathbf{x}_2: \mathbf{x}_1 \in \mathcal{S}_1, \mathbf{x}_2 \in \mathcal{S}_2\}.
 $$
 Then $\mathcal{S}_1 + \mathcal{S}_2$ is the smallest vector space that contains $\mathcal{S}_1 \cup \mathcal{S}_2$.</p>
-<p>TODO: Proof.</p>
+<p>Proof: Let $\mathbf{u}, \mathbf{v} \in \mathcal{S}_1 + \mathcal{S}_2$ and $\alpha \in \mathbb{R}$, we want to show $\alpha \mathbf{u} + \mathbf{v} \in \mathcal{S}_1 + \mathcal{S}_2$. Write $\mathbf{u} = \mathbf{x}_1 + \mathbf{x}_2$ and $\mathbf{v} = \mathbf{y}_1 + \mathbf{y}_2$, where $\mathbf{x}_1, \mathbf{y}_1 \in \mathcal{S}_1$ and $\mathbf{x}_2, \mathbf{y}_2 \in \mathcal{S}_2$, then
+$$
+  \alpha \mathbf{u} + \mathbf{v} = (\alpha \mathbf{x}_1 + \alpha \mathbf{x}_2) + (\mathbf{y}_1 + \mathbf{y}_2) = (\alpha \mathbf{x}_1 + \mathbf{y}_1) + (\alpha \mathbf{x}_2 + \mathbf{y}_2) \in \mathcal{S}_1 + \mathcal{S}_2.
+$$
+Thus $\mathcal{S}_1 + \mathcal{S}_2$ is a vector space.<br>
+To show $\mathcal{S}_1 + \mathcal{S}_2$ is the smallest vector space containing $\mathcal{S}_1 \cup \mathcal{S}_2$, let $\mathcal{S}_3$ be a vector space that contains $\mathcal{S}_1 \cup \mathcal{S}_2$. We will show $\mathcal{S}_3$ must contain $\mathcal{S}_1 + \mathcal{S}_2$. Let $\mathbf{u} \in \mathcal{S}_1 + \mathcal{S}_2$ so $\mathbf{u} = \mathbf{x} + \mathbf{y}$, where $\mathbf{x} \in \mathcal{S}_1$ and $\mathbf{y} \in \mathcal{S}_2$. Since both $\mathbf{x}$ and $\mathbf{y}$ belong to $\mathcal{S}_1 \cup \mathcal{S}_2 \subseteq \mathcal{S}_3$. So $\mathbf{u} = \mathbf{x} + \mathbf{y} \in \mathcal{S}_3$.</p>
 </li>
 <li><p>Example: Let $\mathcal{S}_1$ and $\mathcal{S}_2$ be two lines in $\mathbb{R}^2$ that passes the origin and not parallel to each other. What are $\mathcal{S}_1 \cap \mathcal{S}_2$ and $\mathcal{S}_1 + \mathcal{S}_2$?</p>
 </li>
@@ -13211,7 +13216,7 @@ Then $\mathcal{S}_1 + \mathcal{S}_2$ is the smallest vector space that contains 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Affine-space">Affine space<a class="anchor-link" href="#Affine-space">&#182;</a></h2><ul>
+<h2 id="Affine-space-(optional)">Affine space (optional)<a class="anchor-link" href="#Affine-space-(optional)">&#182;</a></h2><ul>
 <li><p>Consider a system of $m$ linear equations in variable $\mathbf{x} \in \mathbb{R}^n$
 \begin{eqnarray*}
   \mathbf{c}_1' \mathbf{x} &amp;=&amp; b_1 \\
@@ -13266,7 +13271,7 @@ is a vector space in $\mathbb{R}^m$.</p>
  \mathcal{C}(\mathbf{A}) &amp;=&amp; \{ \mathbf{y} \in \mathbb{R}^m: \mathbf{y} = \mathbf{A} \mathbf{x} \text{ for some } \mathbf{x} \in \mathbb{R}^n \} \\
  &amp;=&amp; \text{span}\{\mathbf{a}_1, \ldots, \mathbf{a}_n\}.
 \end{eqnarray*}
-Sometimes it is also called the <em>range</em> of $\mathbf{A}$ or the <em>manifold</em> of $\mathbf{A}$.</p>
+Sometimes it is also called the <strong>image</strong> or <strong>range</strong> or <strong>manifold</strong> of $\mathbf{A}$.</p>
 </li>
 <li><p>The <strong>row space</strong> of $\mathbf{A}$ is
 \begin{eqnarray*}
@@ -13387,8 +13392,37 @@ $$</p>
 <p>$$
   Then $(\alpha_1 - \beta_1) \mathbf{a}_1 + \cdots (\alpha_n - \beta_n) \mathbf{a}_n = \mathbf{0}$. Since $\mathbf{a}_i$ are linearly independent, we have $\alpha_i = \beta_i$ for all $i$.</p>
 </li>
+<li><p>If the vectors $\mathbf{x}_1, \ldots, \mathbf{x}_n \in \mathbb{R}^m$ are linearly independent, then $m \ge n$.</p>
+</li>
+<li><p>If $\mathcal{A}=\{\mathbf{a}_1, \ldots, \mathbf{a}_k\}$ is a linearly independent set in a vector space $\mathcal{S} \subseteq \mathbb{R}^{m}$ and $\mathcal{B}=\{\mathbf{b}_1, \ldots, \mathbf{b}_l\}$ spans $\mathcal{S}$, then $k \le l$.</p>
+<p>Proof. Define two matrices
+$$
+  \mathbf{A} = \begin{pmatrix}
+  \mid &amp; &amp; \mid \\
+  \mathbf{a}_1 &amp; \ldots &amp; \mathbf{a}_k \\
+  \mid &amp; &amp; \mid    
+  \end{pmatrix} \in \mathbb{R}^{m \times k}, \quad \mathbf{B} = \begin{pmatrix}
+  \mid &amp; &amp; \mid \\
+  \mathbf{b}_1 &amp; \ldots &amp; \mathbf{b}_l \\
+  \mid &amp; &amp; \mid    
+  \end{pmatrix} \in \mathbb{R}^{m \times l}.
+$$
+Since $\mathcal{B}$ spans $\mathcal{V}$, $\mathbf{a}_i = \mathbf{B} \mathbf{c}_i$ for some vector $\mathbf{c}_i \in \mathbb{R}^k$ for $i=1,\ldots,k$. Let
+$$
+  \mathbf{C} = \begin{pmatrix}
+  \mid &amp; &amp; \mid \\
+  \mathbf{c}_1 &amp; \ldots &amp; \mathbf{c}_l \\
+  \mid &amp; &amp; \mid    
+  \end{pmatrix} \in \mathbb{R}^{l \times k}.
+$$
+Then $\mathbf{A} = \mathbf{B} \mathbf{C}$. Since
+$$
+  \mathcal{N}(\mathbf{C}) \subseteq \mathcal{N}(\mathbf{A}) = \{\mathbf{0}\}.
+$$
+The only solution to $\mathbf{C} \mathbf{x} = \mathbf{0}_k$ is $\mathbf{0}_l$. In other words, the columns of $\mathbf{C}$ are linearly independent. Thus $\mathbf{C}$ has at least as many rows as columns. That is $k \le l$.</p>
+</li>
 <li><p>BR Theorem 4.20. Let $\mathcal{A}=\{\mathbf{a}_1, \ldots, \mathbf{a}_k\}$ and $\mathcal{B}=\{\mathbf{b}_1, \ldots, \mathbf{b}_l\}$ be two basis of a vector space $\mathcal{S}$. Then $k = l$.</p>
-<p>Proof: See BR p117.</p>
+<p>Proof: This immediately follows from the previous result.</p>
 </li>
 <li><p>The <strong>dimension</strong> of a vector space $\mathcal{S}$, denoted by $\text{dim}(\mathcal{S})$, is defined as the number of vectors in <em>any</em> basis of $\mathcal{S}$, or equivalently the maximmal number of linearly independent vectors in $\mathcal{S}$.</p>
 </li>
