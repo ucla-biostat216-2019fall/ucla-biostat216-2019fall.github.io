@@ -9,7 +9,7 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 
 | Week | Thursday | Homework |
 |:-----------|:------------|:------------|
-| 1 | [9/26](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/09/26/week1.html) intro. \[[slide](./slides/01-intro/01-intro.html)\], vector space (BR 4) \[[slide](./slides/02-vecsp/02-vecsp.html)\], rank (BR 5) \[[slide](./slides/03-rank/03-rank.html)\] | [HW1]() |  
+| 1 | [9/26](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/09/26/week1.html) intro. \[[slide](./slides/01-intro/01-intro.html)\], vector space (BR 4) \[[slide](./slides/02-vecsp/02-vecsp.html)\], rank (BR 5) \[[slide](./slides/03-rank/03-rank.html)\] | [HW1](./hw/hw1/hw1.html) |  
 | 2 | 10/3 projection (BR 6), orthogonal projection (BR 7), linear equations and matrix inverses (BR 8) |   |  
 | 3 | 10/10 (BR 2,3,8,9) GE/LU, Cholesky, QR | HW2 |  
 | 4 | 10/17 (BR 11,12) eigenvalues, eigenvectors, SVD | |  
