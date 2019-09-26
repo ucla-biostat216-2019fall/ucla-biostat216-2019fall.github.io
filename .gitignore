@@ -37,3 +37,5 @@ rsconnect/
 
 # MacOS junk
 .DS_Store
+
+.ipynb_checkpoints
