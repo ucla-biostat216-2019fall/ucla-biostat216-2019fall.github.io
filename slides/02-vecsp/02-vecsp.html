@@ -13257,7 +13257,8 @@ is a vector space in $\mathbb{R}^m$.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Four-fundamental-subspaces">Four fundamental subspaces<a class="anchor-link" href="#Four-fundamental-subspaces">&#182;</a></h2><p>Let $\mathbf{A}$ be an $m \times n$ matrix
+<h2 id="Four-fundamental-subspaces">Four fundamental subspaces<a class="anchor-link" href="#Four-fundamental-subspaces">&#182;</a></h2><p><img src="./four_fundamental_subspaces.png" width=400 align="center"/></p>
+<p>Let $\mathbf{A}$ be an $m \times n$ matrix
 \begin{eqnarray*}
     \mathbf{A} = \begin{pmatrix}
     \mid &amp; &amp; \mid \\
@@ -13307,7 +13308,7 @@ Sometimes it is also called the <strong>image</strong> or <strong>range</strong>
 <p><strong>Effects of matrix multiplication on column/row space.</strong></p>
 <ul>
 <li><p>BR Theorem 4.6. $\mathcal{C}(\mathbf{C}) \subseteq \mathcal{C}(\mathbf{A})$ if and only if $\mathbf{C} = \mathbf{A} \mathbf{B}$ for some matrix $\mathbf{B}$.</p>
-<p>Proof: The <em>if</em> part is easily verified since each column of $\mathbf{C}$ is a linear combination of columns of $\mathbf{A}$. For the <em>only if</em> part, assuming $\mathcal{C}(\mathbf{C}) \subset \mathcal{C}(\mathbf{A})$, each column of $\mathbf{C}$ is a linear combination of columns of $\mathbf{A}$. In other words $\mathbf{c}_j = \mathbf{A} \mathbf{b}_j$ for some $\mathbf{b}_j$. Therefore $\mathbf{C} = \mathbf{A} \mathbf{B}$, where $\mathbf{B}$ has columns $\mathbf{b}_j$.</p>
+<p>Proof: The <em>if</em> part is easily verified since each column of $\mathbf{C}$ is a linear combination of columns of $\mathbf{A}$. For the <em>only if</em> part, assuming $\mathcal{C}(\mathbf{C}) \subseteq \mathcal{C}(\mathbf{A})$, each column of $\mathbf{C}$ is a linear combination of columns of $\mathbf{A}$. In other words $\mathbf{c}_j = \mathbf{A} \mathbf{b}_j$ for some $\mathbf{b}_j$. Therefore $\mathbf{C} = \mathbf{A} \mathbf{B}$, where $\mathbf{B}$ has columns $\mathbf{b}_j$.</p>
 </li>
 <li><p>BR Theorem 4.7. $\mathcal{R}(\mathbf{C}) \subseteq \mathcal{C}(\mathbf{A})$ if and only if $\mathbf{C} = \mathbf{B} \mathbf{A}$ for some matrix $\mathbf{B}$.</p>
 <p>Proof is similar to that for BR Theorem 4.6.</p>
@@ -13341,7 +13342,6 @@ $$
 \mathcal{N} \left( \begin{pmatrix} \mathbf{A} \\ \mathbf{C} \end{pmatrix} \right) = \mathcal{N}(\mathbf{A}) \cap \mathcal{N}(\mathbf{C}).
 $$</p>
 <p>Proof: To show part 1, we note $\mathbf{x} \in \mathcal{C}((\mathbf{A}, \mathbf{B}))$ if and only if $\mathbf{x} = \mathbf{A} \mathbf{u} + \mathbf{B} \mathbf{v}$ for some $\mathbf{u}$ and $\mathbf{v}$ if and only if $\mathbf{x} \in \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})$. To show part 2, we apply part 1 to the transpose.</p>
-<p>Early on we showed that $\mathcal{R}(\mathbf{A}) + \mathcal{R}(\mathbf{B})$ is a vector space. Part 1 gives an alternative proof.</p>
 </li>
 </ol>
 </li>
@@ -13385,14 +13385,28 @@ $$</p>
 </li>
 <li><p>BR Lemma 4.5. Let $\mathcal{A} = \{\mathbf{a}_1, \ldots, \mathbf{a}_n\}$ be a basis of a vector space $\mathcal{S}$. Then any vector $\mathbf{x} \in \mathcal{S}$ can be expressed <strong>uniquely</strong> as a linear combination of vectors in $\mathcal{A}$.</p>
 <p>Proof: Suppose $\mathbf{x}$ can be expressed by two linear combinations
-  $$</p>
-
-<pre><code>  \mathbf{x} = \alpha_1 \mathbf{a}_1 + \cdots + \alpha_n \mathbf{a}_n = \beta_1 \mathbf{a}_1 + \cdots + \beta_n \mathbf{a}_n.
-</code></pre>
-<p>$$
-  Then $(\alpha_1 - \beta_1) \mathbf{a}_1 + \cdots (\alpha_n - \beta_n) \mathbf{a}_n = \mathbf{0}$. Since $\mathbf{a}_i$ are linearly independent, we have $\alpha_i = \beta_i$ for all $i$.</p>
+$$
+  \mathbf{x} = \alpha_1 \mathbf{a}_1 + \cdots + \alpha_n \mathbf{a}_n = \beta_1 \mathbf{a}_1 + \cdots + \beta_n \mathbf{a}_n.
+$$
+Then $(\alpha_1 - \beta_1) \mathbf{a}_1 + \cdots (\alpha_n - \beta_n) \mathbf{a}_n = \mathbf{0}$. Since $\mathbf{a}_i$ are linearly independent, we have $\alpha_i = \beta_i$ for all $i$.</p>
 </li>
-<li><p>If the vectors $\mathbf{x}_1, \ldots, \mathbf{x}_n \in \mathbb{R}^m$ are linearly independent, then $m \ge n$.</p>
+<li><p><strong>Independence-dimension inequality.</strong> If the vectors $\mathbf{x}_1, \ldots, \mathbf{x}_k \in \mathbb{R}^n$ are linearly independent, then $k \le n$.</p>
+<p>Proof: We show this by induction. Let $a_1, \ldots, a_k \in \mathbb{R}^1$ be linearly independent. We must have $a_1 \ne 0$. This means that every element $a_i$ of the collection can be expressed as a multiple of $a_i = (a_i / a_1) a_1$ of the first element $a_1$. This contradicts the linear independence thus $k$ must be 1.<br>
+  Induction hypothesis: suppose $n \ge 2$ and the independence-dimension inequality holds for $k \le n$. We partition the vectors $\mathbf{a}_i \in \mathbb{R}^n$ as
+$$
+  \mathbf{a}_i = \begin{pmatrix} \mathbf{b}_i \\ \alpha_i \end{pmatrix}, \quad i = 1,\ldots,k,
+$$
+where $\mathbf{b}_i \in \mathbb{R}^{n-1}$ and $\alpha_i \in \mathbb{R}$.<br>
+  First suppose $\alpha_1 = \cdots = \alpha_k = 0$. Then the vectors $\mathbf{b}_1, \ldots, \mathbf{b}_k$ are linearly independent: $\sum_{i=1}^k \beta_i \mathbf{b}_i = \mathbf{0}$ if and only if $\sum_{i=1}^k \beta_i \mathbf{a}_i = \mathbf{0}$, which is only possible for $\beta_1 = \cdots = \beta_k = 0$ because the vectors $\mathbf{a}_i$ are linearly independent. The vectors $\mathbf{b}_i$ therefore form a linearly independent collection of $(n-1)$-vectors. By the induction hypothesis we have $k \le n-1$ so $k \le n$.<br>
+  Next we assume the scalars $\alpha_i$ are not all zero. Assume $\alpha_j \ne 0$. We define a collection of $k-1$ vectors $\mathbf{c}_i$ of length $n-1$ as follows:
+$$
+  \mathbf{c}_i = \mathbf{b}_i - \frac{\alpha_i}{\alpha_j} \mathbf{b}_j, \quad i = 1, \ldots, j-1, \mathbf{c}_i = \mathbf{b}_{i+1} - \frac{\alpha_{i+1}}{\alpha_j} \mathbf{b}_j, \quad i = j, \ldots, k-1.
+$$
+These $k-1$ vectors are linealy independent: If $\sum_{i=1}^{k-1} \beta_i c_i = 0$ then
+$$
+  \sum_{i=1}^{j-1} \beta_i \begin{pmatrix} \mathbf{b}_i \\ \alpha_i \end{pmatrix} + \gamma \begin{pmatrix} \mathbf{b}_j \\ \alpha_j \end{pmatrix} + \sum_{i=j+1}^k \beta_{i-1} \begin{pmatrix} \mathbf{b}_i \\ \alpha_i \end{pmatrix} = \mathbf{0}
+$$
+with $\gamma = - \alpha_j^{-1} \left( \sum_{i=1}^{j-1} \beta_i \alpha_i + \sum_{i=j+1}^k \beta_{i-1} \alpha_i \right)$. Since the vectors $\mathbf{a}_i$ are linearly independent, all coefficients $\beta_i$ and $\gamma$ are all zero. This in turns implies that the vectors $\mathbf{c}_1, \ldots, \mathbf{c}_{k-1}$ are linearly independent. By the induction hypothesis $k-1 \le n-1$, we have established $k \le n$.</p>
 </li>
 <li><p>If $\mathcal{A}=\{\mathbf{a}_1, \ldots, \mathbf{a}_k\}$ is a linearly independent set in a vector space $\mathcal{S} \subseteq \mathbb{R}^{m}$ and $\mathcal{B}=\{\mathbf{b}_1, \ldots, \mathbf{b}_l\}$ spans $\mathcal{S}$, then $k \le l$.</p>
 <p>Proof. Define two matrices
@@ -13407,7 +13421,7 @@ $$
   \mid &amp; &amp; \mid    
   \end{pmatrix} \in \mathbb{R}^{m \times l}.
 $$
-Since $\mathcal{B}$ spans $\mathcal{V}$, $\mathbf{a}_i = \mathbf{B} \mathbf{c}_i$ for some vector $\mathbf{c}_i \in \mathbb{R}^k$ for $i=1,\ldots,k$. Let
+Since $\mathcal{B}$ spans $\mathcal{S}$, $\mathbf{a}_i = \mathbf{B} \mathbf{c}_i$ for some vector $\mathbf{c}_i \in \mathbb{R}^k$ for $i=1,\ldots,k$. Let
 $$
   \mathbf{C} = \begin{pmatrix}
   \mid &amp; &amp; \mid \\
@@ -13419,7 +13433,7 @@ Then $\mathbf{A} = \mathbf{B} \mathbf{C}$. Since
 $$
   \mathcal{N}(\mathbf{C}) \subseteq \mathcal{N}(\mathbf{A}) = \{\mathbf{0}\}.
 $$
-The only solution to $\mathbf{C} \mathbf{x} = \mathbf{0}_k$ is $\mathbf{0}_l$. In other words, the columns of $\mathbf{C}$ are linearly independent. Thus $\mathbf{C}$ has at least as many rows as columns. That is $k \le l$.</p>
+The only solution to $\mathbf{C} \mathbf{x} = \mathbf{0}_k$ is $\mathbf{0}_l$. In other words, the columns of $\mathbf{C}$ are linearly independent. Thus, by the independence-dimension inequality, $\mathbf{C}$ has at least as many rows as columns. That is $k \le l$.</p>
 </li>
 <li><p>BR Theorem 4.20. Let $\mathcal{A}=\{\mathbf{a}_1, \ldots, \mathbf{a}_k\}$ and $\mathcal{B}=\{\mathbf{b}_1, \ldots, \mathbf{b}_l\}$ be two basis of a vector space $\mathcal{S}$. Then $k = l$.</p>
 <p>Proof: This immediately follows from the previous result.</p>
