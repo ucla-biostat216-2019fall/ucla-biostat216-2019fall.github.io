@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>03-rank</title>
+<title>05-orthproj</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13138,299 +13138,9 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Rank-and-nullity-(BR-Chapter-5)">Rank and nullity (BR Chapter 5)<a class="anchor-link" href="#Rank-and-nullity-(BR-Chapter-5)">&#182;</a></h1><p><strong>Highlights</strong>: In this lecture we will show some most important results on rank of a matrix:</p>
-<ol>
-<li>$\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{A})$<br>
- $\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{B})$.  </li>
-<li>$\text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{B}) + \text{rank}(\mathbf{B})$.  </li>
-<li>Rank-nullity theorem: For any $\mathbf{A} \in \mathbb{R}^{m \times n}$, $\text{rank}(\mathbf{A}) + \text{nullity}(\mathbf{A}) = n$.  </li>
-<li>Fundamental theorem of ranks: $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}') = \text{rank}(\mathbf{A}'\mathbf{A}) = \text{rank}(\mathbf{A}\mathbf{A}')$.</li>
-</ol>
+<h1 id="Orthogonal-projections-(BR-Chapters-7,-8)">Orthogonal projections (BR Chapters 7, 8)<a class="anchor-link" href="#Orthogonal-projections-(BR-Chapters-7,-8)">&#182;</a></h1><p><strong>Highlights</strong> In this lecture, we'll show (1) the fundamental theorem of linear algebra:</p>
 <p><img src="../02-vecsp/four_fundamental_subspaces.png" width=400 align="center"/></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span><span class="p">,</span> <span class="n">RDatasets</span><span class="p">,</span> <span class="n">StatsModels</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c"># the famous Fisher&#39;s Iris data</span>
-<span class="c"># &lt;https://en.wikipedia.org/wiki/Iris_flower_data_set&gt;</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">(</span><span class="s">&quot;datasets&quot;</span><span class="p">,</span> <span class="s">&quot;iris&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[7]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<table class="data-frame"><thead><tr><th></th><th>SepalLength</th><th>SepalWidth</th><th>PetalLength</th><th>PetalWidth</th><th>Species</th></tr><tr><th></th><th>Float64</th><th>Float64</th><th>Float64</th><th>Float64</th><th>Categorical…</th></tr></thead><tbody><p>150 rows × 5 columns</p><tr><th>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr><tr><th>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr><tr><th>7</th><td>4.6</td><td>3.4</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>8</th><td>5.0</td><td>3.4</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>10</th><td>4.9</td><td>3.1</td><td>1.5</td><td>0.1</td><td>setosa</td></tr><tr><th>11</th><td>5.4</td><td>3.7</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>12</th><td>4.8</td><td>3.4</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>13</th><td>4.8</td><td>3.0</td><td>1.4</td><td>0.1</td><td>setosa</td></tr><tr><th>14</th><td>4.3</td><td>3.0</td><td>1.1</td><td>0.1</td><td>setosa</td></tr><tr><th>15</th><td>5.8</td><td>4.0</td><td>1.2</td><td>0.2</td><td>setosa</td></tr><tr><th>16</th><td>5.7</td><td>4.4</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>17</th><td>5.4</td><td>3.9</td><td>1.3</td><td>0.4</td><td>setosa</td></tr><tr><th>18</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>19</th><td>5.7</td><td>3.8</td><td>1.7</td><td>0.3</td><td>setosa</td></tr><tr><th>20</th><td>5.1</td><td>3.8</td><td>1.5</td><td>0.3</td><td>setosa</td></tr><tr><th>21</th><td>5.4</td><td>3.4</td><td>1.7</td><td>0.2</td><td>setosa</td></tr><tr><th>22</th><td>5.1</td><td>3.7</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>23</th><td>4.6</td><td>3.6</td><td>1.0</td><td>0.2</td><td>setosa</td></tr><tr><th>24</th><td>5.1</td><td>3.3</td><td>1.7</td><td>0.5</td><td>setosa</td></tr><tr><th>25</th><td>4.8</td><td>3.4</td><td>1.9</td><td>0.2</td><td>setosa</td></tr><tr><th>26</th><td>5.0</td><td>3.0</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>27</th><td>5.0</td><td>3.4</td><td>1.6</td><td>0.4</td><td>setosa</td></tr><tr><th>28</th><td>5.2</td><td>3.5</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>29</th><td>5.2</td><td>3.4</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>30</th><td>4.7</td><td>3.2</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>&vellip;</th><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td></tr></tbody></table>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c"># use full dummy coding (one-hot coding) for categorical variable Species</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">ModelMatrix</span><span class="p">(</span><span class="n">ModelFrame</span><span class="p">(</span>
-    <span class="nd">@formula</span><span class="p">(</span><span class="mi">1</span> <span class="o">~</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">SepalLength</span> <span class="o">+</span> <span class="n">SepalWidth</span> <span class="o">+</span> <span class="n">PetalLength</span> <span class="o">+</span> <span class="n">PetalWidth</span> <span class="o">+</span> <span class="n">Species</span><span class="p">),</span> 
-    <span class="n">iris</span><span class="p">,</span>
-    <span class="n">contrasts</span> <span class="o">=</span> <span class="kt">Dict</span><span class="p">(</span><span class="o">:</span><span class="n">Species</span> <span class="o">=&gt;</span> <span class="n">StatsModels</span><span class="o">.</span><span class="n">FullDummyCoding</span><span class="p">())))</span><span class="o">.</span><span class="n">m</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>150×8 Array{Float64,2}:
- 1.0  5.1  3.5  1.4  0.2  1.0  0.0  0.0
- 1.0  4.9  3.0  1.4  0.2  1.0  0.0  0.0
- 1.0  4.7  3.2  1.3  0.2  1.0  0.0  0.0
- 1.0  4.6  3.1  1.5  0.2  1.0  0.0  0.0
- 1.0  5.0  3.6  1.4  0.2  1.0  0.0  0.0
- 1.0  5.4  3.9  1.7  0.4  1.0  0.0  0.0
- 1.0  4.6  3.4  1.4  0.3  1.0  0.0  0.0
- 1.0  5.0  3.4  1.5  0.2  1.0  0.0  0.0
- 1.0  4.4  2.9  1.4  0.2  1.0  0.0  0.0
- 1.0  4.9  3.1  1.5  0.1  1.0  0.0  0.0
- 1.0  5.4  3.7  1.5  0.2  1.0  0.0  0.0
- 1.0  4.8  3.4  1.6  0.2  1.0  0.0  0.0
- 1.0  4.8  3.0  1.4  0.1  1.0  0.0  0.0
- ⋮                        ⋮            
- 1.0  6.0  3.0  4.8  1.8  0.0  0.0  1.0
- 1.0  6.9  3.1  5.4  2.1  0.0  0.0  1.0
- 1.0  6.7  3.1  5.6  2.4  0.0  0.0  1.0
- 1.0  6.9  3.1  5.1  2.3  0.0  0.0  1.0
- 1.0  5.8  2.7  5.1  1.9  0.0  0.0  1.0
- 1.0  6.8  3.2  5.9  2.3  0.0  0.0  1.0
- 1.0  6.7  3.3  5.7  2.5  0.0  0.0  1.0
- 1.0  6.7  3.0  5.2  2.3  0.0  0.0  1.0
- 1.0  6.3  2.5  5.0  1.9  0.0  0.0  1.0
- 1.0  6.5  3.0  5.2  2.0  0.0  0.0  1.0
- 1.0  6.2  3.4  5.4  2.3  0.0  0.0  1.0
- 1.0  5.9  3.0  5.1  1.8  0.0  0.0  1.0</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="nd">@show</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nd">@show</span> <span class="n">rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nd">@show</span> <span class="n">rank</span><span class="p">(</span><span class="n">X</span><span class="o">&#39;</span><span class="p">)</span>
-<span class="nd">@show</span> <span class="n">rank</span><span class="p">(</span><span class="n">X</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">X</span><span class="p">)</span>
-<span class="nd">@show</span> <span class="n">rank</span><span class="p">(</span><span class="n">X</span> <span class="o">*</span> <span class="n">X</span><span class="o">&#39;</span><span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>size(X) = (150, 8)
-rank(X) = 7
-rank(X&#39;) = 7
-rank(X&#39; * X) = 7
-rank(X * X&#39;) = 7
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rank">Rank<a class="anchor-link" href="#Rank">&#182;</a></h2><p>Let $\mathbf{A}$ be an $m \times n$ matrix
-\begin{eqnarray*}
-    \mathbf{A} = \begin{pmatrix}
-    \mid &amp; &amp; \mid \\
-    \mathbf{a}_1 &amp; \ldots &amp; \mathbf{a}_n \\
-    \mid &amp; &amp; \mid    
-    \end{pmatrix}.
-\end{eqnarray*}</p>
-<ul>
-<li><p>The <strong>column rank</strong> of $\mathbf{A}$ is the maximum number of linearly independent columns of $\mathbf{A}$.</p>
-<p>In other words, column rank of $\mathbf{A}$ is $\text{dim}(\mathcal{C}(\mathbf{A}))$.</p>
-</li>
-<li><p>The <strong>row rank</strong> of $\mathbf{A}$ is the maximum number of linearly independent rows of $\mathbf{A}$.</p>
-<p>In other words, row rank of $\mathbf{A}$ is $\text{dim}(\mathcal{C}(\mathbf{A}'))$.</p>
-</li>
-<li><p>If $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{B})$, then $\text{rank}(\mathbf{A}) \le \text{rank}(\mathbf{B})$.</p>
-<p>Proof: By the monotonicity of dimension.</p>
-</li>
-<li><p>BR Theorem 4.17. For any $m \times n$ matrix $\mathbf{A}$, its column rank is equal to the row rank, which we shall call the <strong>rank</strong> of $\mathbf{A}$.</p>
-<p>Proof: Let $r$ be the row rank of $\mathbf{A}$ and $c$ be the column rank of $\mathbf{A}$. We show $r=c$ by showing $c \le r$ and $c \ge r$.<br>
-  Since $\mathbf{A}$ has row rank $r$, we can permute the rows of $\mathbf{A}$ to be<br>
-$$
-  \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{A_2} \end{pmatrix} = \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A_1} \end{pmatrix},
-$$
-  where $\mathbf{A}_1 \in \mathbb{R}^{r \times n}$ has $r$ independent rows and $\mathbf{A}_2 = \mathbf{B} \mathbf{A}_1 \in \mathbb{R}^{(m-r) \times n}$ for some matrix $\mathbf{B}$. Note row permutation does not change the row rank. Then
-$$
-  \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A}_1 \end{pmatrix} \mathbf{x} = \mathbf{0} \Leftrightarrow \mathbf{A}_1 \mathbf{x} = \mathbf{0}.
-$$
-This says that take any set of linearly independent columns in $\mathbf{A}$, the corresponding columns in $\mathbf{A}_1$ are linearly independent as well. Therefore the column rank $c$ of $\mathbf{A}$ is less than or equal to the maximum number of linearly independent columns of $\mathbf{A}_1$, which is less than or equal to $r$ by the independence-dimensionality inequality. This way we have shown $c \le r$.<br>
-  To show the other direction $c \ge r$, we apply above result to the transpose $\mathbf{A}'$.</p>
-</li>
-<li><p>For any $\mathbf{A} \in \mathbb{R}^{m \times n}$, $\text{rank}(\mathbf{A}) \le \min \{m, n\}$.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="nd">@show</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nd">@show</span> <span class="n">rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>size(X) = (150, 8)
-rank(X) = 7
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[10]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>7</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><p>For $\mathbf{A} \in \mathbb{R}^{m \times n}$, we say $\mathbf{A}$ is <strong>full rank</strong> if $\text{rank}(\mathbf{A}) = \min \{m, n\}$.</p>
-<p>It is <strong>full row rank</strong> if $\text{rank}(\mathbf{A}) = m$.</p>
-<p>It is <strong>full column rank</strong> if $\text{rank}(\mathbf{A}) = n$.</p>
-</li>
-<li><p>A square matrix $\mathbf{A} \in \mathbb{R}^{n \times n}$ is <strong>singular</strong> if $\text{rank}(\mathbf{A}) &lt; n$ and <strong>non-singular</strong> or <strong>invertible</strong> if $\text{rank}(\mathbf{A}) = n$.</p>
-</li>
-<li><p>Example: The identity matrix
-$$
-  \mathbf{I} = \begin{pmatrix}
-  1 &amp; \cdots &amp; 0 \\
-  \vdots &amp; \ddots &amp; \vdots \\
-  0 &amp; \cdots &amp; 1
-  \end{pmatrix}
-$$
-is full rank.</p>
-</li>
-<li><p>BR Lemma 5.1. $\text{rank}(\mathbf{A}\mathbf{B}) \le \min \{\text{rank}(\mathbf{A}), \text{rank}(\mathbf{B})\}$. In words, <strong>matrix multiplication never increases the rank</strong>.</p>
-<p>Proof: Because $\mathcal{C}(\mathbf{A}\mathbf{B}) \subseteq \mathcal{C}(\mathbf{A})$ (why?), we have $\text{rank}(\mathbf{A}\mathbf{B}) \le \text{rank}(\mathbf{A})$ by monotonicity of dimension. Similary, because the row space of $\mathbf{A}\mathbf{B}$ is a subset of the row space of  $\mathbf{A}$, we have $\text{rank}(\mathbf{A}\mathbf{B}) \le \text{rank}(\mathbf{B})$.</p>
-</li>
-<li><p>Indeed, the loss in rank due to multiplication can be quantified as
-$$
-  \text{rank}(\mathbf{A} \mathbf{B}) = \text{rank}(\mathbf{B}) - \text{dim}(\mathcal{N}(\mathbf{A}) \cap \mathcal{C}(\mathbf{B})).
-$$
-See BR Theorem 5.4 (p136) for proof.</p>
-</li>
-<li><p>BR Lemma 5.3. $\text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A})$ if $\mathbf{B}$ is square and of full rank. More general, left-multiplying by a matrix with full column rank or right-multiplying by a matrix of full row rank does not change rank.</p>
-<p>Proof: We show the more general statement. Assume $\mathbf{B} \in \mathbb{R}^{m \times n}$ has full row rank, we want to show $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}\mathbf{B})$. Since $\mathbf{B} \in \mathbb{R}^{m \times n}$ has full row rank, there exists a permutation matrix $\mathbf{P} \in \{0,1\}^{n \times n}$ such that
-$$
-  \mathbf{B} \mathbf{P} = \begin{pmatrix} \mathbf{B}_1, \mathbf{B}_2 \end{pmatrix},
-$$
-where $\mathbf{B}_1 \in \mathbb{R}^{m \times m}$ is non-singular and $\mathbf{B} \in \mathbf{R}^{m \times (n-m)}$. Then
-$$
-  \text{rank}(\mathbf{A}) \ge \text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A} \begin{pmatrix} \mathbf{B}_1, \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T) \ge \text{rank} \left( \mathbf{A} \begin{pmatrix} \mathbf{B}_1, \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T \mathbf{P} \begin{pmatrix} \mathbf{B}_1^{-1} \\ \mathbf{0} \end{pmatrix} \right) = \text{rank} (\mathbf{A} \mathbf{I}_m) = \text{rank} (\mathbf{A}).
-$$
-Thus $\text{rank}(\mathbf{A}) = \text{rank} (\mathbf{A} \mathbf{B})$. Proof for the other half of the statement follows the same argument.</p>
-</li>
-<li><p>$\text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B})$. (Maybe do this later???)</p>
-<p>Proof: Any column of $\mathbf{A} + \mathbf{B}$ is in the space $\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B}) = \mathcal{C}((\mathbf{A}, \mathbf{B}))$. And $\text{rank}((\mathbf{A}, \mathbf{B})) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B})$.</p>
-</li>
-</ul>
+<p>and (2) any symmetric, idempotent matrix $\mathbf{P}$ is the orthogonal projector onto $\mathcal{C}(\mathbf{P})$.</p>
 
 </div>
 </div>
@@ -13438,42 +13148,51 @@ Thus $\text{rank}(\mathbf{A}) = \text{rank} (\mathbf{A} \mathbf{B})$. Proof for 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Nullity">Nullity<a class="anchor-link" href="#Nullity">&#182;</a></h2><ul>
-<li><p>The nullity of a matrix $\mathbf{A}$ is the dimension of its null space 
+<h2 id="Inner-product-and-orthogonality">Inner product and orthogonality<a class="anchor-link" href="#Inner-product-and-orthogonality">&#182;</a></h2><ul>
+<li><p>The <strong>inner product</strong> between two vectors $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ is defined as
 $$
-\text{nullity}(\mathbf{A}) = \text{dim}(\mathcal{N}(\mathbf{A})).
+  \langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}' \mathbf{y} = \sum_{i=1}^n x_i y_i.
 $$</p>
 </li>
-<li><p>If $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{B})$, then $\text{rank}(\mathbf{A}) \ge \text{rank}(\mathbf{B})$.</p>
-<p>Proof: If $\mathbf{A} \mathbf{x} = \mathbf{0}$, then $\mathbf{B} \mathbf{x} = \mathbf{0}$. Then for any set of linearly independent columns in $\mathbf{B}$, the corresponding columns in $\mathbf{A}$ are linearly independent as well. Thus the maximum number of linearly independent columns in $\mathbf{A}$ is at least as many as that of $\mathbf{B}$.</p>
+<li><p>The $\ell_2$ <strong>norm</strong> of a vector $\mathbf{x} \in \mathbb{R}^n$ is $\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{y} \rangle} = \sqrt{\sum_i x_i^2}$.</p>
 </li>
-<li><p>BR Lemma 5.1. $\text{nullity}(\mathbf{A}) \le \text{nullity}(\mathbf{B} \mathbf{A})$. <strong>(Left) matrix multiplication can only inreases the nullity.</strong></p>
-<p>Proof: Since $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{B} \mathbf{A})$ (why), we have $\text{nullity}(\mathbf{A}) \le \text{nullity}(\mathbf{B} \mathbf{A})$.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rank-nullity-theorem">Rank-nullity theorem<a class="anchor-link" href="#Rank-nullity-theorem">&#182;</a></h2><ul>
-<li><p>BR Theorem 5.1. Let $\mathbf{A} \in \mathbb{R}^{m \times n}$, then
+<li><p><strong>Cauchy-Schwarz inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$, then
 $$
-  \text{rank}(\mathbf{A}) + \text{nullity}(\mathbf{A}) = n.
+  \langle \mathbf{x}, \mathbf{y} \rangle \le \|\mathbf{x}\|^2 \|\mathbf{y}\|^2,
+$$
+with equality holding if and only if $\mathbf{x} = \alpha \mathbf{y}$ for some real number $\alpha$.</p>
+<p>Proof: BR p180. Expand $0 \le \|\mathbf{x} - \alpha \mathbf{y}\|^2$.</p>
+</li>
+<li><p><strong>Triangule inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$. Then
+$$
+  \|\mathbf{x} + \mathbf{y}\| \le \|\mathbf{x}\| + \|\mathbf{y}\|.
 $$</p>
-<p>Proof: Denote $\nu = \text{nullity}(\mathbf{A}) = \text{dim}(\mathcal{N}(\mathbf{A}))$. Let $\mathbf{X} \in \mathbb{R}^{n \times n}$ be
+</li>
+<li><p><strong>Angle between vectors.</strong> The radian measure of the angle between two non-zero vectors $\mathbf{x}, \mathbf{y}$ is defined to be the number $\theta \in [0,\pi]$ such that
 $$
-  \mathbf{X} = \begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix},
+  \cos \theta = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \|\mathbf{y}\|} = \langle \mathbf{u}_x, \mathbf{u}_y \rangle,
 $$
-where columns of $\mathbf{X}_1 \in \mathbb{R}^{n \times \nu}$ form a basis of $\mathcal{N}(\mathbf{A})$ and columns of $\mathbf{X}_2 \in \mathbb{R}^{n \times (n - \nu)}$ extend those in $\mathbf{X}_1$ to be a basis of $\mathbb{R}^n$. We show columns of $\mathbf{A} \mathbf{X}_2$ form a basis of $\mathcal{C}(\mathbf{A})$. Thus $\text{rank}(\mathbf{A}) = \text{dim}(\mathcal{C}(\mathbf{A})) = n - \nu$.<br>
-  (1) To show that columns of $\mathbf{A} \mathbf{X}_2$ are linearly independent. Assume $\mathbf{A} \mathbf{X}_2 \mathbf{v} = \mathbf{0}$. Then $\mathbf{X}_2 \mathbf{v} \in \mathcal{N}(\mathbf{A}) = \mathcal{C}(\mathbf{X}_1)$. Thus $\mathbf{X}_2 \mathbf{v} = \mathbf{X}_1 \mathbf{u}$ for some $\mathbf{u}$, or equivalently,
+where
 $$
-  \begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix} \begin{pmatrix} -\mathbf{u} \\ \mathbf{v} \end{pmatrix} = \mathbf{0}.
+  \mathbf{u}_x = \frac{\mathbf{x}}{\|\mathbf{x}\|}, \quad \mathbf{u}_y = \frac{\mathbf{y}}{\|\mathbf{y}\|}
 $$
-Since the matrix $\begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix}$ is non-singular, we must have $\mathbf{u}=\mathbf{0}$ and $\mathbf{v}=\mathbf{0}$. This shows that $\mathbf{v}=\mathbf{0}$ whenever $\mathbf{A} \mathbf{X}_2 \mathbf{v} = \mathbf{0}$. So the columns of $\mathbf{A} \mathbf{X}_2$ is linearly independent.<br>
-  (2) Next we show the columns of $\mathbf{A} \mathbf{X}_2$ span $\mathcal{C}(\mathbf{A})$ by showing $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \subseteq \mathcal{C}(\mathbf{A})$ and $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \supseteq \mathcal{C}(\mathbf{A})$. One direction $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \subseteq \mathcal{C}(\mathbf{A})$ is easy. To show the other direction $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{A} \mathbf{X}_2)$, let $\mathbf{w} \in \mathcal{C}(\mathbf{A})$. Then $\mathbf{w} = \mathbf{A} \mathbf{y}$ for some vector $\mathbf{y}$. Because $\mathbf{y} \in \mathbb{R}^n$, which is spanned by columns of $\mathbf{X}$, we can write $\mathbf{y} = \mathbf{X}_1 \mathbf{z}_1 + \mathbf{X}_2 \mathbf{z}_2$ for some vectors $\mathbf{z}_1$ and $\mathbf{z}_2$. Thus $\mathbf{w} = \mathbf{A} \mathbf{X}_1 \mathbf{z}_1 + \mathbf{A} \mathbf{X}_2 \mathbf{z}_2 = \mathbf{A} \mathbf{X}_2 \mathbf{z}_2 \in \mathcal{C}(\mathbf{A} \mathbf{X}_2)$. This proves $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{A} \mathbf{X}_2)$.</p>
+are called <strong>unit vectors</strong> or <strong>direction vectors</strong>.</p>
+</li>
+<li><p>Two vectors $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ are <strong>orthogonal</strong>, denoted as $\mathbf{x} \perp \mathbf{y}$, if $\langle \mathbf{x}, \mathbf{y} \rangle = 0$ or the angle $\theta$ between them is such that $\cos \theta = 0$.</p>
+</li>
+<li><p><strong>Pythagorean identity.</strong> If $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ and $\mathbf{x} \perp \mathbf{y}$, then
+$$
+  \|\mathbf{x} + \mathbf{y}\|^2 = \|\mathbf{x}\|^2 + \|\mathbf{y}\|^2.
+$$</p>
+</li>
+<li><p>A set of vectors are <strong>orthonormal</strong> if all vectors are unit vectors and orthogonal to each other.</p>
+</li>
+<li><p>BR Lemma 7.3. A set of non-zero orthogonal vectors are linearly independent.</p>
+<p>Proof: Let $\mathbf{x}_1, \ldots, \mathbf{x}_k$ be a set of orthogonal, non-zero vectors. If $\sum_i \alpha_i \mathbf{x}_i = \mathbf{0}$, then
+$$
+  \langle \sum_i \alpha_i \mathbf{x}_i, \sum_i \alpha_i \mathbf{x}_i \rangle = \sum_i \alpha_i^2 \|\mathbf{x}_i\|^2 = 0.
+$$
+Since $\|\mathbf{x}_i\|^2 &gt; 0$ for all $i$, $\alpha_i=0$ for all $i$. This shows $\mathbf{x}_i$ are linearly independent.</p>
 </li>
 </ul>
 
@@ -13483,13 +13202,19 @@ Since the matrix $\begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix}$ is n
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Fundamental-theorem-of-ranks">Fundamental theorem of ranks<a class="anchor-link" href="#Fundamental-theorem-of-ranks">&#182;</a></h2><ul>
-<li><p>BR Theorem 5.2. $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}') = \text{rank}(\mathbf{A}'\mathbf{A}) = \text{rank}(\mathbf{A}\mathbf{A}')$.</p>
-<p>Proof: $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}')$ by definition of rank (row rank = column rank = rank). Early on we showed $\mathcal{N}(\mathbf{A}'\mathbf{A}) = \mathcal{N}(\mathbf{A})$. Thus $\text{nullity}(\mathbf{A}) = \text{nullity}(\mathbf{A}'\mathbf{A})$. Then by the rank-nullity theorem, $\text{rank}(\mathbf{A}'\mathbf{A}) = \text{rank}(\mathbf{A})$.</p>
-</li>
-<li><p>Matrices of form $\mathbf{A}'\mathbf{A}$ or $\mathbf{A}\mathbf{A}'$ are called the <strong>Gram matrix</strong> or <strong>Gramian matrix</strong>.</p>
+<h2 id="Row-rank-=-column-rank:-a-proof-using-orthognality">Row rank = column rank: a proof using orthognality<a class="anchor-link" href="#Row-rank-=-column-rank:-a-proof-using-orthognality">&#182;</a></h2><p>We show that the row rank of a matrix $\mathbf{A} \in \mathbb{R}^{m \times n}$ is equal to its column rank.</p>
+<p>Let $r$ be the row rank of $\mathbf{A}$ and $\mathbf{x}_1, \ldots, \mathbf{x}_r$ be a basis of the row space of $\mathbf{A}$.</p>
+<ul>
+<li><p>Lemma: The vectors $\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A} \mathbf{x}_r$ are linearly independent.</p>
+<p>Proof: Suppose
+$$
+  \sum_{i=1}^r c_i \mathbf{A} \mathbf{x}_i = \mathbf{A} \sum_{i=1}^r c_i \mathbf{x}_i = \mathbf{A} \mathbf{v} = \mathbf{0},
+$$
+where $\mathbf{v} = \sum_{i=1}^r c_i \mathbf{x}_i$. $\mathbf{v}$ is a linear combination of vectors in $\mathcal{R}(\mathbf{A})$ so $\mathbf{v} \in \mathcal{R}(\mathbf{A})$. Since $\mathbf{A} \mathbf{v} = \mathbf{0}$, $\mathbf{v}$ is orthogonal to each row of $\mathbf{A}$ thus is orthogonal to all vectors in $\mathcal{R}(\mathbf{A})$, including itself. Thus $\mathbf{v}=\mathbf{0}$ and $c_i$ are zero for all $i$. Thus we have shown $\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A} \mathbf{x}_r$ are linearly independent.</p>
 </li>
 </ul>
+<p>By the lemma, the column rank of $\mathbf{A}$ must be $\ge r$. Now apply the same argument to $\mathbf{A}'$, we have the column rank of $\mathbf{A}$ is $\le r$.</p>
+<p>The lemma also provides a convenient to produce a basis for the column space given a basis for the row space.</p>
 
 </div>
 </div>
@@ -13497,45 +13222,48 @@ Since the matrix $\begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix}$ is n
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rank-factorization">Rank factorization<a class="anchor-link" href="#Rank-factorization">&#182;</a></h2><ul>
-<li><p>Let $\mathbf{A} \in \mathbb{R}^{m \times n}$ with rank $r \ge 1$. The product $\mathbf{A} = \mathbf{C} \mathbf{R}$, where $\mathbf{C} \in \mathbb{R}^{m \times r}$ and $\mathbf{R} \in \mathbb{R}^{r \times n}$ is called a <strong>rank decomposition</strong> or <strong>rank factorization</strong> of $\mathbf{A}$.</p>
-</li>
-<li><p><strong>Existence of rank factorization.</strong> Any non-null matrix has a rank decomposition. To construct one, let columns of
-\begin{eqnarray*}
-  \mathbf{C} = \begin{pmatrix}
-  \mid &amp; &amp; \mid \\
-  \mathbf{c}_1 &amp; \cdots &amp; \mathbf{c}_r \\
-  \mid &amp; &amp; \mid
-  \end{pmatrix}
-\end{eqnarray*}
-be a basis of $\mathcal{C}(\mathbf{A})$. Then $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{C})$. Thus there exists $\mathbf{R}$ such that $\mathbf{A} = \mathbf{C} \mathbf{R}$.</p>
-</li>
-<li><p>Is rank factorization unique?</p>
-</li>
-<li><p>Given a rank factorization $\mathbf{A} = \mathbf{C} \mathbf{R}$,
+<h2 id="Orthogonal-projections">Orthogonal projections<a class="anchor-link" href="#Orthogonal-projections">&#182;</a></h2><ul>
+<li><p>An <strong>orthocomplement set</strong> of a set $\mathcal{X}$ (not necessarily a vector space) in a vector space $\mathcal{S} \subseteq \mathbb{R}^m$ is defined as
 $$
-  \text{rank}(\mathbf{A}') = \text{rank}(\mathbf{R}' \mathbf{C}') \le \text{rank}(\mathbf{R}') \le r = \text{rank}(\mathbf{A}).
-$$
-Now apply the same argument to rank factorization $\mathbf{A}' = \mathbf{R}' \mathbf{C}$, we get the other direction
-$$
-  \text{rank}(\mathbf{A}) \le \text{rank}(\mathbf{A}').
-$$
-Thus we have an alternative proof of the result $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}')$.</p>
+  \mathcal{X}^\perp = \{ \mathbf{u} \in \mathcal{S}: \langle \mathbf{x}, \mathbf{u} \rangle = 0 \text{ for all } \mathbf{x} \in \mathcal{X}\}.
+$$</p>
 </li>
-<li><p>If $\mathbf{A} \in \mathbb{R}^{m \times n}$ with rank $r$ can be factorized as $\mathbf{A} = \mathbf{U} \mathbf{V}$, where $\mathbf{U} \in \mathbb{R}^{m \times k}$ and $\mathbf{V} \in \mathbb{R}^{k \times n}$, then $k \ge r$.</p>
-<p>Proof: Since $\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{U}\mathbf{V}) \subseteq \mathcal{C}(\mathbf{U})$, $r = \text{rank}(\mathbf{A}) \le \text{rank}(\mathbf{U}) \le k$.</p>
-</li>
-<li><p>Let $\text{rank}(\mathbf{A}) = r$ and $\mathbf{A} = \mathbf{C} \mathbf{R}$ be a rank factorization. Then</p>
+<li><p>BR Lemma 7.6. Let $\mathcal{X}$ be a subset (not necessarily a vector space) of a vector space $\mathcal{S}$. Then the following statements are true.</p>
 <ol>
-<li>$\text{rank}(\mathbf{C}) = \text{rank}(\mathbf{R}) = r$,</li>
-<li><p>$\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{C})$, $\mathcal{C}(\mathbf{A}') = \mathcal{C}(\mathbf{R}')$ and $\mathcal{N}(\mathbf{A}) = \mathcal{N}(\mathbf{R})$.</p>
-<p>Proof of 1: $r = \text{rank}(\mathbf{A}) = \text{rank}(\mathbf{C}\mathbf{R}) \le \text{rank}(\mathbf{C}) \le r$. Thus $\text{rank}(\mathbf{C}) = r$. Similarly $\text{rank}(\mathbf{R}) = r$.<br>
-Proof of 2: $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{C})$ is trivial. Suppose $\mathcal{C}(\mathbf{C})$ is strictly larger than $\mathcal{C}(\mathbf{A})$. Then there exists vector $\mathbf{v} \in \mathcal{C}(\mathbf{C})$ that is not a linear combination of columns of $\mathbf{A}$. Let $\mathbf{u}_1, \ldots, \mathbf{u}_r$ be a basis of $\mathcal{C}(\mathbf{A})$. Then the $r+1$ vectors $\mathbf{u}_1, \ldots, \mathbf{u}_r, \mathbf{v}$ is an independent set in $\mathcal{C}(\mathbf{C})$, contadicting the fact $\text{rank}(\mathbf{C}) = r$. Therefore we must have $\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{C})$. Similar argument shows $\mathcal{C}(\mathbf{A}') = \mathcal{C}(\mathbf{R}')$.<br>
-To show $\mathcal{N}(\mathbf{A}) = \mathcal{N}(\mathbf{R})$, one direction $\mathcal{N}(\mathbf{A}) \supseteq \mathcal{N}(\mathbf{R})$ is trivial (why?). To show the other direction
+<li>If $\mathbf{u} \in \mathcal{X}^\perp$, then $\mathbf{u} \in \text{span}(\mathcal{X})^\perp$.  </li>
+<li>$\mathcal{X}^\perp$ is always a subspace, whether or not $\mathcal{X}$ is a subspace.  </li>
+<li><p>$\text{span}(\mathcal{X}) \subseteq (\mathcal{X}^\perp)^\perp$ is always true, whether or not $\mathcal{X}$ is a subspace.</p>
+<p>Proof of 1: Since $\mathbf{u}$ is orthogonal to vectors in $\mathcal{X}$, it is orthogonal to any linear combination of them.<br>
+Proof of 2: If $\mathbf{u}$ and $\mathbf{v}$ are othogonal to all $\mathbf{x} \in \mathcal{X}$, then $\alpha \mathbf{u} + \mathbf{v}$ is orthogonal to all $\mathbf{x} \in \mathcal{X}$. Thus $\mathcal{X}^\perp$ is closed under axpy operation. Note $\{\mathbf{0}\} \in \mathcal{X}^\perp$ trivially.<br>
+Proof of 3: If $\mathbf{x} \in \mathcal{X}$, then $\mathbf{x} \perp \mathbf{u}$ for any $\mathbf{u} \in \mathcal{X}^\perp$. Thus $\mathbf{x} \in (\mathcal{X}^\perp)^\perp$. Therefore any linear combinations of vectors in $\mathcal{X}$ belongs to $(\mathcal{X}^\perp)^\perp$.</p>
+</li>
+</ol>
+</li>
+<li><p>BR Theorem 7.4. <strong>Direct sum theorem for orthocomplementary subspaces.</strong> Let $\mathcal{S}$ be a subspace of a vector space $\mathcal{V}$ with $\text{dim}(\mathcal{V}) = m$. Then the following statements are true.</p>
+<ol>
+<li>Every vector $\mathbf{y} \in \mathcal{V}$ can be expressed as $\mathbf{y} = \mathbf{u} + \mathbf{v}$, where $\mathbf{u} \in \mathcal{S}$ and $\mathbf{v} \in \mathcal{S}^\perp$.  </li>
+<li>$\mathcal{S} \cap \mathcal{S}^\perp = \{\mathbf{0}\}$ (essentially disjoint).  </li>
+<li>$\mathcal{V} = \mathcal{S} \oplus \mathcal{S}^\perp$.  </li>
+<li><p>$m = \text{dim}(\mathcal{S}) + \text{dim}(\mathcal{S}^\perp)$.<br>
+By the uniqueness of decomposition for direct sum, we know the expression of $\mathbf{y} = \mathbf{u} + \mathbf{v}$ is also unique.</p>
+<p>Proof of 1: Let $\mathbf{z}_1, \ldots, \mathbf{z}_r$ be an orthonormal basis of $\mathcal{S}$, e.g., by applying Gram-Scmidt to a basis of $\mathcal{S}$. And let $\mathbf{z}_{r+1}, \ldots, \mathbf{z}_m$ be an orthonormal basis of $\mathbf{S}^\perp$. Then
 $$
-\mathbf{x} \in \mathcal{N}(\mathbf{A}) \Rightarrow \mathbf{A} \mathbf{x} = \mathbf{0} \Rightarrow \mathbf{C} \mathbf{R} \mathbf{x} = \mathbf{0} \Rightarrow \mathbf{R} \mathbf{x} \in \mathcal{N}(\mathbf{C}).
+\mathbf{y} = \sum_{i=1}^r \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i + \sum_{i=r+1}^m \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i,
 $$
-But by the rank-nullity theorem, $\text{nullitty}(\mathbf{C}) = r - \text{rank}(\mathbf{C}) = 0$. Thus $\mathbf{R} \mathbf{x} = \mathbf{0}$, that is $\mathbf{x} \in \mathcal{N}(\mathbf{R})$. We have shown $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{R})$.</p>
+where the first sum belongs to $\mathcal{S}$ and the second to $\mathcal{S}^\perp$.<br>
+Proof of 2: Suppose $\mathbf{x} \in \mathcal{S} \cap \mathcal{S}^\perp$, then $\mathbf{x} \perp \mathbf{x}$, i.e., $\langle \mathbf{x}, \mathbf{x} \rangle = 0$. Therefore $\mathbf{x} = \mathbf{0}$.<br>
+Proof of 3: Statement 1 says $\mathcal{V} = \mathcal{S} + \mathcal{S}^\perp$. Statement 2 says $\mathcal{S}$ and $\mathcal{S}^\perp$ are essentially disjoint. Thus $\mathcal{V} = \mathcal{S} \oplus \mathcal{S}^\perp$.<br>
+Proof of 4: Follows from essential disjointness between $\mathcal{S}$ and $\mathcal{S}^\perp$.</p>
+</li>
+</ol>
+</li>
+<li><p>Some facts:</p>
+<ol>
+<li>If $\mathcal{S}$ is a subspace of $\mathcal{V}$, then $(\mathcal{S}^\perp)^\perp = \mathcal{S}$.  </li>
+<li>If $\mathcal{S}_1 \subseteq \mathcal{S}_2$ are subsets of $\mathcal{V}$, then $\mathcal{S}_1^\perp \supseteq \mathcal{S}_2^\perp$.  </li>
+<li>If $\mathcal{S}_1 = \mathcal{S}_2$ are two subsets of $\mathcal{V}$, then $\mathcal{S}_1^\perp = \mathcal{S}_2^\perp$.  </li>
+<li><p>If $\mathcal{S}_1$ and $\mathcal{S}_2$ are two subspaces in $\mathcal{V}$, then $(\mathcal{S}_1 + \mathcal{S}_2)^\perp = \mathcal{S}_1^\perp \cap \mathcal{S}_2^\perp$ and $(\mathcal{S}_1 \cap \mathcal{S}_2)^\perp = \mathcal{S}_1^\perp + \mathcal{S}_2^\perp$.</p>
+<p>See BR p198-199 for proofs.</p>
 </li>
 </ol>
 </li>
@@ -13547,60 +13275,130 @@ But by the rank-nullity theorem, $\text{nullitty}(\mathbf{C}) = r - \text{rank}(
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rank-of-a-partitioned-matrix">Rank of a partitioned matrix<a class="anchor-link" href="#Rank-of-a-partitioned-matrix">&#182;</a></h2><ul>
-<li><p>BR Theorem 5.11. 
-$$
-  \text{rank} \begin{pmatrix}
-  \mathbf{A}_{11} &amp; \mathbf{0} \\
-  \mathbf{0} &amp; \mathbf{A}_{22}
-  \end{pmatrix} = \text{rank}(\mathbf{A}_{11}) + \text{rank}(\mathbf{A}_{22}).
-$$</p>
-<p>Proof: It is easy to see for any independent columns in $\begin{pmatrix}
-  \mathbf{A}_{11} &amp; \mathbf{0} \\
-  \mathbf{0} &amp; \mathbf{A}_{22}
-  \end{pmatrix}$, the corresponding columns in first $n_1$ and second $n_2$ are independent as well.</p>
-</li>
-<li><p>BR Theorem 5.12. Let
-$$
-  \mathbf{A} = \begin{pmatrix}
-  \mathbf{A}_{11} &amp; \mathbf{A}_{12} \\
-  \mathbf{A}_{21} &amp; \mathbf{A}_{22}
-  \end{pmatrix}
-$$
-be a $2 \times 2$ partitioned matrix.</p>
+<h2 id="The-Fundamental-theorem-of-linear-algebra">The Fundamental theorem of linear algebra<a class="anchor-link" href="#The-Fundamental-theorem-of-linear-algebra">&#182;</a></h2><ul>
+<li><p>BR Theorem 7.5. Let $\mathbf{A} \in \mathbb{R}^{m \times n}$. Then</p>
 <ol>
-<li>If $\mathbf{A}_{11}$ is non-singular, then
+<li>$\mathcal{C}(\mathbf{A})^\perp = \mathcal{N}(\mathbf{A}')$ and $\mathbb{R}^m = \mathcal{C}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A}')$.  </li>
+<li>$\mathcal{C}(\mathbf{A}) = \mathcal{N}(\mathbf{A}')^\perp$.  </li>
+<li><p>$\mathcal{N}(\mathbf{A})^\perp = \mathcal{C}(\mathbf{A}')$ and $\mathbb{R}^n = \mathcal{N}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A}')$.</p>
+<p>Proof of 1: To show $\mathcal{C}(\mathbf{A})^\perp = \mathcal{N}(\mathbf{A}')$,
+\begin{eqnarray*}
+&amp; &amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}') \\
+&amp;\Leftrightarrow&amp; \mathbf{A}' \mathbf{x} = \mathbf{0} \\
+&amp;\Leftrightarrow&amp; \mathbf{x} \text{ is orthogonal to columns of } \mathbf{A} \\
+&amp;\Leftrightarrow&amp; \mathbf{x} \in \mathcal{C}(\mathbf{A})^\perp.
+\end{eqnarray*}
+Then, by Part 3 of Theorem 7.2, $\mathbb{R}^m = \mathcal{C}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A})^\perp = \mathcal{C}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A}')$.</p>
+<p>Proof of 2: Since $\mathcal{C}(\mathbf{A})$ is a subspace, $(\mathcal{C}(\mathbf{A})^\perp)^\perp = \mathcal{N}(\mathbf{A}')^\perp$.</p>
+<p>Proof of 3: Applying part 2 to $\mathbf{A}'$, we have
 $$
-\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}_{11}) + \text{rank}(\mathbf{A}_{22} - \mathbf{A}_{21} \mathbf{A}_{11}^{-1} \mathbf{A}_{12}).
-$$</li>
-<li><p>If $\mathbf{A}_{22}$ is non-singular, then
+\mathcal{C}(\mathbf{A}') = \mathcal{N}((\mathbf{A}')')^\perp = \mathcal{N}(\mathbf{A})^\perp
 $$
-\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}_{22}) + \text{rank}(\mathbf{A}_{11} - \mathbf{A}_{12} \mathbf{A}_{22}^{-1} \mathbf{A}_{21}).
+and
+$$
+\mathbb{R}^n = \mathcal{N}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A})^\perp = \mathcal{N}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A}').
 $$</p>
-<p>Proof: The key is the identity
+</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Orthogonal-matrix">Orthogonal matrix<a class="anchor-link" href="#Orthogonal-matrix">&#182;</a></h2><ul>
+<li><p>BR Theorem 8.1. Let $\mathbf{Q} \in \mathbb{R}^{n \times n}$. The following statements are equivalent:</p>
+<ol>
+<li>The columns of $\mathbf{Q}$ are orthonormal vectors.  </li>
+<li>$\mathbf{Q}'\mathbf{Q} = \mathbf{I} = \mathbf{Q} \mathbf{Q}'$.  </li>
+<li><p>The rows of $\mathbf{Q}$ are orthonormal vectors.</p>
+<p>Proof: We show $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 1$.</p>
+<p>Proof of $1 \Rightarrow 2$: Let $\mathbf{Q} = (\mathbf{q}_1 : \cdots : \mathbf{q}_n)$. Orthonormality of $\mathbf{q}_i$ shows $\mathbf{Q}' \mathbf{Q} = \mathbf{I}$. Also $\mathbf{q}_i$ are linearly independent thus $\mathbf{Q}$ is non-singular. Thus $\mathbf{Q}^{-1} = \mathbf{Q}'$ and $\mathbf{Q} \mathbf{Q}' = \mathbf{Q} \mathbf{Q}^{-1} = \mathbf{I}$.</p>
+<p>Proof of $2 \Rightarrow 3$: $\mathbf{Q} \mathbf{Q}' = \mathbf{I}$ shows that the rows of $\mathbf{Q}$ are orthonormal.</p>
+<p>Proof of $3 \Rightarrow 1$: Statement 3 says columns of $\mathbf{Q}'$ are orthonormal. We have shown $1 \Rightarrow 2 \Rightarrow 3$. Thus we know rows of $\mathbf{Q}'$ are orthonormal, i.e., columns of $\mathbf{Q}$ are orthonormal.</p>
+</li>
+</ol>
+</li>
+<li><p>BR Definition 8.1. Any square matrix $\mathbf{Q} \in \mathbb{R}^{n \times n}$ satisfying $\mathbf{Q} \mathbf{Q}' = \mathbf{Q}' \mathbf{Q} = \mathbf{I}$ is called an <strong>orthogonal matrix</strong>.<br>
+  In other words, columns or rows of $\mathbf{Q}$ are orthonormal.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Orthogonal-projection">Orthogonal projection<a class="anchor-link" href="#Orthogonal-projection">&#182;</a></h2><ul>
+<li><p>BR Definition 8.2. If $\mathcal{S}$ is a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$, then the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$ is called the <strong>orthogonal projection</strong> of $\mathbf{y}$ into $\mathcal{S}$.</p>
+</li>
+<li><p>BR Theorem 8.3. <strong>The closest point theore.</strong> Let $\mathcal{S}$ be a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$. The orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$ is the <strong>unique</strong> point in $\mathbf{S}$ that is closest to $\mathbf{y}$. In other words, if $\mathbf{u}$ is the orthogonal projection of $\mathbf{y}$ \into $\mathcal{S}$, then
 $$
-\begin{pmatrix}
-\mathbf{A}_{11} &amp; \mathbf{A}_{12} \\
-\mathbf{A}_{21} &amp; \mathbf{A}_{22}
-\end{pmatrix} = \begin{pmatrix}
-\mathbf{I}_{n_1} &amp; \mathbf{0} \\
-\mathbf{A}_{21} \mathbf{A}_{11}^{-1} &amp; \mathbf{I}_{n_2}
-\end{pmatrix} \begin{pmatrix}
-\mathbf{A}_{11} &amp; \mathbf{0} \\
-\mathbf{0} &amp; \mathbf{A}_{22} - \mathbf{A}_{21} \mathbf{A}_{11}^{-1} \mathbf{A}_{12}
-\end{pmatrix} \begin{pmatrix}
-\mathbf{I}_{n_1} &amp; \mathbf{A}_{11}^{-1} \mathbf{A}_{12} \\
-\mathbf{0} &amp; \mathbf{I}_{n_2}
-\end{pmatrix},
+  \|\mathbf{y} - \mathbf{u}\|^2 \le \|\mathbf{y} - \mathbf{w}\|^2 \text{ for all } \mathbf{w} \in \mathcal{S},
 $$
-which is direclty verified by multiplying the matrices on the right hand side. Since pre- and post-multiplying by a nonsingular matrix does not change rank, we have
+with equality holding only when $\mathbf{w} = \mathbf{u}$.</p>
+<p>Proof: Picture.</p>
+</li>
+<li><p>BR Definition 8.3. Let $\mathbb{R}^n = \mathcal{S} \oplus \mathcal{S}^\perp$. A square matrix $\mathbf{P}_{\mathcal{S}}$ is called the <strong>orthogonal porjector</strong> into $\mathcal{S}$ if, for every $\mathbf{y} \in \mathbb{R}^n$, $\mathbf{P}_{\mathcal{S}} \mathbf{y}$ is the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$.<br>
+  For a matrix $\mathbf{X}$, the orthogonal projector onto $\mathcal{C}(\mathbf{X})$ is written as $\mathbf{P}_{\mathbf{X}}$.</p>
+</li>
+<li><p>BR Theorem 8.4. Let $\mathbf{y} \in \mathbb{R}^n$ and $\mathbf{X} \in \mathbb{R}^{n \times p}$.</p>
+<ol>
+<li>The orthogonal projector of $\mathbf{y}$ into $\mathcal{C}(\mathbf{X})$ is given by $\mathbf{u} = \mathbf{X} \boldsymbol{\beta}$, where $\mathbf{\beta}$ satisfies the <strong>normal equation</strong>
 $$
-\text{rank}(\mathbf{A}) = \text{rank} \begin{pmatrix}
-\mathbf{A}_{11} &amp; \mathbf{0} \\
-\mathbf{0} &amp; \mathbf{A}_{22} - \mathbf{A}_{21} \mathbf{A}_{11}^{-1} \mathbf{A}_{12}
-\end{pmatrix} = \text{rank}(\mathbf{A}_{11}) + \text{rank}(\mathbf{A}_{22} - \mathbf{A}_{21} \mathbf{A}_{11}^{-1} \mathbf{A}_{12}).
+\mathbf{X}' \mathbf{X} \boldsymbol{\beta} = \mathbf{X}' \mathbf{y}.
+$$</li>
+<li><p>If $\mathbf{X}$ has full column rank, then the orthogonal projector into $\mathcal{C}(\mathbf{X})$ is given by
 $$
-The second part is proved in a similar way.</p>
+\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'.
+$$</p>
+<p>Proof of 1: Since the projection of $\mathbf{y}$ into $\mathcal{C}(\mathbf{X})$ lives in $\mathcal{C}(\mathbf{X})$, thus can be written as $\mathbf{u} = \mathbf{X} \boldsymbol{\beta}$ for some $\boldsymbol{\beta} \in \mathbb{R}^p$. Furthermore, $\mathbf{v} = \mathbf{y} - \mathbf{X} \boldsymbol{\beta} \in \mathcal{C}(\mathbf{X})^\perp$ thus is orthogonal to any vectors in $\mathcal{C}(\mathbf{X})$ including the columns of $\mathbf{X}$. Thus
+$$
+\mathbf{X}' (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) = \mathbf{0},
+$$
+or equivalently,
+$$
+\mathbf{X}' \mathbf{X} \boldsymbol{\beta} = \mathbf{X}' \mathbf{y}.
+$$</p>
+<p>Proof of 2: If $\mathbf{X}$ has full column rank, $\mathbf{X}' \mathbf{X}$ is non-singular and the solution to the normal equation is uniquely determined by $\boldsymbol{\beta} = (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y}$, and the orthogonal projection is $\mathbf{u} = \mathbf{X} \boldsymbol{\beta} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y}$.</p>
+</li>
+</ol>
+</li>
+<li><p>BR Lemma 8.4. <strong>Uniqueness of orthogonal projector.</strong> Let $\mathbf{A}, \mathbf{B} \in \mathbb{R}^{n \times p}$, both of full column rank and $\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{B})$. Then $\mathbf{P}_{\mathbf{A}} = \mathbf{P}_{\mathbf{B}}$.</p>
+<p>Proof: Since $\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{B})$, there exists a non-singular $\mathbf{C} \in \mathbb{R}^{p \times p}$ such that $\mathbf{A} = \mathbf{B} \mathbf{C}$. Then
+\begin{eqnarray*}
+  \mathbf{P}_{\mathbf{A}} &amp;=&amp; \mathbf{A} (\mathbf{A}' \mathbf{A})^{-1} \mathbf{A}' \\
+  &amp;=&amp; \mathbf{B} \mathbf{C} (\mathbf{C}' \mathbf{B}' \mathbf{B} \mathbf{C})^{-1} \mathbf{C}' \mathbf{B}' \\
+  &amp;=&amp; \mathbf{B} \mathbf{C} \mathbf{C}^{-1} (\mathbf{B}' \mathbf{B})^{-1} (\mathbf{C}')^{-1} \mathbf{C}' \mathbf{B}' \\
+  &amp;=&amp;  \mathbf{B} (\mathbf{B}' \mathbf{B})^{-1} \mathbf{B}' \\
+  &amp;=&amp; \mathbf{P}_{\mathbf{B}}.
+\end{eqnarray*}</p>
+</li>
+<li><p>BR Theorem 8.5. Let $\mathbf{P}_\mathbf{X}$ be the orthogonal projector into $\mathcal{C}(\mathbf{X})$, where $\mathbf{X} \in \mathbb{R}^{n \times p}$ has full column rank.</p>
+<ol>
+<li>$\mathbf{P}_\mathbf{X}$ and $\mathbf{I} - \mathbf{P}_\mathbf{X}$ are both symmetric and idemponent. </li>
+<li>$\mathbf{P}_\mathbf{X} \mathbf{X} = \mathbf{X}$ and $(\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{X} = \mathbf{O}$.  </li>
+<li>$\mathcal{C}(\mathbf{X}) = \mathcal{C}(\mathbf{P}_\mathbf{X})$ and $\text{rank}(\mathbf{P}_\mathbf{X}) = \text{rank}(\mathbf{X}) = p$.  </li>
+<li>$\mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) = \mathcal{N}(\mathbf{X}') = \mathcal{C}(\mathbf{X})^\perp$.  </li>
+<li><p>$\mathbf{I} - \mathbf{P}_\mathbf{X}$ is the orthogonal projector into $\mathcal{N}(\mathbf{X}')$ (or $\mathcal{C}(\mathbf{X})^\perp)$.</p>
+<p>Proof of 1: Check directly using $\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'$.</p>
+<p>Proof of 2: Check directly using $\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'$.</p>
+<p>Proof of 3: Since $\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'$, 
+$$
+\mathcal{C}(\mathbf{P}_\mathbf{X}) \subseteq \mathcal{C}(\mathbf{X}) = \mathcal{C}(\mathbf{P}_\mathbf{X} \mathbf{X}) \subseteq \mathcal{C}(\mathbf{P}_\mathbf{X}). 
+$$</p>
+<p>Proof of 4: The second equality is simply the fundamental theorem of linear algebra. For the first equality, first we show $\mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) \subseteq \mathcal{N}(\mathbf{X}')$:
+\begin{eqnarray*}
+&amp; &amp; \mathbf{u} \in \mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) \\
+&amp;\Rightarrow&amp; \mathbf{u} = (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{v} \text{ for some } \mathbf{v} \\
+&amp;\Rightarrow&amp; \mathbf{X}' \mathbf{u} = [(\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{X}]' \mathbf{v} = \mathbf{O} \mathbf{v} = \mathbf{0} \\
+&amp;\Rightarrow&amp; \mathbf{u} \in \mathcal{N}(\mathbf{X}').
+\end{eqnarray*}</p>
+<p>Proof of 5: For any $\mathbf{y} \in \mathbb{R}^n$, write $\mathbf{y} = \mathbf{P}_\mathbf{X} \mathbf{y} + (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{y}$.</p>
 </li>
 </ol>
 </li>
