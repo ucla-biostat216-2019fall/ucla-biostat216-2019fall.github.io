@@ -13109,28 +13109,6 @@ div#notebook {
     });
     </script>
     <!-- End of mathjax configuration --></head>
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
-
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.js"></script>
-
-<script>
-$( document ).ready(function(){
-
-            var cfg = {};
-
-            // fire the main function with these parameters
-            require(['nbextensions/toc2/toc2'], function (toc2) {
-                toc2.table_of_contents(cfg);
-            });
-    });
-</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13144,7 +13122,7 @@ $( document ).ready(function(){
 <li>Matrix multiplication can only decrease the rank:<br>
 $\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{A})$<br>
  $\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{B})$.<br>
- Two special cases: $\text{rank}(\mathbf{A} \mathbf{B}) = \text{rank}(\mathbf{A})$ if $\mathbf{B}$ has full row rank. $\text{rank}(\mathbf{A}' \mathbf{A}) = \text{rank}(\mathbf{A})$ for any $\mathbf{A}$.  </li>
+ Two special cases: (1) $\text{rank}(\mathbf{A} \mathbf{B}) = \text{rank}(\mathbf{A})$ if $\mathbf{B}$ has full row rank. (2) $\text{rank}(\mathbf{A}' \mathbf{A}) = \text{rank}(\mathbf{A})$ for any $\mathbf{A}$.  </li>
 <li>$\text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{B}) + \text{rank}(\mathbf{B})$.  </li>
 <li>Rank-nullity theorem: For any $\mathbf{A} \in \mathbb{R}^{m \times n}$, $\text{rank}(\mathbf{A}) + \text{nullity}(\mathbf{A}) = n$.  </li>
 <li>Fundamental theorem of ranks: $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}') = \text{rank}(\mathbf{A}'\mathbf{A}) = \text{rank}(\mathbf{A}\mathbf{A}')$.</li>
@@ -13364,6 +13342,7 @@ rank(X * X&#39;) = 7
 <p>In other words, row rank of $\mathbf{A}$ is $\text{dim}(\mathcal{R}(\mathbf{A})) = \text{dim}(\mathcal{C}(\mathbf{A}'))$.</p>
 </li>
 <li><p>BR Theorem 4.17. For any $m \times n$ matrix $\mathbf{A}$, its column rank is equal to the row rank, which we shall call the <strong>rank</strong> of $\mathbf{A}$.</p>
+<p>Our text book BR uses notation $\rho(\mathbf{A})$ to denote the rank of a matrix $\mathbf{A}$.</p>
 <p>Proof: Let $r$ be the row rank of $\mathbf{A}$ and $c$ be the column rank of $\mathbf{A}$. We show $r=c$ by showing $c \le r$ and $c \ge r$.<br>
   Since $\mathbf{A}$ has row rank $r$, we can permute the rows of $\mathbf{A}$ to be<br>
 $$
@@ -13476,7 +13455,7 @@ $$
 $$
 where $\mathbf{B}_1 \in \mathbb{R}^{m \times m}$ is non-singular and $\mathbf{B} \in \mathbb{R}^{m \times (n-m)}$. Then
 $$
-  \text{rank}(\mathbf{A}) \ge \text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A} \begin{pmatrix} \mathbf{B}_1 : \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T) \ge \text{rank} \left( \mathbf{A} \begin{pmatrix} \mathbf{B}_1 : \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T \mathbf{P} \begin{pmatrix} \mathbf{B}_1^{-1} \\ \mathbf{O} \end{pmatrix} \right) = \text{rank} (\mathbf{A} \mathbf{I}_m) = \text{rank} (\mathbf{A}).
+  \text{rank}(\mathbf{A}) \ge \text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A} \begin{pmatrix} \mathbf{B}_1 : \mathbf{B}_2 \end{pmatrix} \mathbf{P}') \ge \text{rank} \left( \mathbf{A} \begin{pmatrix} \mathbf{B}_1 : \mathbf{B}_2 \end{pmatrix} \mathbf{P}' \mathbf{P} \begin{pmatrix} \mathbf{B}_1^{-1} \\ \mathbf{O} \end{pmatrix} \right) = \text{rank} (\mathbf{A} \mathbf{I}_n) = \text{rank} (\mathbf{A}).
 $$
 Thus $\text{rank}(\mathbf{A}) = \text{rank} (\mathbf{A} \mathbf{B})$. Proof for the other half of the statement follows the same argument.</p>
 </li>
