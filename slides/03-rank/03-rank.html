@@ -13140,6 +13140,7 @@ $( document ).ready(function(){
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Rank-and-nullity-(BR-Chapter-5)">Rank and nullity (BR Chapter 5)<a class="anchor-link" href="#Rank-and-nullity-(BR-Chapter-5)">&#182;</a></h1><p><strong>Highlights</strong>: In this lecture we will show some most important results on rank of a matrix:</p>
 <ol>
+<li>column rank = row rank.  </li>
 <li>$\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{A})$<br>
  $\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{B})$.  </li>
 <li>$\text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{B}) + \text{rank}(\mathbf{B})$.  </li>
@@ -13327,9 +13328,9 @@ rank(X * X&#39;) = 7
 $$
   \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{A_2} \end{pmatrix} = \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A_1} \end{pmatrix},
 $$
-  where $\mathbf{A}_1 \in \mathbb{R}^{r \times n}$ has $r$ independent rows and $\mathbf{A}_2 = \mathbf{B} \mathbf{A}_1 \in \mathbb{R}^{(m-r) \times n}$ for some matrix $\mathbf{B}$. Note row permutation does not change the row rank. Then
+  where $\mathbf{A}_1 \in \mathbb{R}^{r \times n}$ has $r$ independent rows and $\mathbf{A}_2 = \mathbf{B} \mathbf{A}_1 \in \mathbb{R}^{(m-r) \times n}$ for some matrix $\mathbf{B}$. Note row permutation does not change the row rank or column rank. Then
 $$
-  \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A}_1 \end{pmatrix} \mathbf{x} = \mathbf{0} \Leftrightarrow \mathbf{A}_1 \mathbf{x} = \mathbf{0}.
+  \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A}_1 \end{pmatrix} \mathbf{x} = \mathbf{0}_m \Leftrightarrow \mathbf{A}_1 \mathbf{x} = \mathbf{0}_r.
 $$
 This says that take any set of linearly independent columns in $\mathbf{A}$, the corresponding columns in $\mathbf{A}_1$ are linearly independent as well. Therefore the column rank $c$ of $\mathbf{A}$ is less than or equal to the maximum number of linearly independent columns of $\mathbf{A}_1$, which is less than or equal to $r$ by the independence-dimensionality inequality. This way we have shown $c \le r$.<br>
   To show the other direction $c \ge r$, we apply above result to the transpose $\mathbf{A}'$.</p>
@@ -13407,7 +13408,16 @@ $$
 $$
 is full rank.</p>
 </li>
-<li><p>BR Lemma 5.1. $\text{rank}(\mathbf{A}\mathbf{B}) \le \min \{\text{rank}(\mathbf{A}), \text{rank}(\mathbf{B})\}$. In words, <strong>matrix multiplication never increases the rank</strong>.</p>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Effects-of-matrix-multiplication-on-rank">Effects of matrix multiplication on rank<a class="anchor-link" href="#Effects-of-matrix-multiplication-on-rank">&#182;</a></h2><ul>
+<li><p>BR Lemma 5.1. $\text{rank}(\mathbf{A}\mathbf{B}) \le \min \{\text{rank}(\mathbf{A}), \text{rank}(\mathbf{B})\}$. In words, <strong>matrix multiplication can only decrease the rank</strong>.</p>
 <p>Proof: Because $\mathcal{C}(\mathbf{A}\mathbf{B}) \subseteq \mathcal{C}(\mathbf{A})$ (why?), we have $\text{rank}(\mathbf{A}\mathbf{B}) \le \text{rank}(\mathbf{A})$ by monotonicity of dimension. Similary, because the row space of $\mathbf{A}\mathbf{B}$ is a subset of the row space of  $\mathbf{A}$, we have $\text{rank}(\mathbf{A}\mathbf{B}) \le \text{rank}(\mathbf{B})$.</p>
 </li>
 <li><p>Indeed, the loss in rank due to multiplication can be quantified as
@@ -13416,19 +13426,21 @@ $$
 $$
 See BR Theorem 5.4 (p136) for proof.</p>
 </li>
-<li><p>BR Lemma 5.3. $\text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A})$ if $\mathbf{B}$ is square and of full rank. More general, left-multiplying by a matrix with full column rank or right-multiplying by a matrix of full row rank does not change rank.</p>
+<li><p>BR Lemma 5.3. $\text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A})$ if $\mathbf{B}$ is square and of full rank. More general, <strong>left-multiplying by a matrix with full column rank or right-multiplying by a matrix of full row rank does not change rank</strong>.</p>
 <p>Proof: We show the more general statement. Assume $\mathbf{B} \in \mathbb{R}^{m \times n}$ has full row rank, we want to show $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}\mathbf{B})$. Since $\mathbf{B} \in \mathbb{R}^{m \times n}$ has full row rank, there exists a permutation matrix $\mathbf{P} \in \{0,1\}^{n \times n}$ such that
 $$
-  \mathbf{B} \mathbf{P} = \begin{pmatrix} \mathbf{B}_1, \mathbf{B}_2 \end{pmatrix},
+  \mathbf{B} \mathbf{P} = \begin{pmatrix} \mathbf{B}_1 : \mathbf{B}_2 \end{pmatrix},
 $$
-where $\mathbf{B}_1 \in \mathbb{R}^{m \times m}$ is non-singular and $\mathbf{B} \in \mathbf{R}^{m \times (n-m)}$. Then
+where $\mathbf{B}_1 \in \mathbb{R}^{m \times m}$ is non-singular and $\mathbf{B} \in \mathbb{R}^{m \times (n-m)}$. Then
 $$
-  \text{rank}(\mathbf{A}) \ge \text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A} \begin{pmatrix} \mathbf{B}_1, \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T) \ge \text{rank} \left( \mathbf{A} \begin{pmatrix} \mathbf{B}_1, \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T \mathbf{P} \begin{pmatrix} \mathbf{B}_1^{-1} \\ \mathbf{0} \end{pmatrix} \right) = \text{rank} (\mathbf{A} \mathbf{I}_m) = \text{rank} (\mathbf{A}).
+  \text{rank}(\mathbf{A}) \ge \text{rank}(\mathbf{A}\mathbf{B}) = \text{rank}(\mathbf{A} \begin{pmatrix} \mathbf{B}_1 : \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T) \ge \text{rank} \left( \mathbf{A} \begin{pmatrix} \mathbf{B}_1 : \mathbf{B}_2 \end{pmatrix} \mathbf{P}^T \mathbf{P} \begin{pmatrix} \mathbf{B}_1^{-1} \\ \mathbf{O} \end{pmatrix} \right) = \text{rank} (\mathbf{A} \mathbf{I}_m) = \text{rank} (\mathbf{A}).
 $$
 Thus $\text{rank}(\mathbf{A}) = \text{rank} (\mathbf{A} \mathbf{B})$. Proof for the other half of the statement follows the same argument.</p>
 </li>
 <li><p>$\text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B})$. (Maybe do this later???)</p>
-<p>Proof: Any column of $\mathbf{A} + \mathbf{B}$ is in the space $\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B}) = \mathcal{C}((\mathbf{A}, \mathbf{B}))$. And $\text{rank}((\mathbf{A}, \mathbf{B})) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B})$.</p>
+<p>Proof: Any column of $\mathbf{A} + \mathbf{B}$ is in the space $\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B}) = \mathcal{C}((\mathbf{A} : \mathbf{B}))$. And $\text{rank}((\mathbf{A} : \mathbf{B})) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B})$.</p>
+</li>
+<li><p>Example: 2019 qual. exam Q1.</p>
 </li>
 </ul>
 
@@ -13465,14 +13477,14 @@ $$
 $$</p>
 <p>Proof: Denote $\nu = \text{nullity}(\mathbf{A}) = \text{dim}(\mathcal{N}(\mathbf{A}))$. Let $\mathbf{X} \in \mathbb{R}^{n \times n}$ be
 $$
-  \mathbf{X} = \begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix},
+  \mathbf{X} = \begin{pmatrix} \mathbf{X}_1 : \mathbf{X}_2 \end{pmatrix},
 $$
 where columns of $\mathbf{X}_1 \in \mathbb{R}^{n \times \nu}$ form a basis of $\mathcal{N}(\mathbf{A})$ and columns of $\mathbf{X}_2 \in \mathbb{R}^{n \times (n - \nu)}$ extend those in $\mathbf{X}_1$ to be a basis of $\mathbb{R}^n$. We show columns of $\mathbf{A} \mathbf{X}_2$ form a basis of $\mathcal{C}(\mathbf{A})$. Thus $\text{rank}(\mathbf{A}) = \text{dim}(\mathcal{C}(\mathbf{A})) = n - \nu$.<br>
   (1) To show that columns of $\mathbf{A} \mathbf{X}_2$ are linearly independent. Assume $\mathbf{A} \mathbf{X}_2 \mathbf{v} = \mathbf{0}$. Then $\mathbf{X}_2 \mathbf{v} \in \mathcal{N}(\mathbf{A}) = \mathcal{C}(\mathbf{X}_1)$. Thus $\mathbf{X}_2 \mathbf{v} = \mathbf{X}_1 \mathbf{u}$ for some $\mathbf{u}$, or equivalently,
 $$
-  \begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix} \begin{pmatrix} -\mathbf{u} \\ \mathbf{v} \end{pmatrix} = \mathbf{0}.
+  \begin{pmatrix} \mathbf{X}_1 : \mathbf{X}_2 \end{pmatrix} \begin{pmatrix} -\mathbf{u} \\ \mathbf{v} \end{pmatrix} = \mathbf{0}.
 $$
-Since the matrix $\begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix}$ is non-singular, we must have $\mathbf{u}=\mathbf{0}$ and $\mathbf{v}=\mathbf{0}$. This shows that $\mathbf{v}=\mathbf{0}$ whenever $\mathbf{A} \mathbf{X}_2 \mathbf{v} = \mathbf{0}$. So the columns of $\mathbf{A} \mathbf{X}_2$ is linearly independent.<br>
+Since the matrix $\begin{pmatrix} \mathbf{X}_1 : \mathbf{X}_2 \end{pmatrix}$ is non-singular, we must have $\mathbf{u}=\mathbf{0}$ and $\mathbf{v}=\mathbf{0}$. This shows that $\mathbf{v}=\mathbf{0}$ whenever $\mathbf{A} \mathbf{X}_2 \mathbf{v} = \mathbf{0}$. So the columns of $\mathbf{A} \mathbf{X}_2$ is linearly independent.<br>
   (2) Next we show the columns of $\mathbf{A} \mathbf{X}_2$ span $\mathcal{C}(\mathbf{A})$ by showing $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \subseteq \mathcal{C}(\mathbf{A})$ and $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \supseteq \mathcal{C}(\mathbf{A})$. One direction $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \subseteq \mathcal{C}(\mathbf{A})$ is easy. To show the other direction $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{A} \mathbf{X}_2)$, let $\mathbf{w} \in \mathcal{C}(\mathbf{A})$. Then $\mathbf{w} = \mathbf{A} \mathbf{y}$ for some vector $\mathbf{y}$. Because $\mathbf{y} \in \mathbb{R}^n$, which is spanned by columns of $\mathbf{X}$, we can write $\mathbf{y} = \mathbf{X}_1 \mathbf{z}_1 + \mathbf{X}_2 \mathbf{z}_2$ for some vectors $\mathbf{z}_1$ and $\mathbf{z}_2$. Thus $\mathbf{w} = \mathbf{A} \mathbf{X}_1 \mathbf{z}_1 + \mathbf{A} \mathbf{X}_2 \mathbf{z}_2 = \mathbf{A} \mathbf{X}_2 \mathbf{z}_2 \in \mathcal{C}(\mathbf{A} \mathbf{X}_2)$. This proves $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{A} \mathbf{X}_2)$.</p>
 </li>
 </ul>
@@ -13500,6 +13512,8 @@ Since the matrix $\begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix}$ is n
 <h2 id="Rank-factorization">Rank factorization<a class="anchor-link" href="#Rank-factorization">&#182;</a></h2><ul>
 <li><p>Let $\mathbf{A} \in \mathbb{R}^{m \times n}$ with rank $r \ge 1$. The product $\mathbf{A} = \mathbf{C} \mathbf{R}$, where $\mathbf{C} \in \mathbb{R}^{m \times r}$ and $\mathbf{R} \in \mathbb{R}^{r \times n}$ is called a <strong>rank decomposition</strong> or <strong>rank factorization</strong> of $\mathbf{A}$.</p>
 </li>
+<li><p>Visualize: TODO.</p>
+</li>
 <li><p><strong>Existence of rank factorization.</strong> Any non-null matrix has a rank decomposition. To construct one, let columns of
 \begin{eqnarray*}
   \mathbf{C} = \begin{pmatrix}
@@ -13510,13 +13524,13 @@ Since the matrix $\begin{pmatrix} \mathbf{X}_1, \mathbf{X}_2 \end{pmatrix}$ is n
 \end{eqnarray*}
 be a basis of $\mathcal{C}(\mathbf{A})$. Then $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{C})$. Thus there exists $\mathbf{R}$ such that $\mathbf{A} = \mathbf{C} \mathbf{R}$.</p>
 </li>
-<li><p>Is rank factorization unique?</p>
+<li><p>Is rank factorization unique? $\mathbf{A} = \mathbf{C} \mathbf{R} = (\mathbf{C} \mathbf{M}) (\mathbf{M}^{-1} \mathbf{R})$ for any non-singular matrix $\mathbf{M}^{r \times r}$.</p>
 </li>
-<li><p>Given a rank factorization $\mathbf{A} = \mathbf{C} \mathbf{R}$,
+<li><p>(Skip) Given a rank factorization $\mathbf{A} = \mathbf{C} \mathbf{R}$,
 $$
   \text{rank}(\mathbf{A}') = \text{rank}(\mathbf{R}' \mathbf{C}') \le \text{rank}(\mathbf{R}') \le r = \text{rank}(\mathbf{A}).
 $$
-Now apply the same argument to rank factorization $\mathbf{A}' = \mathbf{R}' \mathbf{C}$, we get the other direction
+Now apply the same argument to rank factorization $\mathbf{A}' = \mathbf{R}' \mathbf{C}'$, we get the other direction
 $$
   \text{rank}(\mathbf{A}) \le \text{rank}(\mathbf{A}').
 $$
@@ -13531,11 +13545,14 @@ Thus we have an alternative proof of the result $\text{rank}(\mathbf{A}) = \text
 <li><p>$\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{C})$, $\mathcal{C}(\mathbf{A}') = \mathcal{C}(\mathbf{R}')$ and $\mathcal{N}(\mathbf{A}) = \mathcal{N}(\mathbf{R})$.</p>
 <p>Proof of 1: $r = \text{rank}(\mathbf{A}) = \text{rank}(\mathbf{C}\mathbf{R}) \le \text{rank}(\mathbf{C}) \le r$. Thus $\text{rank}(\mathbf{C}) = r$. Similarly $\text{rank}(\mathbf{R}) = r$.<br>
 Proof of 2: $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{C})$ is trivial. Suppose $\mathcal{C}(\mathbf{C})$ is strictly larger than $\mathcal{C}(\mathbf{A})$. Then there exists vector $\mathbf{v} \in \mathcal{C}(\mathbf{C})$ that is not a linear combination of columns of $\mathbf{A}$. Let $\mathbf{u}_1, \ldots, \mathbf{u}_r$ be a basis of $\mathcal{C}(\mathbf{A})$. Then the $r+1$ vectors $\mathbf{u}_1, \ldots, \mathbf{u}_r, \mathbf{v}$ is an independent set in $\mathcal{C}(\mathbf{C})$, contadicting the fact $\text{rank}(\mathbf{C}) = r$. Therefore we must have $\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{C})$. Similar argument shows $\mathcal{C}(\mathbf{A}') = \mathcal{C}(\mathbf{R}')$.<br>
-To show $\mathcal{N}(\mathbf{A}) = \mathcal{N}(\mathbf{R})$, one direction $\mathcal{N}(\mathbf{A}) \supseteq \mathcal{N}(\mathbf{R})$ is trivial (why?). To show the other direction
-$$
-\mathbf{x} \in \mathcal{N}(\mathbf{A}) \Rightarrow \mathbf{A} \mathbf{x} = \mathbf{0} \Rightarrow \mathbf{C} \mathbf{R} \mathbf{x} = \mathbf{0} \Rightarrow \mathbf{R} \mathbf{x} \in \mathcal{N}(\mathbf{C}).
-$$
-But by the rank-nullity theorem, $\text{nullitty}(\mathbf{C}) = r - \text{rank}(\mathbf{C}) = 0$. Thus $\mathbf{R} \mathbf{x} = \mathbf{0}$, that is $\mathbf{x} \in \mathcal{N}(\mathbf{R})$. We have shown $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{R})$.</p>
+To show $\mathcal{N}(\mathbf{A}) = \mathcal{N}(\mathbf{R})$, one direction $\mathcal{N}(\mathbf{A}) \supseteq \mathcal{N}(\mathbf{R})$ is trivial (why?). To show the other direction,
+\begin{eqnarray*}
+&amp; &amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}) \\
+&amp;\Rightarrow&amp; \mathbf{A} \mathbf{x} = \mathbf{0} \\
+&amp;\Rightarrow&amp; \mathbf{C} \mathbf{R} \mathbf{x} = \mathbf{0} \\
+&amp;\Rightarrow&amp; \mathbf{R} \mathbf{x} \in \mathcal{N}(\mathbf{C}).
+\end{eqnarray*}
+But by the rank-nullity theorem, $\text{nullity}(\mathbf{C}) = r - \text{rank}(\mathbf{C}) = 0$. Thus $\mathbf{R} \mathbf{x} = \mathbf{0}$, that is $\mathbf{x} \in \mathcal{N}(\mathbf{R})$. We have shown $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{R})$.</p>
 </li>
 </ol>
 </li>

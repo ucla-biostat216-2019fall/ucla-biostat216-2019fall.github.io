@@ -13305,8 +13305,7 @@ Sometimes it is also called the <strong>image</strong> or <strong>range</strong>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Effects of matrix multiplication on column/row space.</strong></p>
-<ul>
+<h2 id="Effects-of-matrix-multiplication-on-column/row-space">Effects of matrix multiplication on column/row space<a class="anchor-link" href="#Effects-of-matrix-multiplication-on-column/row-space">&#182;</a></h2><ul>
 <li><p>BR Theorem 4.6. $\mathcal{C}(\mathbf{C}) \subseteq \mathcal{C}(\mathbf{A})$ if and only if $\mathbf{C} = \mathbf{A} \mathbf{B}$ for some matrix $\mathbf{B}$.</p>
 <p>Proof: The <em>if</em> part is easily verified since each column of $\mathbf{C}$ is a linear combination of columns of $\mathbf{A}$. For the <em>only if</em> part, assuming $\mathcal{C}(\mathbf{C}) \subseteq \mathcal{C}(\mathbf{A})$, each column of $\mathbf{C}$ is a linear combination of columns of $\mathbf{A}$. In other words $\mathbf{c}_j = \mathbf{A} \mathbf{b}_j$ for some $\mathbf{b}_j$. Therefore $\mathbf{C} = \mathbf{A} \mathbf{B}$, where $\mathbf{B}$ has columns $\mathbf{b}_j$.</p>
 </li>
@@ -13324,13 +13323,48 @@ Sometimes it is also called the <strong>image</strong> or <strong>range</strong>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Column/row space of a partitioned matrix.</strong></p>
-<ul>
+<h2 id="Essential-disjointness-of-four-fundamental-subspaces">Essential disjointness of four fundamental subspaces<a class="anchor-link" href="#Essential-disjointness-of-four-fundamental-subspaces">&#182;</a></h2><ul>
+<li><p>BR Theorem 4.11. <strong>Row space and null space of a matrix are essentially disjoint.</strong> For any matrix $\mathbf{A}$,
+$$
+\mathcal{R}(\mathbf{A}) \cap \mathcal{N}(\mathbf{A}) = \{\mathbf{0}\}.
+$$</p>
+<p>Proof: If $\mathbf{x} \in \mathcal{R}(\mathbf{A}) \cap \mathcal{N}(\mathbf{A})$, then $\mathbf{x} = \mathbf{A}' \mathbf{u}$ for some $\mathbf{u}$ and $\mathbf{A} \mathbf{x} = \mathbf{0}$. Thus $\mathbf{x}' \mathbf{x} = \mathbf{u}' \mathbf{A} \mathbf{x} = \mathbf{u}' \mathbf{0} = 0$, which implies $\mathbf{x} = \mathbf{0}$. This shows $\mathcal{R}(\mathbf{A}) \cap \mathcal{N}(\mathbf{A}) \subseteq \{\mathbf{0}\}$. The other direction is trivial.</p>
+</li>
+<li><p><strong>Column space and left null space of a matrix are essentially disjoint.</strong> For any matrix $\mathbf{A}$,
+$$
+\mathcal{C}(\mathbf{A}) \cap \mathcal{N}(\mathbf{A}') = \{\mathbf{0}\}.
+$$</p>
+<p>Proof: Apply above result to $\mathbf{A}'$.</p>
+</li>
+<li><p>BR Theorem 4.12.
+\begin{eqnarray*}
+  \mathcal{N}(\mathbf{A}'\mathbf{A}) &amp;=&amp; \mathcal{N}(\mathbf{A}) \\
+  \mathcal{N}(\mathbf{A}\mathbf{A}') &amp;=&amp; \mathcal{N}(\mathbf{A}').
+\end{eqnarray*}</p>
+<p>Proof: For the first equation, we note
+\begin{eqnarray*}
+  &amp; &amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}) \\
+  &amp;\Rightarrow&amp; \mathbf{A} \mathbf{x} \\
+  &amp;\Rightarrow&amp; \mathbf{A}'\mathbf{A} \mathbf{x} = \mathbf{0} \\
+  &amp;\Rightarrow&amp; \mathcal{N}(\mathbf{A}'\mathbf{A}).
+\end{eqnarray*}
+This shows $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{A}'\mathbf{A})$. To show the other direction $\mathcal{N}(\mathbf{A}) \supseteq \mathcal{N}(\mathbf{A}'\mathbf{A})$. If $\mathbf{x} \in \mathcal{N}(\mathbf{A}'\mathbf{A})$, then $\mathbf{A}'\mathbf{A} \mathbf{x} = \mathbf{0}$. Thus $\mathbf{x} \mathbf{A}' \mathbf{A} \mathbf{x} = 0$ and $\|\mathbf{A} \mathbf{x}\|^2 = 0$. This implies $\mathbf{A} \mathbf{x} = \mathbf{0}$, i.e., $\mathbf{x} \in \mathcal{N}(\mathbf{A})$.</p>
+<p>For the second equation, we apply the first equation to $\mathbf{B} = \mathbf{A}'$.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Column/row-space-of-a-partitioned-matrix">Column/row space of a partitioned matrix<a class="anchor-link" href="#Column/row-space-of-a-partitioned-matrix">&#182;</a></h2><ul>
 <li><p>BR Theorem 4.9.</p>
 <ol>
 <li><p>Assuming $\mathbf{A}$ and $\mathbf{B}$ have same number of rows, 
 $$
-\mathcal{C}((\mathbf{A}, \mathbf{B})) = \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B}).
+\mathcal{C}((\mathbf{A} : \mathbf{B})) = \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B}).
 $$</p>
 </li>
 <li><p>Assuming $\mathbf{A}$ and $\mathbf{C}$ have same number of columns, 
@@ -13341,31 +13375,15 @@ and
 $$
 \mathcal{N} \left( \begin{pmatrix} \mathbf{A} \\ \mathbf{C} \end{pmatrix} \right) = \mathcal{N}(\mathbf{A}) \cap \mathcal{N}(\mathbf{C}).
 $$</p>
-<p>Proof: To show part 1, we note $\mathbf{x} \in \mathcal{C}((\mathbf{A}, \mathbf{B}))$ if and only if $\mathbf{x} = \mathbf{A} \mathbf{u} + \mathbf{B} \mathbf{v}$ for some $\mathbf{u}$ and $\mathbf{v}$ if and only if $\mathbf{x} \in \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})$. To show part 2, we apply part 1 to the transpose.</p>
+<p>Proof: To show part 1, we note 
+\begin{eqnarray*}
+&amp; &amp; \mathbf{x} \in \mathcal{C}((\mathbf{A} : \mathbf{B})) \\
+&amp;\Leftrightarrow&amp; \mathbf{x} = \mathbf{A} \mathbf{u} + \mathbf{B} \mathbf{v} \text{ for some } \mathbf{u} \text{ and } \mathbf{v} \\
+&amp;\Leftrightarrow&amp; \mathbf{x} \in \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B}).
+\end{eqnarray*}<br>
+To show part 2, we apply part 1 to the transpose.</p>
 </li>
 </ol>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><p>BR Theorem 4.11. <strong>Row space and null space of a matrix are essentially disjoint.</strong> For any matrix $\mathbf{A}$,
-$$
-\mathcal{R}(\mathbf{A}) \cap \mathcal{N}(\mathbf{A}) = \{\mathbf{0}\}.
-$$</p>
-<p>Proof: If $\mathbf{x} \in \mathcal{R}(\mathbf{A}) \cap \mathcal{N}(\mathbf{A})$, then $\mathbf{x} = \mathbf{A}' \mathbf{u}$ for some $\mathbf{u}$ and $\mathbf{A} \mathbf{x} = \mathbf{0}$. Thus $\mathbf{x}' \mathbf{x} = \mathbf{u}' \mathbf{A} \mathbf{x} = \mathbf{u}' \mathbf{0} = 0$, which implies $\mathbf{x} = \mathbf{0}$. This shows $\mathcal{R}(\mathbf{A}) \cap \mathcal{N}(\mathbf{A}) \subseteq \{\mathbf{0}\}$. The other direction is trivial.</p>
-</li>
-<li><p>BR Theorem 4.12.
-\begin{eqnarray*}
-  \mathcal{N}(\mathbf{A}'\mathbf{A}) &amp;=&amp; \mathcal{N}(\mathbf{A}) \\
-  \mathcal{N}(\mathbf{A}\mathbf{A}') &amp;=&amp; \mathcal{N}(\mathbf{A}').
-\end{eqnarray*}</p>
-<p>TODO: proof.</p>
 </li>
 </ul>
 
@@ -13421,7 +13439,7 @@ $$
   \mid &amp; &amp; \mid    
   \end{pmatrix} \in \mathbb{R}^{m \times l}.
 $$
-Since $\mathcal{B}$ spans $\mathcal{S}$, $\mathbf{a}_i = \mathbf{B} \mathbf{c}_i$ for some vector $\mathbf{c}_i \in \mathbb{R}^k$ for $i=1,\ldots,k$. Let
+Since $\mathcal{B}$ spans $\mathcal{S}$, $\mathbf{a}_i = \mathbf{B} \mathbf{c}_i$ for some vector $\mathbf{c}_i \in \mathbb{R}^l$ for $i=1,\ldots,k$. Let
 $$
   \mathbf{C} = \begin{pmatrix}
   \mid &amp; &amp; \mid \\
@@ -13438,9 +13456,14 @@ The only solution to $\mathbf{C} \mathbf{x} = \mathbf{0}_k$ is $\mathbf{0}_l$. I
 <li><p>BR Theorem 4.20. Let $\mathcal{A}=\{\mathbf{a}_1, \ldots, \mathbf{a}_k\}$ and $\mathcal{B}=\{\mathbf{b}_1, \ldots, \mathbf{b}_l\}$ be two basis of a vector space $\mathcal{S}$. Then $k = l$.</p>
 <p>Proof: This immediately follows from the previous result.</p>
 </li>
-<li><p>The <strong>dimension</strong> of a vector space $\mathcal{S}$, denoted by $\text{dim}(\mathcal{S})$, is defined as the number of vectors in <em>any</em> basis of $\mathcal{S}$, or equivalently the maximmal number of linearly independent vectors in $\mathcal{S}$.</p>
+<li><p>The <strong>dimension</strong> of a vector space $\mathcal{S}$, denoted by $\text{dim}(\mathcal{S})$, is defined as</p>
+<ol>
+<li>the number of vectors in <em>any</em> basis of $\mathcal{S}$, <strong>or</strong> </li>
+<li>the maximmal number of linearly independent vectors in $\mathcal{S}$, <strong>or</strong></li>
+<li>the minimal number of vectors that span $\mathcal{S}$. </li>
+</ol>
 </li>
-<li><p><strong>Monotonicity of dimension</strong>. If $\mathcal{S}_1 \subseteq \mathcal{S}_2$ are two vector spaces, then $\text{dim}(\mathcal{S}_1) \le \text{dim}(\mathcal{S}_2)$.</p>
+<li><p><strong>Monotonicity of dimension</strong>. If $\mathcal{S}_1 \subseteq \mathcal{S}_2$ are two vector spaces of same order, then $\text{dim}(\mathcal{S}_1) \le \text{dim}(\mathcal{S}_2)$.</p>
 <p>Proof: Any independent set of vectors in $\mathcal{S}_1$ also live in $\mathcal{S}_2$. Thus the maximal number of independent vectors in $\mathcal{S}_2$ can only be larger or equal to the maximal number of indepedent vectors in $\mathcal{S}_1$.</p>
 </li>
 </ul>

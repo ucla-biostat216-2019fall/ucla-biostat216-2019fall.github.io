@@ -13139,6 +13139,7 @@ $( document ).ready(function(){
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Projection-and-idempotent-matrix-(BR-Chapter-6)">Projection and idempotent matrix (BR Chapter 6)<a class="anchor-link" href="#Projection-and-idempotent-matrix-(BR-Chapter-6)">&#182;</a></h1><p><strong>Highlights:</strong> In this lecture, we show any idempotent matrix $\mathbf{P}$ is a projector into $\mathcal{C}(\mathbf{P})$ along $\mathcal{C}(\mathbf{I} - \mathbf{P})$.</p>
+<p>Note when many authors say projection or projectors, they actually mean orthogonal projection or orthogonal projectors, which are subject of next lecture. In this course, we differentiate projection and orthogonal projection.</p>
 
 </div>
 </div>
@@ -13240,17 +13241,23 @@ $$</p>
 <li>$\mathcal{N}(\mathbf{P}) = \mathcal{C}(\mathbf{I} - \mathbf{P})$.  </li>
 <li>$\text{rank}(\mathbf{P}) + \text{rank}(\mathbf{I} - \mathbf{P}) = n$.  </li>
 <li><p>$\mathbb{R}^n = \mathcal{C}(\mathbf{P}) \oplus \mathcal{C}(\mathbf{I} - \mathbf{P})$.<br>
-We can use any of these five statements as a definition of a projector.</p>
+<strong>We can use any of these five statements as a definition of a projector.</strong></p>
 <p>Proof: We show $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 4 \Rightarrow 5 \Rightarrow 1$.<br>
 $1 \Rightarrow 2$: Suppose $\mathbf{P}$ is a projector into $\mathcal{S}$ along $\mathcal{T}$, where $\mathcal{S} \oplus \mathcal{T} = \mathbb{R}^n$. By the Lemma, $\mathbf{P}^2 \mathbf{y} = \mathbf{P}(\mathbf{P} \mathbf{y}) = \mathbf{P} \mathbf{y}$ for any $\mathbf{y} \in \mathbb{R}^n$. Now taking $\mathbf{y} = \mathbf{e}_1, \ldots, \mathbf{e}_n$, we showed each column of $\mathbf{P}^2$ is equal to the corresponding column of $\mathbf{P}$. Therefore $\mathbf{P}^2 = \mathbf{P}$. Finally $(\mathbf{I} - \mathbf{P})^2 = \mathbf{I} - 2\mathbf{P} + \mathbf{P}^2 = \mathbf{I} - \mathbf{P}$.<br>
 $2 \Rightarrow 3$: To show $\mathcal{N}(\mathbf{P}) \supseteq \mathcal{C}(\mathbf{I} - \mathbf{P})$, 
-$$
- \mathbf{x} \in \mathcal{C}(\mathbf{I} - \mathbf{P}) \Rightarrow \mathbf{x} = (\mathbf{I} - \mathbf{P}) \mathbf{v} \text{ for some } \mathbf{v} \Rightarrow \mathbf{P} \mathbf{x} = \mathbf{P} (\mathbf{I} - \mathbf{P}) \mathbf{v} = (\mathbf{P} - \mathbf{P}^2) \mathbf{v} = \mathbf{0}_{n \times n} \mathbf{v} = \mathbf{0} \Rightarrow \mathbf{x} \in \mathcal{N}(\mathbf{P}).
-$$
+\begin{eqnarray*}
+&amp; &amp; \mathbf{x} \in \mathcal{C}(\mathbf{I} - \mathbf{P}) \\
+&amp;\Rightarrow&amp; \mathbf{x} = (\mathbf{I} - \mathbf{P}) \mathbf{v} \text{ for some } \mathbf{v} \\
+&amp;\Rightarrow&amp; \mathbf{P} \mathbf{x} = \mathbf{P} (\mathbf{I} - \mathbf{P}) \mathbf{v} = (\mathbf{P} - \mathbf{P}^2) \mathbf{v} = \mathbf{0}_{n \times n} \mathbf{v} = \mathbf{0} \\
+&amp;\Rightarrow&amp; \mathbf{x} \in \mathcal{N}(\mathbf{P}).
+\end{eqnarray*}
 To show $\mathcal{N}(\mathbf{P}) \subseteq \mathcal{C}(\mathbf{I} - \mathbf{P})$,
-$$
- \mathbf{x} \in \mathcal{N}(\mathbf{P}) \Rightarrow \mathbf{P} \mathbf{x} = \mathbf{0} \Rightarrow \mathbf{x} = \mathbf{x} - \mathbf{P} \mathbf{x} = (\mathbf{I} - \mathbf{P}) \mathbf{x} \Rightarrow \mathbf{x} \in \mathcal{C}(\mathbf{I} - \mathbf{P}).
-$$<br>
+\begin{eqnarray*}
+&amp; &amp; \mathbf{x} \in \mathcal{N}(\mathbf{P}) \\
+&amp;\Rightarrow&amp; \mathbf{P} \mathbf{x} = \mathbf{0} \\
+&amp;\Rightarrow&amp; \mathbf{x} = \mathbf{x} - \mathbf{P} \mathbf{x} = (\mathbf{I} - \mathbf{P}) \mathbf{x} \\
+&amp;\Rightarrow&amp; \mathbf{x} \in \mathcal{C}(\mathbf{I} - \mathbf{P}).
+\end{eqnarray*}
 $3 \Rightarrow 4$: By the Rank-Nullity theorem,
 $$
  \text{rank}(\mathbf{P}) = n - \text{nullity}(\mathbf{P}) = \text{dim}(\mathcal{N}(\mathbf{P}) = \text{dim}(\mathcal{C}(\mathbf{I} - \mathbf{P})) = \text{rank}(\mathcal{C}(\mathbf{I} - \mathbf{P})).
@@ -13270,12 +13277,12 @@ $$
 $$
   \mathbf{S} \mathbf{U}' \mathbf{S} \mathbf{U}' = \mathbf{S} \mathbf{U}'.
 $$
-Since $\mathbf{P}^2 = \mathbf{S} \mathbf{U}'$ is a rank factorization, $\text{rank}(\mathbf{S}) = \text{rank}(\mathbf{P}) = r$. That is rows of $\mathbf{S}$ span $\mathbb{R}^m$. Thus there exists a matrix $\mathbf{S}_L$ such that $\mathbf{S}_L \mathbf{S} = \mathbf{I}_r$. Similarly $\mathbf{U}'$ having full column rank implies there exists a matrix $\mathbf{U}'_R$ such that $\mathbf{U}' \mathbf{U}'_R = \mathbf{I}_r$. Pre-multiplying by $\mathbf{S}_L$ and post-multiplying by $\mathbf{U}'_R$ on both sides of above equation gives the desired identity $\mathbf{U}' \mathbf{S} = \mathbf{I}_r$.</p>
+Since $\mathbf{P} = \mathbf{S} \mathbf{U}'$ is a rank factorization, $\text{rank}(\mathbf{S}) = \text{rank}(\mathbf{P}) = r$. That is rows of $\mathbf{S}$ span $\mathbb{R}^r$. Thus there exists a matrix $\mathbf{S}_L$ such that $\mathbf{S}_L \mathbf{S} = \mathbf{I}_r$. Similarly $\mathbf{U}'$ having full column rank implies there exists a matrix $\mathbf{U}'_R$ such that $\mathbf{U}' \mathbf{U}'_R = \mathbf{I}_r$. Pre-multiplying by $\mathbf{S}_L$ and post-multiplying by $\mathbf{U}'_R$ on both sides of above equation gives the desired identity $\mathbf{U}' \mathbf{S} = \mathbf{I}_r$.</p>
 </li>
 <li><p>BR Theorem 6.6. Let $\mathbf{P}$ be a projector, or equivalently idempotent. Then $\text{tr}(\mathbf{P}) = \text{rank}(\mathbf{P})$.</p>
-<p>Proof: By Theorem 6.5, 
+<p>Proof: By BR Theorem 6.5, 
 $$
-  \text{tr}(\mathbf{P}) = \text{tr}(\mathbf{S} \mathbf{U}') = \text{tr}(\mathbf{U}' \mathbf{S})) = \text{tr}(\mathbf{I}_r) = r = \text{rank}(\mathbf{P}).
+  \text{tr}(\mathbf{P}) = \text{tr}(\mathbf{S} \mathbf{U}') = \text{tr}(\mathbf{U}' \mathbf{S}) = \text{tr}(\mathbf{I}_r) = r = \text{rank}(\mathbf{P}).
 $$</p>
 </li>
 </ul>
@@ -13293,7 +13300,7 @@ $$</p>
 <li>$\mathbf{P}_i \mathbf{P}_j = \mathbf{O}$ for $i \ne j$.  </li>
 <li><p>$\mathbf{P}_i^2 = \mathbf{P}_i$ for $i=1,\ldots,k$. That is each $\mathbf{P}_i$ is a projector.</p>
 <p>Proof: We will prove $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 1$.<br>
-Proof of $1 \Rightarrow 2$: Let $r_i = \text{rank}(\mathbf{P}_i)$ and $\mathbf{P}_i = \mathbf{S}_i \mathbf{U}_i'$ be a rank factorization of $\mathbf{P}_i$ for $i=1,\ldots,k$, where $\mathbf{S}_i \in \mathbb{R}^{n \times r_i}$ and $\mathbf{U}_i' \in \mathbb{R}^{r_i \times n}$ with $\text{rank}(\mathbf{S}_i) = \text{rank}(\mathbf{U}_i) = r_i$. 
+Proof of $1 \Rightarrow 2$: Let $r_i = \text{rank}(\mathbf{P}_i)$ and $\mathbf{P}_i = \mathbf{S}_i \mathbf{U}_i'$ be a rank factorization of $\mathbf{P}_i$ for $i=1,\ldots,k$, where $\mathbf{S}_i \in \mathbb{R}^{n \times r_i}$ and $\mathbf{U}_i' \in \mathbb{R}^{r_i \times n}$ with $\text{rank}(\mathbf{S}_i) = \text{rank}(\mathbf{U}_i) = r_i$. Then 
 \begin{eqnarray*}
 &amp; &amp; \sum_{i=1}^k \mathbf{P}_i = \mathbf{I}_n \\
 &amp;\Rightarrow&amp; \mathbf{S}_1 \mathbf{U}_1' + \cdots + \mathbf{S}_k \mathbf{U}_k' = \mathbf{I}_n \\

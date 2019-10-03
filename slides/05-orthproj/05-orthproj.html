@@ -13163,7 +13163,7 @@ $$
 with equality holding if and only if $\mathbf{x} = \alpha \mathbf{y}$ for some real number $\alpha$.</p>
 <p>Proof: BR p180. Expand $0 \le \|\mathbf{x} - \alpha \mathbf{y}\|^2$.</p>
 </li>
-<li><p><strong>Triangule inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$. Then
+<li><p><strong>Triangular inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$. Then
 $$
   \|\mathbf{x} + \mathbf{y}\| \le \|\mathbf{x}\| + \|\mathbf{y}\|.
 $$</p>
@@ -13203,7 +13203,7 @@ Since $\|\mathbf{x}_i\|^2 &gt; 0$ for all $i$, $\alpha_i=0$ for all $i$. This sh
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Row-rank-=-column-rank:-a-proof-using-orthognality">Row rank = column rank: a proof using orthognality<a class="anchor-link" href="#Row-rank-=-column-rank:-a-proof-using-orthognality">&#182;</a></h2><p>We show that the row rank of a matrix $\mathbf{A} \in \mathbb{R}^{m \times n}$ is equal to its column rank.</p>
-<p>Let $r$ be the row rank of $\mathbf{A}$ and $\mathbf{x}_1, \ldots, \mathbf{x}_r$ be a basis of the row space of $\mathbf{A}$.</p>
+<p>Let $r$ be the row rank of $\mathbf{A}$ and $\mathbf{x}_1, \ldots, \mathbf{x}_r \in \mathbb{R}^n$ be a basis of the row space of $\mathbf{A}$.</p>
 <ul>
 <li><p>Lemma: The vectors $\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A} \mathbf{x}_r$ are linearly independent.</p>
 <p>Proof: Suppose
@@ -13223,12 +13223,12 @@ where $\mathbf{v} = \sum_{i=1}^r c_i \mathbf{x}_i$. $\mathbf{v}$ is a linear com
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Orthogonal-projections">Orthogonal projections<a class="anchor-link" href="#Orthogonal-projections">&#182;</a></h2><ul>
-<li><p>An <strong>orthocomplement set</strong> of a set $\mathcal{X}$ (not necessarily a vector space) in a vector space $\mathcal{S} \subseteq \mathbb{R}^m$ is defined as
+<li><p>An <strong>orthocomplement set</strong> of a set $\mathcal{X}$ (not necessarily a subspace) in a vector space $\mathcal{S} \subseteq \mathbb{R}^m$ is defined as
 $$
   \mathcal{X}^\perp = \{ \mathbf{u} \in \mathcal{S}: \langle \mathbf{x}, \mathbf{u} \rangle = 0 \text{ for all } \mathbf{x} \in \mathcal{X}\}.
 $$</p>
 </li>
-<li><p>BR Lemma 7.6. Let $\mathcal{X}$ be a subset (not necessarily a vector space) of a vector space $\mathcal{S}$. Then the following statements are true.</p>
+<li><p>BR Lemma 7.6. Let $\mathcal{X}$ be a subset (not necessarily a subspace) of a vector space $\mathcal{S}$. Then the following statements are true.</p>
 <ol>
 <li>If $\mathbf{u} \in \mathcal{X}^\perp$, then $\mathbf{u} \in \text{span}(\mathcal{X})^\perp$.  </li>
 <li>$\mathcal{X}^\perp$ is always a subspace, whether or not $\mathcal{X}$ is a subspace.  </li>
@@ -13288,7 +13288,7 @@ Proof of 4: Follows from essential disjointness between $\mathcal{S}$ and $\math
 &amp;\Leftrightarrow&amp; \mathbf{x} \text{ is orthogonal to columns of } \mathbf{A} \\
 &amp;\Leftrightarrow&amp; \mathbf{x} \in \mathcal{C}(\mathbf{A})^\perp.
 \end{eqnarray*}
-Then, by Part 3 of Theorem 7.2, $\mathbb{R}^m = \mathcal{C}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A})^\perp = \mathcal{C}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A}')$.</p>
+Then, by Part 3 of Theorem 7.4, $\mathbb{R}^m = \mathcal{C}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A})^\perp = \mathcal{C}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A}')$.</p>
 <p>Proof of 2: Since $\mathcal{C}(\mathbf{A})$ is a subspace, $(\mathcal{C}(\mathbf{A})^\perp)^\perp = \mathcal{N}(\mathbf{A}')^\perp$.</p>
 <p>Proof of 3: Applying part 2 to $\mathbf{A}'$, we have
 $$
@@ -13336,7 +13336,7 @@ $$</p>
 <h2 id="Orthogonal-projection">Orthogonal projection<a class="anchor-link" href="#Orthogonal-projection">&#182;</a></h2><ul>
 <li><p>BR Definition 8.2. If $\mathcal{S}$ is a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$, then the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$ is called the <strong>orthogonal projection</strong> of $\mathbf{y}$ into $\mathcal{S}$.</p>
 </li>
-<li><p>BR Theorem 8.3. <strong>The closest point theore.</strong> Let $\mathcal{S}$ be a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$. The orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$ is the <strong>unique</strong> point in $\mathbf{S}$ that is closest to $\mathbf{y}$. In other words, if $\mathbf{u}$ is the orthogonal projection of $\mathbf{y}$ \into $\mathcal{S}$, then
+<li><p>BR Theorem 8.3. <strong>The closest point theore.</strong> Let $\mathcal{S}$ be a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$. The orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$ is the <strong>unique</strong> point in $\mathbf{S}$ that is closest to $\mathbf{y}$. In other words, if $\mathbf{u}$ is the orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$, then
 $$
   \|\mathbf{y} - \mathbf{u}\|^2 \le \|\mathbf{y} - \mathbf{w}\|^2 \text{ for all } \mathbf{w} \in \mathcal{S},
 $$
@@ -13378,7 +13378,7 @@ $$</p>
   &amp;=&amp; \mathbf{P}_{\mathbf{B}}.
 \end{eqnarray*}</p>
 </li>
-<li><p>BR Theorem 8.5. Let $\mathbf{P}_\mathbf{X}$ be the orthogonal projector into $\mathcal{C}(\mathbf{X})$, where $\mathbf{X} \in \mathbb{R}^{n \times p}$ has full column rank.</p>
+<li><p>BR Theorem 8.5. Let $\mathbf{P}_\mathbf{X}$ be the orthogonal projector into $\mathcal{C}(\mathbf{X})$, where $\mathbf{X} \in \mathbb{R}^{n \times p}$ has full column rank. Following statements are true.</p>
 <ol>
 <li>$\mathbf{P}_\mathbf{X}$ and $\mathbf{I} - \mathbf{P}_\mathbf{X}$ are both symmetric and idemponent. </li>
 <li>$\mathbf{P}_\mathbf{X} \mathbf{X} = \mathbf{X}$ and $(\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{X} = \mathbf{O}$.  </li>
@@ -13397,6 +13397,14 @@ $$</p>
 &amp;\Rightarrow&amp; \mathbf{u} = (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{v} \text{ for some } \mathbf{v} \\
 &amp;\Rightarrow&amp; \mathbf{X}' \mathbf{u} = [(\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{X}]' \mathbf{v} = \mathbf{O} \mathbf{v} = \mathbf{0} \\
 &amp;\Rightarrow&amp; \mathbf{u} \in \mathcal{N}(\mathbf{X}').
+\end{eqnarray*}
+To show the other direction $\mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) \supseteq \mathcal{N}(\mathbf{X}')$,
+\begin{eqnarray*}
+&amp; &amp; \mathbf{u} \in \mathcal{N}(\mathbf{X}') \\
+&amp;\Rightarrow&amp; \mathbf{X}' \mathbf{u} = \mathbf{0} \\
+&amp;\Rightarrow&amp; \mathbf{P}_\mathbf{X} \mathbf{u} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{u} = \mathbf{0} \\
+&amp;\Rightarrow&amp; \mathbf{u} = \mathbf{u} - \mathbf{P}_\mathbf{X} \mathbf{u} = (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{u} \\
+&amp;\Rightarrow&amp; \mathbf{u} \in \mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}).
 \end{eqnarray*}</p>
 <p>Proof of 5: For any $\mathbf{y} \in \mathbb{R}^n$, write $\mathbf{y} = \mathbf{P}_\mathbf{X} \mathbf{y} + (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{y}$.</p>
 </li>
