@@ -13346,9 +13346,17 @@ $$</p>
   &amp; &amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}) \\
   &amp;\Rightarrow&amp; \mathbf{A} \mathbf{x} \\
   &amp;\Rightarrow&amp; \mathbf{A}'\mathbf{A} \mathbf{x} = \mathbf{0} \\
-  &amp;\Rightarrow&amp; \mathcal{N}(\mathbf{A}'\mathbf{A}).
+  &amp;\Rightarrow&amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}'\mathbf{A}).
 \end{eqnarray*}
-This shows $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{A}'\mathbf{A})$. To show the other direction $\mathcal{N}(\mathbf{A}) \supseteq \mathcal{N}(\mathbf{A}'\mathbf{A})$. If $\mathbf{x} \in \mathcal{N}(\mathbf{A}'\mathbf{A})$, then $\mathbf{A}'\mathbf{A} \mathbf{x} = \mathbf{0}$. Thus $\mathbf{x} \mathbf{A}' \mathbf{A} \mathbf{x} = 0$ and $\|\mathbf{A} \mathbf{x}\|^2 = 0$. This implies $\mathbf{A} \mathbf{x} = \mathbf{0}$, i.e., $\mathbf{x} \in \mathcal{N}(\mathbf{A})$.</p>
+This shows $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{A}'\mathbf{A})$. To show the other direction $\mathcal{N}(\mathbf{A}) \supseteq \mathcal{N}(\mathbf{A}'\mathbf{A})$, we note
+\begin{eqnarray*}
+  &amp; &amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}'\mathbf{A}) \\
+  &amp;\Rightarrow&amp; \mathbf{A}'\mathbf{A} \mathbf{x} = \mathbf{0} \\
+  &amp;\Rightarrow&amp; \mathbf{x}' \mathbf{A}' \mathbf{A} \mathbf{x} = 0 \\
+  &amp;\Rightarrow&amp; \|\mathbf{A} \mathbf{x}\|^2 = 0 \\
+  &amp;\Rightarrow&amp; \mathbf{A} \mathbf{x} = \mathbf{0} \\
+  &amp;\Rightarrow&amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}).
+\end{eqnarray*}</p>
 <p>For the second equation, we apply the first equation to $\mathbf{B} = \mathbf{A}'$.</p>
 </li>
 </ul>
@@ -13399,7 +13407,7 @@ To show part 2, we apply part 1 to the transpose.</p>
 </li>
 <li><p>No linearly independent set can contain the zero vector $\mathbf{0}$. (why?)</p>
 </li>
-<li><p>A set of linearly independent vectors that generate or span a vector space $\mathcal{S}$ is called a <strong>basis</strong> of ${\cal S}$.</p>
+<li><p>A set of linearly independent vectors that span a vector space $\mathcal{S}$ is called a <strong>basis</strong> of ${\cal S}$.</p>
 </li>
 <li><p>BR Lemma 4.5. Let $\mathcal{A} = \{\mathbf{a}_1, \ldots, \mathbf{a}_n\}$ be a basis of a vector space $\mathcal{S}$. Then any vector $\mathbf{x} \in \mathcal{S}$ can be expressed <strong>uniquely</strong> as a linear combination of vectors in $\mathcal{A}$.</p>
 <p>Proof: Suppose $\mathbf{x}$ can be expressed by two linear combinations
