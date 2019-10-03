@@ -13140,6 +13140,7 @@ $( document ).ready(function(){
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Projection-and-idempotent-matrix-(BR-Chapter-6)">Projection and idempotent matrix (BR Chapter 6)<a class="anchor-link" href="#Projection-and-idempotent-matrix-(BR-Chapter-6)">&#182;</a></h1><p><strong>Highlights:</strong> In this lecture, we show any idempotent matrix $\mathbf{P}$ is a projector into $\mathcal{C}(\mathbf{P})$ along $\mathcal{C}(\mathbf{I} - \mathbf{P})$.</p>
 <p>Note when many authors say projection or projectors, they actually mean orthogonal projection or orthogonal projectors, which are subject of next lecture. In this course, we differentiate projection and orthogonal projection.</p>
+<p>TODO: visualize.</p>
 
 </div>
 </div>
@@ -13166,11 +13167,14 @@ $$
 $$</p>
 <p>Proof: First claim trivially follows from BR Theorem 6.1. For the second claim. First note $\mathcal{C}(\mathbf{A} + \mathbf{B}) \subseteq \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})$ (why). Then
 $$
- \text{rank}(\mathbf{A} + \mathbf{B}) = \text{dim}(\mathcal{C}(\mathbf{A} + \mathbf{B})) \le \text{dim}(\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})) \le \text{dim}(\mathcal{C}(\mathbf{A})) + \text{dim}(\mathcal{C}(\mathbf{B})) = \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B}).
-$$</p>
+\text{rank}(\mathbf{A} + \mathbf{B}) = \text{dim}(\mathcal{C}(\mathbf{A} + \mathbf{B})) \le \text{dim}(\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})) \le \text{dim}(\mathcal{C}(\mathbf{A})) + \text{dim}(\mathcal{C}(\mathbf{B})) = \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B}).
+$$
+The second inequality follows from the first claim.</p>
 </li>
 </ol>
 </li>
+</ul>
+<ul>
 <li><p>Two subspaces $\mathcal{S}_1$ and $\mathcal{S}_2$ in a vector space $\mathcal{V}$ are said to be <strong>complementary</strong> whenever 
 $$
   \mathcal{V} = \mathcal{S}_1 + \mathcal{S}_2 \text{ and } \mathcal{S}_1 \cap \mathcal{S}_2 = \{\mathbf{0}\}.
@@ -13260,7 +13264,7 @@ To show $\mathcal{N}(\mathbf{P}) \subseteq \mathcal{C}(\mathbf{I} - \mathbf{P})$
 \end{eqnarray*}
 $3 \Rightarrow 4$: By the Rank-Nullity theorem,
 $$
- \text{rank}(\mathbf{P}) = n - \text{nullity}(\mathbf{P}) = \text{dim}(\mathcal{N}(\mathbf{P}) = \text{dim}(\mathcal{C}(\mathbf{I} - \mathbf{P})) = \text{rank}(\mathcal{C}(\mathbf{I} - \mathbf{P})).
+\text{rank}(\mathbf{P}) = n - \text{nullity}(\mathbf{P}) = n - \text{dim}(\mathcal{N}(\mathbf{P})) = n - \text{dim}(\mathcal{C}(\mathbf{I} - \mathbf{P})) = n - \text{rank}(\mathcal{C}(\mathbf{I} - \mathbf{P})).
 $$<br>
 $4 \Rightarrow 5$: For any $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{x} = (\mathbf{P} + \mathbf{I} - \mathbf{P}) \mathbf{x}  = \mathbf{P} \mathbf{x} + (\mathbf{I} - \mathbf{P}) \mathbf{x}$. Thus $\mathbb{R}^n = \mathcal{C}(\mathbf{P}) + \mathcal{C}(\mathbf{I} - \mathbf{P})$. Part 2 of BR Theorem 6.2 then dictates $\mathbf{P}$ and $\mathbf{I} - \mathbf{P}$ must be a direct sum.<br>
 $5 \Rightarrow 1$: For any $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{x} = (\mathbf{P} + \mathbf{I} - \mathbf{P}) \mathbf{x}  = \mathbf{P} \mathbf{x} + (\mathbf{I} - \mathbf{P}) \mathbf{x}$, where $\mathbf{P} \mathbf{x} \in \mathcal{C}(\mathbf{P})$ and $(\mathbf{I} - \mathbf{P}) \mathbf{x} \in \mathcal{C}(\mathbf{I} - \mathbf{P})$. 5 then confirms that $\mathbf{P}$ projects into $\mathcal{C}(\mathbf{P})$ along $\mathcal{C}(\mathbf{I} - \mathbf{P})$.</p>
@@ -13277,7 +13281,7 @@ $$
 $$
   \mathbf{S} \mathbf{U}' \mathbf{S} \mathbf{U}' = \mathbf{S} \mathbf{U}'.
 $$
-Since $\mathbf{P} = \mathbf{S} \mathbf{U}'$ is a rank factorization, $\text{rank}(\mathbf{S}) = \text{rank}(\mathbf{P}) = r$. That is rows of $\mathbf{S}$ span $\mathbb{R}^r$. Thus there exists a matrix $\mathbf{S}_L$ such that $\mathbf{S}_L \mathbf{S} = \mathbf{I}_r$. Similarly $\mathbf{U}'$ having full column rank implies there exists a matrix $\mathbf{U}'_R$ such that $\mathbf{U}' \mathbf{U}'_R = \mathbf{I}_r$. Pre-multiplying by $\mathbf{S}_L$ and post-multiplying by $\mathbf{U}'_R$ on both sides of above equation gives the desired identity $\mathbf{U}' \mathbf{S} = \mathbf{I}_r$.</p>
+Since $\mathbf{P} = \mathbf{S} \mathbf{U}'$ is a rank factorization, $\text{rank}(\mathbf{S}) = \text{rank}(\mathbf{P}) = r$. That is rows of $\mathbf{S}$ span $\mathbb{R}^r$. Thus there exists a matrix $\mathbf{S}_L$ such that $\mathbf{S}_L \mathbf{S} = \mathbf{I}_r$. Similarly $\mathbf{U}'$ having full column rank implies that there exists a matrix $\mathbf{U}'_R$ such that $\mathbf{U}' \mathbf{U}'_R = \mathbf{I}_r$. Pre-multiplying by $\mathbf{S}_L$ and post-multiplying by $\mathbf{U}'_R$ on both sides of above equation gives the desired identity $\mathbf{U}' \mathbf{S} = \mathbf{I}_r$.</p>
 </li>
 <li><p>BR Theorem 6.6. Let $\mathbf{P}$ be a projector, or equivalently idempotent. Then $\text{tr}(\mathbf{P}) = \text{rank}(\mathbf{P})$.</p>
 <p>Proof: By BR Theorem 6.5, 

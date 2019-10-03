@@ -13138,11 +13138,13 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Rank-and-nullity-(BR-Chapter-5)">Rank and nullity (BR Chapter 5)<a class="anchor-link" href="#Rank-and-nullity-(BR-Chapter-5)">&#182;</a></h1><p><strong>Highlights</strong>: In this lecture we will show some most important results on rank of a matrix:</p>
+<h1 id="Rank-and-nullity-(BR-Chapter-5)">Rank and nullity (BR Chapter 5)<a class="anchor-link" href="#Rank-and-nullity-(BR-Chapter-5)">&#182;</a></h1><p><strong>Highlights</strong>: In this lecture we will show some most important results on the rank of a matrix:</p>
 <ol>
 <li>column rank = row rank.  </li>
-<li>$\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{A})$<br>
- $\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{B})$.  </li>
+<li>Matrix multiplication can only decrease the rank:<br>
+$\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{A})$<br>
+ $\text{rank}(\mathbf{A} \mathbf{B}) \le \text{rank}(\mathbf{B})$.<br>
+ Two special cases: $\text{rank}(\mathbf{A} \mathbf{B}) = \text{rank}(\mathbf{A})$ if $\mathbf{B}$ has full row rank. $\text{rank}(\mathbf{A}' \mathbf{A}) = \text{rank}(\mathbf{A})$ for any $\mathbf{A}$.  </li>
 <li>$\text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{B}) + \text{rank}(\mathbf{B})$.  </li>
 <li>Rank-nullity theorem: For any $\mathbf{A} \in \mathbb{R}^{m \times n}$, $\text{rank}(\mathbf{A}) + \text{nullity}(\mathbf{A}) = n$.  </li>
 <li>Fundamental theorem of ranks: $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}') = \text{rank}(\mathbf{A}'\mathbf{A}) = \text{rank}(\mathbf{A}\mathbf{A}')$.</li>
@@ -13154,7 +13156,7 @@ $( document ).ready(function(){
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span><span class="p">,</span> <span class="n">RDatasets</span><span class="p">,</span> <span class="n">StatsModels</span>
@@ -13167,7 +13169,7 @@ $( document ).ready(function(){
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># the famous Fisher&#39;s Iris data</span>
@@ -13185,7 +13187,7 @@ $( document ).ready(function(){
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -13201,7 +13203,7 @@ $( document ).ready(function(){
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># use full dummy coding (one-hot coding) for categorical variable Species</span>
@@ -13221,7 +13223,7 @@ $( document ).ready(function(){
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13264,7 +13266,7 @@ $( document ).ready(function(){
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="nd">@show</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -13301,6 +13303,48 @@ rank(X * X&#39;) = 7
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># only one basis vector in N(X)</span>
+<span class="n">nullspace</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8×1 Array{Float64,2}:
+ -0.5                   
+ -8.326672684688674e-17 
+ -1.9081958235744878e-16
+  1.1796119636642288e-16
+  2.1510571102112408e-16
+  0.5000000000000002    
+  0.4999999999999998    
+  0.49999999999999956   </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13317,21 +13361,20 @@ rank(X * X&#39;) = 7
 <p>In other words, column rank of $\mathbf{A}$ is $\text{dim}(\mathcal{C}(\mathbf{A}))$.</p>
 </li>
 <li><p>The <strong>row rank</strong> of $\mathbf{A}$ is the maximum number of linearly independent rows of $\mathbf{A}$.</p>
-<p>In other words, row rank of $\mathbf{A}$ is $\text{dim}(\mathcal{C}(\mathbf{A}'))$.</p>
-</li>
-<li><p>If $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{B})$, then $\text{rank}(\mathbf{A}) \le \text{rank}(\mathbf{B})$.</p>
-<p>Proof: By the monotonicity of dimension.</p>
+<p>In other words, row rank of $\mathbf{A}$ is $\text{dim}(\mathcal{R}(\mathbf{A})) = \text{dim}(\mathcal{C}(\mathbf{A}'))$.</p>
 </li>
 <li><p>BR Theorem 4.17. For any $m \times n$ matrix $\mathbf{A}$, its column rank is equal to the row rank, which we shall call the <strong>rank</strong> of $\mathbf{A}$.</p>
 <p>Proof: Let $r$ be the row rank of $\mathbf{A}$ and $c$ be the column rank of $\mathbf{A}$. We show $r=c$ by showing $c \le r$ and $c \ge r$.<br>
   Since $\mathbf{A}$ has row rank $r$, we can permute the rows of $\mathbf{A}$ to be<br>
 $$
-  \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{A_2} \end{pmatrix} = \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A_1} \end{pmatrix},
+  \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{A}_2 \end{pmatrix} = \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A}_1 \end{pmatrix},
 $$
   where $\mathbf{A}_1 \in \mathbb{R}^{r \times n}$ has $r$ independent rows and $\mathbf{A}_2 = \mathbf{B} \mathbf{A}_1 \in \mathbb{R}^{(m-r) \times n}$ for some matrix $\mathbf{B}$. Note row permutation does not change the row rank or column rank. Then
-$$
-  \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A}_1 \end{pmatrix} \mathbf{x} = \mathbf{0}_m \Leftrightarrow \mathbf{A}_1 \mathbf{x} = \mathbf{0}_r.
-$$
+\begin{eqnarray*}
+  &amp; &amp; \begin{pmatrix} \mathbf{A}_1 \\ \mathbf{B} \mathbf{A}_1 \end{pmatrix} \mathbf{x} = \mathbf{0}_m \\
+  &amp;\Leftrightarrow&amp; \begin{pmatrix} \mathbf{A}_1 \mathbf{x} \\ \mathbf{B} \mathbf{A}_1 \mathbf{x} \end{pmatrix} = \mathbf{0}_m \\
+  &amp;\Leftrightarrow&amp; \mathbf{A}_1 \mathbf{x} = \mathbf{0}_r.
+\end{eqnarray*}
 This says that take any set of linearly independent columns in $\mathbf{A}$, the corresponding columns in $\mathbf{A}_1$ are linearly independent as well. Therefore the column rank $c$ of $\mathbf{A}$ is less than or equal to the maximum number of linearly independent columns of $\mathbf{A}_1$, which is less than or equal to $r$ by the independence-dimensionality inequality. This way we have shown $c \le r$.<br>
   To show the other direction $c \ge r$, we apply above result to the transpose $\mathbf{A}'$.</p>
 </li>
@@ -13344,7 +13387,7 @@ This says that take any set of linearly independent columns in $\mathbf{A}$, the
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="nd">@show</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -13373,7 +13416,7 @@ rank(X) = 7
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -13437,9 +13480,6 @@ $$
 $$
 Thus $\text{rank}(\mathbf{A}) = \text{rank} (\mathbf{A} \mathbf{B})$. Proof for the other half of the statement follows the same argument.</p>
 </li>
-<li><p>$\text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B})$. (Maybe do this later???)</p>
-<p>Proof: Any column of $\mathbf{A} + \mathbf{B}$ is in the space $\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B}) = \mathcal{C}((\mathbf{A} : \mathbf{B}))$. And $\text{rank}((\mathbf{A} : \mathbf{B})) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B})$.</p>
-</li>
 <li><p>Example: 2019 qual. exam Q1.</p>
 </li>
 </ul>
@@ -13460,7 +13500,7 @@ $$</p>
 <p>Proof: If $\mathbf{A} \mathbf{x} = \mathbf{0}$, then $\mathbf{B} \mathbf{x} = \mathbf{0}$. Then for any set of linearly independent columns in $\mathbf{B}$, the corresponding columns in $\mathbf{A}$ are linearly independent as well. Thus the maximum number of linearly independent columns in $\mathbf{A}$ is at least as many as that of $\mathbf{B}$.</p>
 </li>
 <li><p>BR Lemma 5.1. $\text{nullity}(\mathbf{A}) \le \text{nullity}(\mathbf{B} \mathbf{A})$. <strong>(Left) matrix multiplication can only inreases the nullity.</strong></p>
-<p>Proof: Since $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{B} \mathbf{A})$ (why), we have $\text{nullity}(\mathbf{A}) \le \text{nullity}(\mathbf{B} \mathbf{A})$.</p>
+<p>Proof: Since $\mathcal{N}(\mathbf{A}) \subseteq \mathcal{N}(\mathbf{B} \mathbf{A})$ (why?), we have $\text{nullity}(\mathbf{A}) \le \text{nullity}(\mathbf{B} \mathbf{A})$.</p>
 </li>
 </ul>
 
@@ -13482,7 +13522,7 @@ $$
 where columns of $\mathbf{X}_1 \in \mathbb{R}^{n \times \nu}$ form a basis of $\mathcal{N}(\mathbf{A})$ and columns of $\mathbf{X}_2 \in \mathbb{R}^{n \times (n - \nu)}$ extend those in $\mathbf{X}_1$ to be a basis of $\mathbb{R}^n$. We show columns of $\mathbf{A} \mathbf{X}_2$ form a basis of $\mathcal{C}(\mathbf{A})$. Thus $\text{rank}(\mathbf{A}) = \text{dim}(\mathcal{C}(\mathbf{A})) = n - \nu$.<br>
   (1) To show that columns of $\mathbf{A} \mathbf{X}_2$ are linearly independent. Assume $\mathbf{A} \mathbf{X}_2 \mathbf{v} = \mathbf{0}$. Then $\mathbf{X}_2 \mathbf{v} \in \mathcal{N}(\mathbf{A}) = \mathcal{C}(\mathbf{X}_1)$. Thus $\mathbf{X}_2 \mathbf{v} = \mathbf{X}_1 \mathbf{u}$ for some $\mathbf{u}$, or equivalently,
 $$
-  \begin{pmatrix} \mathbf{X}_1 : \mathbf{X}_2 \end{pmatrix} \begin{pmatrix} -\mathbf{u} \\ \mathbf{v} \end{pmatrix} = \mathbf{0}.
+  \begin{pmatrix} \mathbf{X}_1 : \mathbf{X}_2 \end{pmatrix} \begin{pmatrix} -\mathbf{u} \\ \mathbf{v} \end{pmatrix} = \mathbf{0}_n.
 $$
 Since the matrix $\begin{pmatrix} \mathbf{X}_1 : \mathbf{X}_2 \end{pmatrix}$ is non-singular, we must have $\mathbf{u}=\mathbf{0}$ and $\mathbf{v}=\mathbf{0}$. This shows that $\mathbf{v}=\mathbf{0}$ whenever $\mathbf{A} \mathbf{X}_2 \mathbf{v} = \mathbf{0}$. So the columns of $\mathbf{A} \mathbf{X}_2$ is linearly independent.<br>
   (2) Next we show the columns of $\mathbf{A} \mathbf{X}_2$ span $\mathcal{C}(\mathbf{A})$ by showing $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \subseteq \mathcal{C}(\mathbf{A})$ and $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \supseteq \mathcal{C}(\mathbf{A})$. One direction $\mathcal{C}(\mathbf{A} \mathbf{X}_2) \subseteq \mathcal{C}(\mathbf{A})$ is easy. To show the other direction $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{A} \mathbf{X}_2)$, let $\mathbf{w} \in \mathcal{C}(\mathbf{A})$. Then $\mathbf{w} = \mathbf{A} \mathbf{y}$ for some vector $\mathbf{y}$. Because $\mathbf{y} \in \mathbb{R}^n$, which is spanned by columns of $\mathbf{X}$, we can write $\mathbf{y} = \mathbf{X}_1 \mathbf{z}_1 + \mathbf{X}_2 \mathbf{z}_2$ for some vectors $\mathbf{z}_1$ and $\mathbf{z}_2$. Thus $\mathbf{w} = \mathbf{A} \mathbf{X}_1 \mathbf{z}_1 + \mathbf{A} \mathbf{X}_2 \mathbf{z}_2 = \mathbf{A} \mathbf{X}_2 \mathbf{z}_2 \in \mathcal{C}(\mathbf{A} \mathbf{X}_2)$. This proves $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{A} \mathbf{X}_2)$.</p>
@@ -13575,7 +13615,7 @@ $$</p>
 <p>Proof: It is easy to see for any independent columns in $\begin{pmatrix}
   \mathbf{A}_{11} &amp; \mathbf{0} \\
   \mathbf{0} &amp; \mathbf{A}_{22}
-  \end{pmatrix}$, the corresponding columns in first $n_1$ and second $n_2$ are independent as well.</p>
+  \end{pmatrix}$, the corresponding columns in first $n_1$ and second $n_2$ positions are independent as well.</p>
 </li>
 <li><p>BR Theorem 5.12. Let
 $$
