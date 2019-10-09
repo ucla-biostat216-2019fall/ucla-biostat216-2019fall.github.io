@@ -13139,7 +13139,7 @@ $( document ).ready(function(){
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Projection-and-idempotent-matrix-(BR-Chapter-6)">Projection and idempotent matrix (BR Chapter 6)<a class="anchor-link" href="#Projection-and-idempotent-matrix-(BR-Chapter-6)">&#182;</a></h1><p><strong>Highlights:</strong> In this lecture, we show any idempotent matrix $\mathbf{P}$ is a projector into $\mathcal{C}(\mathbf{P})$ along $\mathcal{C}(\mathbf{I} - \mathbf{P})$.</p>
-<p>Note when many authors say projection or projectors, they actually mean orthogonal projection or orthogonal projectors, which are subject of next lecture. In this course, we differentiate projection and orthogonal projection.</p>
+<p>Note when many authors say <strong>projection</strong> or <strong>projectors</strong>, they actually mean <strong>orthogonal projection</strong> or <strong>orthogonal projectors</strong>, which are subject of next lecture. In this course, we differentiate projection and orthogonal projection.</p>
 <p>TODO: visualize.</p>
 
 </div>
@@ -13166,9 +13166,13 @@ $$
 \text{rank}(\mathbf{A} + \mathbf{B}) \le \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B}).
 $$</p>
 <p>Proof: First claim trivially follows from BR Theorem 6.1. For the second claim. First note $\mathcal{C}(\mathbf{A} + \mathbf{B}) \subseteq \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})$ (why). Then
-$$
-\text{rank}(\mathbf{A} + \mathbf{B}) = \text{dim}(\mathcal{C}(\mathbf{A} + \mathbf{B})) \le \text{dim}(\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})) \le \text{dim}(\mathcal{C}(\mathbf{A})) + \text{dim}(\mathcal{C}(\mathbf{B})) = \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B}).
-$$
+\begin{eqnarray*}
+&amp; &amp; \text{rank}(\mathbf{A} + \mathbf{B}) \\
+&amp;=&amp; \text{dim}(\mathcal{C}(\mathbf{A} + \mathbf{B})) \\
+&amp;\le&amp; \text{dim}(\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})) \\
+&amp;\le&amp; \text{dim}(\mathcal{C}(\mathbf{A})) + \text{dim}(\mathcal{C}(\mathbf{B})) \\
+&amp;=&amp; \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B}).
+\end{eqnarray*}
 The second inequality follows from the first claim.</p>
 </li>
 </ol>
