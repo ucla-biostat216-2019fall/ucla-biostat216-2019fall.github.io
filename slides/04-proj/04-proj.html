@@ -13168,10 +13168,10 @@ $$</p>
 <p>Proof: First claim trivially follows from BR Theorem 6.1. For the second claim. First note $\mathcal{C}(\mathbf{A} + \mathbf{B}) \subseteq \mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})$ (why). Then
 \begin{eqnarray*}
 &amp; &amp; \text{rank}(\mathbf{A} + \mathbf{B}) \\
-&amp;=&amp; \text{dim}(\mathcal{C}(\mathbf{A} + \mathbf{B})) \\
-&amp;\le&amp; \text{dim}(\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})) \\
-&amp;\le&amp; \text{dim}(\mathcal{C}(\mathbf{A})) + \text{dim}(\mathcal{C}(\mathbf{B})) \\
-&amp;=&amp; \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B}).
+&amp;=&amp; \text{dim}(\mathcal{C}(\mathbf{A} + \mathbf{B})) \quad \text{(definition of rank)} \\
+&amp;\le&amp; \text{dim}(\mathcal{C}(\mathbf{A}) + \mathcal{C}(\mathbf{B})) \quad \text{(monotonicity of dim)} \\
+&amp;\le&amp; \text{dim}(\mathcal{C}(\mathbf{A})) + \text{dim}(\mathcal{C}(\mathbf{B})) \quad \text{(subadditivity of dim)} \\
+&amp;=&amp; \text{rank}(\mathbf{A}) + \text{rank}(\mathbf{B}). \quad \text{(definition of rank)}
 \end{eqnarray*}
 The second inequality follows from the first claim.</p>
 </li>
@@ -13185,11 +13185,13 @@ $$
 $$
 In such cases, we say $\mathcal{V}$ is a <strong>direct sum</strong> of $\mathcal{S}_1$ and $\mathcal{S}_2$ and denote $\mathcal{V} = \mathcal{S}_1 \oplus \mathcal{S}_2$.</p>
 </li>
+<li><p>TODO: visualize. $\mathbb{R}^3 = \text{a plane} \oplus \text{a line}$.</p>
+</li>
 <li><p>BR Theorem 6.2. Let $\mathcal{S}_1, \mathcal{S}_2$ be two subspaces of same order and $\mathcal{V} = \mathcal{S}_1 + \mathcal{S}_2$. Following statements are equivalent:</p>
 <ol>
 <li>$\mathcal{V} = \mathcal{S}_1 \oplus \mathcal{S}_2$. </li>
 <li>$\text{dim}(\mathcal{V}) = \text{dim}(\mathcal{S}_1) + \text{dim}(\mathcal{S}_2)$.  </li>
-<li><p>Any vector $\mathbf{x} \in \mathcal{V}$ can be uniquely represented as
+<li><p>Any vector $\mathbf{x} \in \mathcal{V}$ can be <strong>uniquely</strong> represented as
 $$
  \mathbf{x} = \mathbf{x}_1 + \mathbf{x}_2, \text{ where } \mathbf{x}_1 \in \mathbf{S}_1, \mathbf{x}_2 \in \mathbf{S}_2.
 $$
@@ -13293,10 +13295,304 @@ $$
   \text{tr}(\mathbf{P}) = \text{tr}(\mathbf{S} \mathbf{U}') = \text{tr}(\mathbf{U}' \mathbf{S}) = \text{tr}(\mathbf{I}_r) = r = \text{rank}(\mathbf{P}).
 $$</p>
 </li>
+<li><p>Example: How to construct a $\mathbf{P} \in \mathbb{R}^n$ that projects into the line $\text{span}(\{\mathbf{1}_n\})$?</p>
+</li>
 </ul>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c"># this P is symmetric, thus indeed an orthogonal projector</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5×5 Array{Float64,2}:
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">P</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5×5 Array{Float64,2}:
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2
+ 0.2  0.2  0.2  0.2  0.2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">tr</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">rank</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">rank</span><span class="p">(</span><span class="nb">I</span> <span class="o">-</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(1, 4)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># let&#39;s try a non-orthogonal projection: P = c * ones(n) * v&#39;</span>
+<span class="k">using</span> <span class="n">Random</span>
+<span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span><span class="o">&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5×5 Array{Float64,2}:
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">P</span> <span class="o">*</span> <span class="n">P</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5×5 Array{Float64,2}:
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362
+ 0.892643  1.00408  0.170126  0.226762  -1.29362</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">tr</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0000000000000002</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">rank</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">rank</span><span class="p">(</span><span class="nb">I</span> <span class="o">-</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(1, 4)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">

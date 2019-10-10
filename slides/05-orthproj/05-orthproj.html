@@ -13158,7 +13158,7 @@ $$</p>
 </li>
 <li><p><strong>Cauchy-Schwarz inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$, then
 $$
-  \langle \mathbf{x}, \mathbf{y} \rangle \le \|\mathbf{x}\|^2 \|\mathbf{y}\|^2,
+  \langle \mathbf{x}, \mathbf{y} \rangle^2 \le \|\mathbf{x}\|^2 \|\mathbf{y}\|^2,
 $$
 with equality holding if and only if $\mathbf{x} = \alpha \mathbf{y}$ for some real number $\alpha$.</p>
 <p>Proof: BR p180. Expand $0 \le \|\mathbf{x} - \alpha \mathbf{y}\|^2$.</p>
@@ -13202,7 +13202,7 @@ Since $\|\mathbf{x}_i\|^2 &gt; 0$ for all $i$, $\alpha_i=0$ for all $i$. This sh
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Row-rank-=-column-rank:-a-proof-using-orthognality">Row rank = column rank: a proof using orthognality<a class="anchor-link" href="#Row-rank-=-column-rank:-a-proof-using-orthognality">&#182;</a></h2><p>We show that the row rank of a matrix $\mathbf{A} \in \mathbb{R}^{m \times n}$ is equal to its column rank.</p>
+<h2 id="Row-rank-=-column-rank:-a-proof-using-orthogonality">Row rank = column rank: a proof using orthogonality<a class="anchor-link" href="#Row-rank-=-column-rank:-a-proof-using-orthogonality">&#182;</a></h2><p>We show that the row rank of a matrix $\mathbf{A} \in \mathbb{R}^{m \times n}$ is equal to its column rank.</p>
 <p>Let $r$ be the row rank of $\mathbf{A}$ and $\mathbf{x}_1, \ldots, \mathbf{x}_r \in \mathbb{R}^n$ be a basis of the row space of $\mathbf{A}$.</p>
 <ul>
 <li><p>Lemma: The vectors $\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A} \mathbf{x}_r$ are linearly independent.</p>
@@ -13227,6 +13227,8 @@ where $\mathbf{v} = \sum_{i=1}^r c_i \mathbf{x}_i$. $\mathbf{v}$ is a linear com
 $$
   \mathcal{X}^\perp = \{ \mathbf{u} \in \mathcal{S}: \langle \mathbf{x}, \mathbf{u} \rangle = 0 \text{ for all } \mathbf{x} \in \mathcal{X}\}.
 $$</p>
+</li>
+<li><p>TODD: visualize $\mathbb{R}^3 = \text{a plane} \oplus \text{plan}^\perp$.</p>
 </li>
 <li><p>BR Lemma 7.6. Let $\mathcal{X}$ be a subset (not necessarily a subspace) of a vector space $\mathcal{S}$. Then the following statements are true.</p>
 <ol>
@@ -13275,7 +13277,7 @@ Proof of 4: Follows from essential disjointness between $\mathcal{S}$ and $\math
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Fundamental-theorem-of-linear-algebra">The Fundamental theorem of linear algebra<a class="anchor-link" href="#The-Fundamental-theorem-of-linear-algebra">&#182;</a></h2><ul>
+<h2 id="The-fundamental-theorem-of-linear-algebra">The fundamental theorem of linear algebra<a class="anchor-link" href="#The-fundamental-theorem-of-linear-algebra">&#182;</a></h2><ul>
 <li><p>BR Theorem 7.5. Let $\mathbf{A} \in \mathbb{R}^{m \times n}$. Then</p>
 <ol>
 <li>$\mathcal{C}(\mathbf{A})^\perp = \mathcal{N}(\mathbf{A}')$ and $\mathbb{R}^m = \mathcal{C}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A}')$.  </li>
@@ -13324,6 +13326,8 @@ $$</p>
 </li>
 <li><p>BR Definition 8.1. Any square matrix $\mathbf{Q} \in \mathbb{R}^{n \times n}$ satisfying $\mathbf{Q} \mathbf{Q}' = \mathbf{Q}' \mathbf{Q} = \mathbf{I}$ is called an <strong>orthogonal matrix</strong>.<br>
   In other words, columns or rows of $\mathbf{Q}$ are orthonormal.</p>
+</li>
+<li><p>Examples of orthogonal matrix: $\mathbf{I}$, Householder matrix $\mathbf{H} = \mathbf{I} - 2 \mathbf{u} \mathbf{u}'$ with $\|\mathbf{u}\|=1$, Jacobi matrix.</p>
 </li>
 </ul>
 

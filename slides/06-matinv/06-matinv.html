@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>hw2</title>
+<title>06-matinv</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13109,6 +13109,28 @@ div#notebook {
     });
     </script>
     <!-- End of mathjax configuration --></head>
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.js"></script>
+
+<script>
+$( document ).ready(function(){
+
+            var cfg = {};
+
+            // fire the main function with these parameters
+            require(['nbextensions/toc2/toc2'], function (toc2) {
+                toc2.table_of_contents(cfg);
+            });
+    });
+</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13116,7 +13138,43 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Biostat-216-Homework-2">Biostat 216 Homework 2<a class="anchor-link" href="#Biostat-216-Homework-2">&#182;</a></h1><p><strong>Due Oct 24 in class</strong></p>
+<h1 id="Linear-equations-and-matrix-inverses-(BR-Chapter-9)">Linear equations and matrix inverses (BR Chapter 9)<a class="anchor-link" href="#Linear-equations-and-matrix-inverses-(BR-Chapter-9)">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Left-and-right-inverses">Left and right inverses<a class="anchor-link" href="#Left-and-right-inverses">&#182;</a></h2><ul>
+<li><p>A <strong>left inverse</strong> of $\mathbf{A} \in \mathbb{R}^{m \times n}$ is any matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ such that $\mathbf{B} \mathbf{A} = \mathbf{I}_n$.</p>
+<p>A <strong>right inverse</strong> of $\mathbf{A} \in \mathbb{R}^{m \times n}$ is any matrix $\mathbf{C} \in \mathbb{R}^{n \times m}$ such that $\mathbf{A} \mathbf{C} = \mathbf{I}_m$.</p>
+</li>
+<li><p>BR Theorem 5.5. <strong>When does a matrix have a left or right inverse?</strong> Let $\mathbf{A} \in \mathbb{R}^{m \times n}$.<br>
+  (1) $\mathbf{A}$ has a right inverse if and only if $\text{rank}(\mathbf{A}) = m$, or equivalently, $\mathbf{A}$ has full row rank.<br>
+  (2) $\mathbf{A}$ has a left inverse if and only if $\text{rank}(\mathbf{A}) = n$, or equivalently, $\mathbf{A}$ has full column rank.</p>
+<p>Proof of (1). For the <em>if</em> part, since column rank equals row rank, the columns of $\mathbf{A}$ span $\mathbb{R}^m$. Then for each column $\mathbf{e}_j$ of $\mathbf{I}_m$, there exists $\mathbf{c}_j$ such that $\mathbf{A} \mathbf{c}_j = \mathbf{e}_j$. Collecting $\mathbf{c}_j$ as columns of $\mathbf{C}$, we proved $\mathbf{A} \mathbf{C} = \mathbf{I}$.</p>
+<p>For the <em>only if</em> part, since $\mathbf{A} \mathbf{C} = \mathbf{I}_m$, we have $m \ge \text{rank}(\mathbf{A}) \ge \text{rank}(\mathbf{A} \mathbf{C}) = \text{rank}(\mathbf{I}_m) = m$. Thus $\text{rank}(\mathbf{A}) = m$.</p>
+<p>Proof of (2). Apply (1) to $\mathbf{A}'$.</p>
+</li>
+<li><p>BR Theorem 5.6. If $\mathbf{A} \in \mathbb{R}^{m \times n}$ has a left inverse $\mathbf{B}$ and a right inverse $\mathbf{C}$. Then<br>
+  (1) $\mathbf{A}$ must be a square, nonsingular matrix and $\mathbf{B} = \mathbf{C}$.<br>
+  (2) $\mathbf{A}$ has a unique left inverse and a unique right inverse, which we call the <strong>inverse</strong> of $\mathbf{A}$.</p>
+<p>Proof: From previous theorem, we have $m = \text{rank}(\mathbf{A}) = n$. Thus $\mathbf{A}$ is square, and $\mathbf{B}$ and $\mathbf{C}$ as well. Then
+$$
+  \mathbf{B} = \mathbf{B} \mathbf{I}_n = \mathbf{B} (\mathbf{A} \mathbf{C}) = (\mathbf{B} \mathbf{A}) \mathbf{C} = \mathbf{C}.
+$$
+To show the uniqueness of left inverse, suppose $\mathbf{D}$ is another left inverse. Then 
+$$
+  \mathbf{D} \mathbf{A} = \mathbf{I}_n = \mathbf{B} \mathbf{A}.
+$$
+Multiplying both sides on the right by right inverse $\mathbf{C}$, we obtain $\mathbf{D} = \mathbf{B}$. Thus left inverse is unique. Uniqueness of right inverse is shown in a similar fashion.</p>
+</li>
+<li><p>BR Theorem 5.7. Let $\mathbf{A} \in \mathbb{R}^{m \times n}$. Then
+  (1) $\mathbf{A}$ has full column rank if and only if $\mathbf{A}'\mathbf{A}$ is nonsingular. In this case, $(\mathbf{A}'\mathbf{A})^{-1} \mathbf{A}'$ is a left inverse of $\mathbf{A}$.<br>
+  (2) $\mathbf{A}$ has full row rank if and only if $\mathbf{A}\mathbf{A}'$ is nonsingular. In this case, $\mathbf{A}'(\mathbf{A}'\mathbf{A})^{-1}$ is a right inverse of $\mathbf{A}$.</p>
+<p>Proof: easy.</p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -13124,14 +13182,213 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Generalized-inverse-and-Moore-Penrose-inverse">Generalized inverse and Moore-Penrose inverse<a class="anchor-link" href="#Generalized-inverse-and-Moore-Penrose-inverse">&#182;</a></h2><ul>
+<li><p>BR Definition 9.3. Let $\mathbf{A} \in \mathbb{R}^{m \times n}$. A matrix $\mathbf{G} \in \mathbb{R}^{n \times m}$ is called the <strong>Moore-Penrose inverse</strong> or <strong>MP inverse</strong> of $\mathbf{A}$ if it satisifes following foure conditions:<br>
+  (1) $\mathbf{A} \mathbf{G} \mathbf{A} = \mathbf{A}$. $\quad \quad$ (<em>generalized inverse</em>, $g_1$ inverse, or <em>inner pseudo-inverse</em>)<br>
+  (2) $\mathbf{G} \mathbf{A} \mathbf{G} = \mathbf{G}$. $\quad \quad$ (<em>outer pseudo-inverse</em>)<br>
+  (3) $(\mathbf{A} \mathbf{G})' = \mathbf{A} \mathbf{G}$.<br>
+  (4) $(\mathbf{G} \mathbf{A})' = \mathbf{G} \mathbf{A}$.<br>
+  We shall denote the <strong>Moore-Penrose inverse</strong> of $\mathbf{A}$ by $\mathbf{A}^+$.</p>
+</li>
+<li><p>Any matrix $\mathbf{G} \in \mathbb{R}^{n \times m}$ that satisfies (1) is called a <strong>generalized inverse</strong>, or <strong>$g_1$ inverse</strong>, or <strong>inner pseudo-inverse</strong>. Denoted by $\mathbf{A}^-$ or $\mathbf{A}^g$.</p>
+</li>
+<li><p>Any matrix $\mathbf{G} \in \mathbb{R}^{n \times m}$ that satisfies (1)+(2) is called a <strong>reflective generalized inverse</strong>, or <strong>$g_2$ inverse</strong>, or <strong>inner pseudo-inverse</strong>. Denoted by $\mathbf{A}^*$.</p>
+</li>
+<li><p>BR Theorem 9.18. The <strong>Moore-Penrose inverse</strong> of any matrix $\mathbf{A}$ exists and is unique.</p>
+<p>Proof of uniqueness: Let $\mathbf{G}_1, \mathbf{G}_2 \in \mathbb{R}^{n \times m}$ be two matrices satisfying properties (1)-(4). Then<br>
+$$
+  \mathbf{A} \mathbf{G}_1 = (\mathbf{A} \mathbf{G}_1)' = \mathbf{G}_1' \mathbf{A}' = \mathbf{G}_1' (\mathbf{A} \mathbf{G}_2 \mathbf{A})' = \mathbf{G}_1' \mathbf{A}' \mathbf{G}_2' \mathbf{A}' = (\mathbf{A} \mathbf{G}_1)' (\mathbf{A} \mathbf{G}_2)' = \mathbf{A} \mathbf{G}_1 \mathbf{A} \mathbf{G}_2 = \mathbf{A} \mathbf{G}_2.
+$$
+Similarly,
+$$
+  \mathbf{G}_1 \mathbf{A} = (\mathbf{G}_1 \mathbf{A})' = \mathbf{A}' \mathbf{G}_1' = (\mathbf{A} \mathbf{G}_2 \mathbf{A})' \mathbf{G}_1' = \mathbf{A}' \mathbf{G}_2' \mathbf{A}' \mathbf{G}_1' = (\mathbf{G}_2 \mathbf{A})' (\mathbf{G}_1 \mathbf{A})' = \mathbf{G}_2 \mathbf{A} \mathbf{G}_1 \mathbf{A} = \mathbf{G}_2 \mathbf{A}.
+$$
+Hence,
+$$
+  \mathbf{G}_1 = \mathbf{G}_1 \mathbf{A} \mathbf{G}_1 = \mathbf{G}_1 \mathbf{A} \mathbf{G}_2 = \mathbf{G}_2 \mathbf{A} \mathbf{G}_2 = \mathbf{G}_2.
+$$</p>
+<p>Proof of existence: TODO later. We construct a matrix that satisfies (1)-(4) using the singular value decomposition (SVD) of $\mathbf{A}$.</p>
+</li>
+<li><p>Following are true:</p>
 <ol>
-<li><p>Choose and sovle 5 problems from the set $\{\text{exercise } 3k+1: k=0,1,\ldots\} = \{\text{exercise} 1, \text{exercise 4}, \text{exercise 7}, \ldots, \}$ in BR Chapter 7.</p>
-</li>
-<li><p>Choose and sovle 5 problems from the set $\{\text{exercise } 3k+1: k=0,1,\ldots\} = \{\text{exercise} 1, \text{exercise 4}, \text{exercise 7}, \ldots, \}$ in BR Chapter 8.</p>
-</li>
-<li><p>Choose and sovle 5 problems from the set $\{\text{exercise } 3k+1: k=0,1,\ldots\} = \{\text{exercise} 1, \text{exercise 4}, \text{exercise 7}, \ldots, \}$ in BR Chapter 9.</p>
+<li>$(\mathbf{A}^-)'$ is a generalized inverse of $\mathbf{A}'$. </li>
+<li>$(\mathbf{A}')^+ = (\mathbf{A}^+)'$.  </li>
+<li>For any nonzero $k$, $(1/k) \mathbf{A}^-$ is a generalized inverse of $k \mathbf{A}$.  </li>
+<li><p>$(k \mathbf{A})^+ = (1/k) \mathbf{A}^+$.</p>
+<p>Proof: Check properties (1)-(4).</p>
 </li>
 </ol>
+</li>
+<li><p><strong>Multiplication by generalized inverse does not change rank.</strong></p>
+<ol>
+<li>$\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{A} \mathbf{A}^-)$ and $\mathcal{C}(\mathbf{A}') = \mathcal{C}((\mathbf{A}^- \mathbf{A})')$.  </li>
+<li><p>$\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A} \mathbf{A}^-) = \text{rank}(\mathbf{A}^- \mathbf{A})$.</p>
+<p>Proof of 1: We already know $\mathcal{C}(\mathbf{A}) \supseteq \mathcal{C}(\mathbf{A} \mathbf{A}^-)$. Now since $\mathbf{A} = \mathbf{A} \mathbf{A}^- \mathbf{A}$, we also have $\mathcal{C}(\mathbf{A}) \subseteq \mathcal{C}(\mathbf{A} \mathbf{A}^-)$.<br>
+Proof of 2: By definition of rank.</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Generalized inverse has equal or larger rank.</strong>  $\text{rank}(\mathbf{A}^-) \ge \text{rank}(\mathbf{A})$.</p>
+<p>Proof: $\text{rank}(\mathbf{A}) = \text{rank}(\mathbf{A}\mathbf{A}^- \mathbf{A}) \le \text{rank}(\mathbf{A}\mathbf{A}^-) \le \text{rank}(\mathbf{A}^-)$.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Linear-equations">Linear equations<a class="anchor-link" href="#Linear-equations">&#182;</a></h2><ul>
+<li>Solving linear system
+$$
+  \mathbf{A} \mathbf{x} = \mathbf{b},
+$$
+where $\mathbf{A} \in \mathbb{R}^{m \times n}$ (coefficient matrix), $\mathbf{x} \in \mathbb{R}^n$ (solution vector), and $\mathbf{b} \in \mathbb{R}^m$ (right hand side) is a central theme in linear algebra. </li>
+</ul>
+<p>We care about two fundamental questions: (1) when does the linear system has solution, and (2) how to characterize the solution set.</p>
+<ul>
+<li><p><strong>When is there a solution?</strong> The following statements are equivalent:</p>
+<ol>
+<li>The linear system $\mathbf{A} \mathbf{x} = \mathbf{b}$ has a solution (<strong>consistent</strong>).  </li>
+<li>$\mathbf{b} \in \mathcal{C}(\mathbf{A})$.  </li>
+<li>$\text{rank}((\mathbf{A} : \mathbf{b})) = \text{rank}(\mathbf{A})$.  </li>
+<li><p>$\mathbf{A} \mathbf{A}^- \mathbf{b} = \mathbf{b}$.<br>
+The last equivalence gives some intuition why $\mathbf{A}^-$ is called an inverse.</p>
+<p>Proof: $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 1$ is easy. We show $1 \Rightarrow 4 \rightarrow 1$.<br>
+Proof of $1 \Rightarrow 4$: If $\tilde{\mathbf{x}}$ is a solution, then
+$$
+\mathbf{b} = \mathbf{A} \tilde{\mathbf{x}} = \mathbf{A}\mathbf{A}^- \mathbf{A} \tilde{\mathbf{x}} = \mathbf{A}\mathbf{A}^- \mathbf{b}.
+$$<br>
+Proof of $4 \Rightarrow 1$: Apparently $\tilde{\mathbf{x}} = \mathbf{A}^- \mathbf{b}$ is a solution.</p>
+</li>
+</ol>
+</li>
+<li><p><strong>What are the solutions?</strong> Let's first consider the <strong>homogeneous</strong> system: $\mathbf{A} \mathbf{x} = \mathbf{0}$.  Note <strong>homogeneous</strong> system is always consistent (why?)</p>
+<p>Theorem: $\tilde{\mathbf{x}}$ is a solution of $\mathbf{A} \mathbf{x} = \mathbf{0}$ if and only if
+$$
+  \tilde{\mathbf{x}} = (\mathbf{I}_n - \mathbf{A}^- \mathbf{A}) \mathbf{q}
+$$
+for some $\mathbf{q} \in \mathbb{R}^n$.<br>
+  Rephrase of this theorem: $\mathcal{N}(\mathbf{A}) = \mathcal{C}(\mathbf{I}_n - \mathbf{A}^- \mathbf{A})$.</p>
+<p>Proof of "if" part: Regardless value of $\mathbf{q}$, we have
+$$
+  \mathbf{A} \tilde{\mathbf{x}} = \mathbf{A} (\mathbf{I}_n - \mathbf{A}^- \mathbf{A}) \mathbf{q} = (\mathbf{A} - \mathbf{A} \mathbf{A}^- \mathbf{A}) \mathbf{q} = \mathbf{O} \mathbf{q} = \mathbf{0}. 
+$$<br>
+  Proof of "only if" part: If $\tilde{\mathbf{x}}$ is a solution, then we have 
+$$
+  \tilde{\mathbf{x}} = (\mathbf{I}_n - \mathbf{A}^- \mathbf{A}) \mathbf{q},
+$$
+where $\mathbf{q} = \tilde{\mathbf{x}}$.</p>
+</li>
+<li><p><strong>What are the solutions?</strong> Now we can study the <strong>inhomogeneous</strong> system: $\mathbf{A} \mathbf{x} = \mathbf{b}$.</p>
+<p>Theorem: If $\mathbf{A} \mathbf{x} = \mathbf{b}$ is consistent, then $\tilde{\mathbf{x}}$ is a solution to $\mathbf{A} \mathbf{x} = \mathbf{b}$ if and only if 
+$$
+  \tilde{\mathbf{x}} = \mathbf{A}^- \mathbf{b} + (\mathbf{I}_n - \mathbf{A}^- \mathbf{A}) \mathbf{q}
+$$
+for some $\mathbf{q} \in \mathbb{R}^n$.<br>
+  Interpretation: "a specific solution" + "a vector in $\mathcal{N}(\mathbf{A})$".</p>
+<p>Proof:
+\begin{eqnarray*}
+  &amp; &amp; \mathbf{A} \mathbf{x} = \mathbf{b} \\
+  &amp;\Leftrightarrow&amp; \mathbf{A} \mathbf{x} = \mathbf{A} \mathbf{A}^- \mathbf{b} \\
+  &amp;\Leftrightarrow&amp; \mathbf{A} (\mathbf{x} - \mathbf{A}^- \mathbf{b}) = \mathbf{0} \\
+  &amp;\Leftrightarrow&amp; \mathbf{x} - \mathbf{A}^- \mathbf{b} \in \mathcal{N}(\mathbf{A}) \\
+  &amp;\Leftrightarrow&amp; \mathbf{x} - \mathbf{A}^- \mathbf{b} = (\mathbf{I}_n - \mathbf{A}^- \mathbf{A}) \mathbf{q} \text{ for some } \mathbf{q} \in \mathbb{R}^n \\
+  &amp;\Leftrightarrow&amp; \mathbf{x} = \mathbf{A}^- \mathbf{b} + (\mathbf{I}_n - \mathbf{A}^- \mathbf{A}) \mathbf{q} \text{ for some } \mathbf{q} \in \mathbb{R}^n.
+\end{eqnarray*}</p>
+</li>
+<li><p>$\mathbf{A} \mathbf{x} = \mathbf{b}$ is consistent <strong>for all $\mathbf{b}$</strong> if and only if $\mathbf{A}$ has full row rank.</p>
+<p>Proof of "if" part: If $\mathbf{A}$ has full row rank, then the column rank of $\mathbf{A}$ is $m$ and $\mathcal{C}(\mathbf{A}) = \mathbb{R}^m$. Thus for any $\mathbf{b} \in \mathbb{R}^m$, there exists a solution $\mathbf{x}$.<br>
+  Proof of "only if" part: $\mathbf{A} \mathbf{A}^- \mathbf{b} = \mathbf{b}$ for all $\mathbf{b} \in \mathbb{R}^m$. Take $\mathbf{b} = \mathbf{e}_i$ for $i=1,\ldots,m$. We have $\mathbf{A} \mathbf{A}^- = \mathbf{I}_m$. Thus 
+$$
+  m = \text{rank}(\mathbf{I}_m) = \text{rank}(\mathbf{A} \mathbf{A}^-) \le \text{rank}(\mathbf{A}) \le m.
+$$</p>
+</li>
+<li><p>If $\mathbf{A} \mathbf{x} = \mathbf{b}$ is consistent, then its solution is unique if and only if $\mathbf{A}$ has full column rank.</p>
+<p>Proof of "if" part: If there are two solutions $\mathbf{A} \mathbf{x}_1 = \mathbf{b}$ and $\mathbf{A} \mathbf{x}_2 = \mathbf{b}$, then $\mathbf{A} (\mathbf{x}_1 - \mathbf{x}_2) = \mathbf{0}$, i.e., $\mathbf{x}_1 - \mathbf{x}_2 \in \mathcal{N}(\mathbf{A})$. By the rank-nullity theorem, the $\mathcal{N}(\mathbf{A}) = \{\mathbf{0}\}$. Thus $\mathbf{x}_1 = \mathbf{x}_2$.<br>
+  Proof of "only if" part: By characterization of soultion set, uniqueness of solution implies $\mathcal{N}(\mathcal{A}) = \{\mathbf{0}\}$. Then by the rank-nullity theorem, $\mathbf{A}$ has full column rank.</p>
+</li>
+<li><p>If $\mathbf{A}$ has full row and column rank, then $\mathbf{A}$ is non-singular and the unique solution is $\mathbf{A}^{-1} \mathbf{b}$ for any $\mathbf{b}$.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Application:-least-squares">Application: least squares<a class="anchor-link" href="#Application:-least-squares">&#182;</a></h2><ul>
+<li><p>Approximation problem:
+$$
+  \text{minimize}_{\boldsymbol{\beta}} \quad f(\boldsymbol{\beta}) = \frac 12 \|\mathbf{y} - \mathbf{X} \boldsymbol{\beta}\|^2.
+$$
+Find the linear combination of columns of $\mathbf{X} \in \mathbb{R}^{n \times p}$ that approximates $\mathbf{y} \in \mathbb{R}^n$ best, or equivalently, find the vector in $\mathcal{C}(\mathbf{X})$ that approximates $\mathbf{y}$ best.</p>
+</li>
+<li><p>Setting the gradient of objective to zero
+$$
+  \nabla f(\boldsymbol{\beta}) = - \mathbf{X}' (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) = \mathbf{0}
+$$
+leads to the <strong>normal equation</strong>
+$$
+  (\mathbf{X}' \mathbf{X}) \boldsymbol{\beta} = \mathbf{X}' \mathbf{y}.
+$$</p>
+</li>
+<li><p>Is there a solution to the normal equation?</p>
+<p>Claim: the normal equation is always consistent. Why?</p>
+</li>
+<li><p>Is the solution minimizer to the least squares criterion?</p>
+<p>Claim: any solution $\hat{\mathbf{b}}$ to the normal equation minimizes the least squares criterion.</p>
+<p>Optimization argument: Any stationary point (points with zero gradient) of a convex function is a global minimum. Now the least squares criterion is convex because the Hessian $\nabla^2 f(\boldsymbol{\beta}) = \mathbf{X}' \mathbf{X}$ is positive semidefinite. Therefore any solution to the normal equation is a stationary point and thus a global minimum.</p>
+<p>Direct verifcation: Let $\tilde{\boldsymbol{\beta}}$ be a solution to the normal equation. For arbitrary $\boldsymbol{\beta} \in \mathbb{R}^p$, 
+\begin{eqnarray*}
+  &amp; &amp; f(\boldsymbol{\beta}) - f(\tilde{\boldsymbol{\beta}}) \\
+  &amp;=&amp; \frac 12 \|\mathbf{y} - \mathbf{X} \boldsymbol{\beta}\|^2 - \frac 12 \|\mathbf{y} - \mathbf{X} \tilde{\boldsymbol{\beta}}\|^2 \\
+  &amp;=&amp; \left( \frac 12 \mathbf{y}' \mathbf{y} - \mathbf{y}' \mathbf{X} \boldsymbol{\beta} + \frac 12 \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta} \right) - \left( \frac 12 \mathbf{y}' \mathbf{y} - \mathbf{y}' \mathbf{X} \tilde{\boldsymbol{\beta}} + \frac 12 \tilde{\boldsymbol{\beta}}' \mathbf{X}' \mathbf{X} \tilde{\boldsymbol{\beta}} \right) \\
+  &amp;=&amp; - \mathbf{y}' \mathbf{X} (\boldsymbol{\beta} - \tilde{\boldsymbol{\beta}}) + \frac 12 \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta} - \frac 12 \tilde{\boldsymbol{\beta}}' \mathbf{X}' \mathbf{X} \tilde{\boldsymbol{\beta}} \\
+  &amp;=&amp; - \tilde{\boldsymbol{\beta}}' \mathbf{X}' \mathbf{X} (\boldsymbol{\beta} - \tilde{\boldsymbol{\beta}}) + \frac 12 \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta} - \frac 12 \tilde{\boldsymbol{\beta}}' \mathbf{X}' \mathbf{X} \tilde{\boldsymbol{\beta}} \\
+  &amp;=&amp; \frac 12 \tilde{\boldsymbol{\beta}}' \mathbf{X}' \mathbf{X} \tilde{\boldsymbol{\beta}} - \tilde{\boldsymbol{\beta}}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta} + \frac 12 \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta} \\
+  &amp;=&amp; \frac 12 (\tilde{\boldsymbol{\beta}} - \boldsymbol{\beta})' \mathbf{X}' \mathbf{X} (\tilde{\boldsymbol{\beta}} - \boldsymbol{\beta}) \\
+  &amp;=&amp; \frac 12 \|\mathbf{X} (\tilde{\boldsymbol{\beta}} - \boldsymbol{\beta})\|^2 \\
+  &amp;\ge&amp; 0.
+\end{eqnarray*}
+Therefore $\tilde{\boldsymbol{\beta}}$ must be a global minimum of the least squares criterion $f(\boldsymbol{\beta})$.</p>
+</li>
+<li><p>When is the solution to the normal equation unique?</p>
+<p>The least squares solution is <strong>unique</strong> if and only if $\mathbf{X}' \mathbf{X}$ is non-singular if and only if $\mathbf{X}$ has full column rank.</p>
+</li>
+<li><p>In general, we can characterize the set of least squares solutions as
+$$
+  \tilde{\boldsymbol{\beta}}(\mathbf{q}) = (\mathbf{X}' \mathbf{X})^- \mathbf{X}' \mathbf{y} + [\mathbf{I}_p - (\mathbf{X}' \mathbf{X})^- (\mathbf{X}' \mathbf{X})] \mathbf{q},
+$$
+where $\mathbf{q} \in \mathbb{R}^q$ is arbitrary. A specific solution is
+$$
+  \tilde{\boldsymbol{\beta}} = (\mathbf{X}' \mathbf{X})^- \mathbf{X}' \mathbf{y}
+$$
+with <strong>fitted values</strong>
+$$
+  \hat{\mathbf{y}} = \mathbf{X} \tilde{\boldsymbol{\beta}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^- \mathbf{X}' \mathbf{y}.
+$$</p>
+</li>
+<li><p>$(\mathbf{X}' \mathbf{X})^- \mathbf{X}'$ is a generalized inverse of $\mathbf{X}$.</p>
+<p>Proof: We need to show $\mathbf{X} (\mathbf{X}' \mathbf{X})^- \mathbf{X}' \mathbf{X} = \mathbf{X}$, or equivalently $\mathbf{X} (\mathbf{I}_p - (\mathbf{X}' \mathbf{X})^- \mathbf{X}' \mathbf{X}) = \mathbf{O}$. But earlier we showed $\mathcal{C}(\mathbf{I}_p - (\mathbf{X}' \mathbf{X})^- \mathbf{X}' \mathbf{X}) = \mathcal{N}(\mathbf{X}' \mathbf{X})$ and $\mathcal{N}(\mathbf{X}' \mathbf{X}) = \mathcal{N}(\mathbf{X})$.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Projection">Projection<a class="anchor-link" href="#Projection">&#182;</a></h2><ul>
+<li><p>$\mathbf{A} \mathbf{A}^-$ is a projector into the column space $\mathcal{C}(\mathbf{A})$ along $\mathcal{N}(\mathbf{A}) = \mathcal{C}(\mathbf{I} - \mathbf{A} \mathbf{A}^-)$.</p>
+<p>Proof: $\mathbf{A} \mathbf{A}^-$ is idempotent because $\mathbf{A} \mathbf{A}^- \mathbf{A} \mathbf{A}^- = \mathbf{A} \mathbf{A}^-$. Thus it projects into $\mathcal{C}(\mathbf{A} \mathbf{A}^-)$, which we have shown to be equal to $\mathcal{C}(\mathbf{A})$.</p>
+</li>
+<li><p>$\mathbf{I}_n - \mathbf{A}^- \mathbf{A}$ is a projector into the null space $\mathcal{N}(\mathbf{A})$ along $\mathcal{C}(\mathbf{A})$.</p>
+</li>
+</ul>
 
 </div>
 </div>

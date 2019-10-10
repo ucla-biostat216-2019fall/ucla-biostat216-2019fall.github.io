@@ -11,8 +11,8 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 |:-----------|:------------|:------------|
 | 1 | [9/26](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/09/26/week1.html) intro. \[[slide](./slides/01-intro/01-intro.html)\], vector space (BR 4) \[[slide](./slides/02-vecsp/02-vecsp.html)\] | [HW1](./hw/hw1/hw1.html) |  
 | 2 | [10/3](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/03/week2.html) rank (BR 5) \[[slide](./slides/03-rank/03-rank.html)\] |   |  
-| 3 | [10/10](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/03/week2.html) projection (BR 6) \[[slide](./slides/04-proj/04-proj.html)\], orthogonal projection (BR 7) \[[slide](./slides/05-orthproj/05-orthproj.html)\] | [HW2](./hw/hw2/hw2.html) |  
-| 4 | 10/17 (BR 2,3,8,9) linear equations and matrix inverses (BR 8), GE/LU, Cholesky, QR | |  
+| 3 | [10/10](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/07/week3.html) projection (BR 6) \[[slide](./slides/04-proj/04-proj.html)\], orthogonal projection (BR 7, 8) \[[slide](./slides/05-orthproj/05-orthproj.html)\] | [HW2](./hw/hw2/hw2.html) |  
+| 4 | 10/17 linear equations and matrix inverses (BR 8), (BR 2,3,8,9) GE/LU, Cholesky, QR | |  
 | 5 | 10/24 (BR 11,12) eigenvalues, eigenvectors, SVD | HW3 |  
 | 6 | 10/31 (BR 13) quadratic form, positive (semi)definite matrix, Schur complement, random vectors, (BR 15) norms of vectors and matrices | |   
 | 7 | 11/7 (BR 14) Kronecker product, vec, vech, communtation, duplication | HW4 |  
