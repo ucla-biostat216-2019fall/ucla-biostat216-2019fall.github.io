@@ -13158,7 +13158,7 @@ $( document ).ready(function(){
 </li>
 <li><p>BR Theorem 5.6. If $\mathbf{A} \in \mathbb{R}^{m \times n}$ has a left inverse $\mathbf{B}$ and a right inverse $\mathbf{C}$. Then<br>
   (1) $\mathbf{A}$ must be a square, nonsingular matrix and $\mathbf{B} = \mathbf{C}$.<br>
-  (2) $\mathbf{A}$ has a unique left inverse and a unique right inverse, which we call the <strong>inverse</strong> of $\mathbf{A}$.</p>
+  (2) $\mathbf{A}$ has a unique left inverse and a unique right inverse, which we call the <strong>inverse</strong> of $\mathbf{A}$ and denote it by $\mathbf{A}^{-1}$.</p>
 <p>Proof: From previous theorem, we have $m = \text{rank}(\mathbf{A}) = n$. Thus $\mathbf{A}$ is square, and $\mathbf{B}$ and $\mathbf{C}$ as well. Then
 $$
   \mathbf{B} = \mathbf{B} \mathbf{I}_n = \mathbf{B} (\mathbf{A} \mathbf{C}) = (\mathbf{B} \mathbf{A}) \mathbf{C} = \mathbf{C}.
@@ -13192,7 +13192,7 @@ Multiplying both sides on the right by right inverse $\mathbf{C}$, we obtain $\m
 </li>
 <li><p>Any matrix $\mathbf{G} \in \mathbb{R}^{n \times m}$ that satisfies (1) is called a <strong>generalized inverse</strong>, or <strong>$g_1$ inverse</strong>, or <strong>inner pseudo-inverse</strong>. Denoted by $\mathbf{A}^-$ or $\mathbf{A}^g$.</p>
 </li>
-<li><p>Any matrix $\mathbf{G} \in \mathbb{R}^{n \times m}$ that satisfies (1)+(2) is called a <strong>reflective generalized inverse</strong>, or <strong>$g_2$ inverse</strong>, or <strong>inner pseudo-inverse</strong>. Denoted by $\mathbf{A}^*$.</p>
+<li><p>Any matrix $\mathbf{G} \in \mathbb{R}^{n \times m}$ that satisfies (1)+(2) is called a <strong>reflective generalized inverse</strong>, or <strong>$g_2$ inverse</strong>, or <strong>outer pseudo-inverse</strong>. Denoted by $\mathbf{A}^*$.</p>
 </li>
 <li><p>BR Theorem 9.18. The <strong>Moore-Penrose inverse</strong> of any matrix $\mathbf{A}$ exists and is unique.</p>
 <p>Proof of uniqueness: Let $\mathbf{G}_1, \mathbf{G}_2 \in \mathbb{R}^{n \times m}$ be two matrices satisfying properties (1)-(4). Then<br>
@@ -13253,7 +13253,7 @@ where $\mathbf{A} \in \mathbb{R}^{m \times n}$ (coefficient matrix), $\mathbf{x}
 <li>The linear system $\mathbf{A} \mathbf{x} = \mathbf{b}$ has a solution (<strong>consistent</strong>).  </li>
 <li>$\mathbf{b} \in \mathcal{C}(\mathbf{A})$.  </li>
 <li>$\text{rank}((\mathbf{A} : \mathbf{b})) = \text{rank}(\mathbf{A})$.  </li>
-<li><p>$\mathbf{A} \mathbf{A}^- \mathbf{b} = \mathbf{b}$.<br>
+<li><p>$\mathbf{A} \mathbf{A}^- \mathbf{b} = \mathbf{b}$ for any generalized inverse $\mathbf{A}^-$.<br>
 The last equivalence gives some intuition why $\mathbf{A}^-$ is called an inverse.</p>
 <p>Proof: $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 1$ is easy. We show $1 \Rightarrow 4 \rightarrow 1$.<br>
 Proof of $1 \Rightarrow 4$: If $\tilde{\mathbf{x}}$ is a solution, then
@@ -13320,7 +13320,7 @@ $$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Application:-least-squares">Application: least squares<a class="anchor-link" href="#Application:-least-squares">&#182;</a></h2><ul>
-<li><p>Approximation problem:
+<li><p>Least squares problem:
 $$
   \text{minimize}_{\boldsymbol{\beta}} \quad f(\boldsymbol{\beta}) = \frac 12 \|\mathbf{y} - \mathbf{X} \boldsymbol{\beta}\|^2.
 $$
