@@ -13138,7 +13138,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Orthogonal-projections-(BR-Chapters-7,-8)">Orthogonal projections (BR Chapters 7, 8)<a class="anchor-link" href="#Orthogonal-projections-(BR-Chapters-7,-8)">&#182;</a></h1><p><strong>Highlights</strong> In this lecture, we'll show (1) the fundamental theorem of linear algebra:</p>
+<h1 id="Orthogonal-projections-(BR-Chapters-7,-8)">Orthogonal projections (BR Chapters 7, 8)<a class="anchor-link" href="#Orthogonal-projections-(BR-Chapters-7,-8)">&#182;</a></h1><p><strong>Highlights</strong> In this lecture, we'll show (1) the <strong>fundamental theorem of linear algebra</strong>:</p>
 <p><img src="../02-vecsp/four_fundamental_subspaces.png" width=400 align="center"/></p>
 <p>and (2) any symmetric, idempotent matrix $\mathbf{P}$ is the orthogonal projector onto $\mathcal{C}(\mathbf{P})$.</p>
 
@@ -13170,7 +13170,7 @@ $$</p>
 </li>
 <li><p><strong>Angle between vectors.</strong> The radian measure of the angle between two non-zero vectors $\mathbf{x}, \mathbf{y}$ is defined to be the number $\theta \in [0,\pi]$ such that
 $$
-  \cos \theta = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \|\mathbf{y}\|} = \langle \mathbf{u}_x, \mathbf{u}_y \rangle,
+  \cos \theta = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \|\mathbf{y}\|} = \left \langle \frac{\mathbf{x}}{\|\mathbf{x}\|}, \frac{\mathbf{y}}{\|\mathbf{y}\|} \right \rangle = \langle \mathbf{u}_x, \mathbf{u}_y \rangle,
 $$
 where
 $$
@@ -13190,7 +13190,7 @@ $$</p>
 <li><p>BR Lemma 7.3. A set of non-zero orthogonal vectors are linearly independent.</p>
 <p>Proof: Let $\mathbf{x}_1, \ldots, \mathbf{x}_k$ be a set of orthogonal, non-zero vectors. If $\sum_i \alpha_i \mathbf{x}_i = \mathbf{0}$, then
 $$
-  \langle \sum_i \alpha_i \mathbf{x}_i, \sum_i \alpha_i \mathbf{x}_i \rangle = \sum_i \alpha_i^2 \|\mathbf{x}_i\|^2 = 0.
+  \left \langle \sum_i \alpha_i \mathbf{x}_i, \sum_i \alpha_i \mathbf{x}_i \right \rangle = \sum_i \alpha_i^2 \|\mathbf{x}_i\|^2 = 0.
 $$
 Since $\|\mathbf{x}_i\|^2 &gt; 0$ for all $i$, $\alpha_i=0$ for all $i$. This shows $\mathbf{x}_i$ are linearly independent.</p>
 </li>
@@ -13248,7 +13248,7 @@ Proof of 3: If $\mathbf{x} \in \mathcal{X}$, then $\mathbf{x} \perp \mathbf{u}$ 
 <li>$\mathcal{V} = \mathcal{S} \oplus \mathcal{S}^\perp$.  </li>
 <li><p>$m = \text{dim}(\mathcal{S}) + \text{dim}(\mathcal{S}^\perp)$.<br>
 By the uniqueness of decomposition for direct sum, we know the expression of $\mathbf{y} = \mathbf{u} + \mathbf{v}$ is also unique.</p>
-<p>Proof of 1: Let $\mathbf{z}_1, \ldots, \mathbf{z}_r$ be an orthonormal basis of $\mathcal{S}$, e.g., by applying Gram-Scmidt to a basis of $\mathcal{S}$. And let $\mathbf{z}_{r+1}, \ldots, \mathbf{z}_m$ be an orthonormal basis of $\mathbf{S}^\perp$. Then
+<p>Proof of 1: Let $\mathbf{z}_1, \ldots, \mathbf{z}_r$ be an orthonormal basis of $\mathcal{S}$, e.g., by applying Gram-Schmidt to a basis of $\mathcal{S}$. And let $\mathbf{z}_{r+1}, \ldots, \mathbf{z}_m$ be an orthonormal basis of $\mathbf{S}^\perp$. Then
 $$
 \mathbf{y} = \sum_{i=1}^r \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i + \sum_{i=r+1}^m \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i,
 $$
