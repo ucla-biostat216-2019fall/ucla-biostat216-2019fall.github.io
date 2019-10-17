@@ -13140,7 +13140,7 @@ $( document ).ready(function(){
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Projection-and-idempotent-matrix-(BR-Chapter-6)">Projection and idempotent matrix (BR Chapter 6)<a class="anchor-link" href="#Projection-and-idempotent-matrix-(BR-Chapter-6)">&#182;</a></h1><p><strong>Highlights:</strong> In this lecture, we show any idempotent matrix $\mathbf{P}$ is a projector into $\mathcal{C}(\mathbf{P})$ along $\mathcal{C}(\mathbf{I} - \mathbf{P})$.</p>
 <p>Note when many authors say <strong>projection</strong> or <strong>projectors</strong>, they actually mean <strong>orthogonal projection</strong> or <strong>orthogonal projectors</strong>, which are subject of next lecture. In this course, we differentiate projection and orthogonal projection.</p>
-<p>TODO: visualize.</p>
+<p><img src="../06-matinv/three_projs.png" width=600 align="center"/></p>
 
 </div>
 </div>
@@ -13232,7 +13232,7 @@ $$</p>
 <li>the vector $\mathbf{z}$ is called the <strong>projection</strong> of $\mathbf{y}$ into $\mathcal{T}$ along $\mathcal{S}$.</li>
 </ul>
 </li>
-<li><p>Let $\mathbb{R}^n = \mathcal{S} \oplus \mathcal{T}$. We call a matrix $\mathbf{P} \in \mathbb{R}^{n \times n}$ a <strong>projector</strong> into $\mathcal{S}$ along $\mathcal{T}$ if, for any $\mathbf{y} \in \mathbb{R}^n$, $\mathbf{P} \mathbf{y}$ is the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{T}$.</p>
+<li><p>Let $\mathbb{R}^n = \mathcal{S} \oplus \mathcal{T}$. We call a matrix $\mathbf{P} \in \mathbb{R}^{n \times n}$ a <strong>projection matrix</strong> or <strong>projector</strong> into $\mathcal{S}$ along $\mathcal{T}$ if, for any $\mathbf{y} \in \mathbb{R}^n$, $\mathbf{P} \mathbf{y}$ is the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{T}$.</p>
 </li>
 <li><p>BR Corollary 6.5. If $\mathbf{P}$ is a projector into $\mathcal{S}$ along $\mathcal{T}$, then</p>
 <ol>
@@ -13287,7 +13287,11 @@ $$
 $$
   \mathbf{S} \mathbf{U}' \mathbf{S} \mathbf{U}' = \mathbf{S} \mathbf{U}'.
 $$
-Since $\mathbf{P} = \mathbf{S} \mathbf{U}'$ is a rank factorization, $\text{rank}(\mathbf{S}) = \text{rank}(\mathbf{P}) = r$. That is rows of $\mathbf{S}$ span $\mathbb{R}^r$. Thus there exists a matrix $\mathbf{S}_L$ such that $\mathbf{S}_L \mathbf{S} = \mathbf{I}_r$. Similarly $\mathbf{U}'$ having full column rank implies that there exists a matrix $\mathbf{U}'_R$ such that $\mathbf{U}' \mathbf{U}'_R = \mathbf{I}_r$. Pre-multiplying by $\mathbf{S}_L$ and post-multiplying by $\mathbf{U}'_R$ on both sides of above equation gives the desired identity $\mathbf{U}' \mathbf{S} = \mathbf{I}_r$.</p>
+Since $\mathbf{P} = \mathbf{S} \mathbf{U}'$ is a rank factorization, $\text{rank}(\mathbf{S}) = \text{rank}(\mathbf{P}) = r$. That is rows of $\mathbf{S}$ span $\mathbb{R}^r$. Thus there exists a matrix $\mathbf{S}_L$ such that $\mathbf{S}_L \mathbf{S} = \mathbf{I}_r$. Similarly $\mathbf{U}'$ having full column rank implies that there exists a matrix $\mathbf{U}'_R$ such that $\mathbf{U}' \mathbf{U}'_R = \mathbf{I}_r$. Pre-multiplying by $\mathbf{S}_L$ and post-multiplying by $\mathbf{U}'_R$ on both sides of above equation
+$$
+  \mathbf{S}_L \mathbf{S} \mathbf{U}' \mathbf{S} \mathbf{U}' \mathbf{U}'_R = \mathbf{S}_L \mathbf{S} \mathbf{U}' \mathbf{U}'_R.
+$$
+gives the desired identity $\mathbf{U}' \mathbf{S} = \mathbf{I}_r$.</p>
 </li>
 <li><p>BR Theorem 6.6. Let $\mathbf{P}$ be a projector, or equivalently idempotent. Then $\text{tr}(\mathbf{P}) = \text{rank}(\mathbf{P})$.</p>
 <p>Proof: By BR Theorem 6.5, 
@@ -13348,7 +13352,8 @@ $$</p>
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">P</span><span class="o">^</span><span class="mi">2</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># idempotent</span>
+<span class="n">P</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
 
     </div>
@@ -13597,7 +13602,8 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Cochran-theorem">Cochran theorem<a class="anchor-link" href="#Cochran-theorem">&#182;</a></h2><ul>
+<h2 id="Cochran-theorem">Cochran theorem<a class="anchor-link" href="#Cochran-theorem">&#182;</a></h2><p>This theorem is important for deriving F test in linear models.</p>
+<ul>
 <li><p>BR Theorem 6.9. Let $\mathbf{P}_1, \ldots, \mathbf{P}_k$ be $n \times n$ matrices with $\sum_{i=1}^k \mathbf{P}_i = \mathbf{I}_n$. Then the following statements are equivalent:</p>
 <ol>
 <li>$\sum_{i=1}^k \text{rank}(\mathbf{P}_i) = n$.  </li>

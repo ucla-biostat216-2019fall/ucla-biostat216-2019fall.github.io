@@ -13154,7 +13154,7 @@ $$
   \langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}' \mathbf{y} = \sum_{i=1}^n x_i y_i.
 $$</p>
 </li>
-<li><p>The $\ell_2$ <strong>norm</strong> of a vector $\mathbf{x} \in \mathbb{R}^n$ is $\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{y} \rangle} = \sqrt{\sum_i x_i^2}$.</p>
+<li><p>The $\ell_2$ <strong>norm</strong> or <strong>Euclidean norm</strong> of a vector $\mathbf{x} \in \mathbb{R}^n$ is $\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{y} \rangle} = \sqrt{\sum_i x_i^2}$.</p>
 </li>
 <li><p><strong>Cauchy-Schwarz inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$, then
 $$
@@ -13167,6 +13167,7 @@ with equality holding if and only if $\mathbf{x} = \alpha \mathbf{y}$ for some r
 $$
   \|\mathbf{x} + \mathbf{y}\| \le \|\mathbf{x}\| + \|\mathbf{y}\|.
 $$</p>
+<p>Proof: Use Cauchy-Schwarz.</p>
 </li>
 <li><p><strong>Angle between vectors.</strong> The radian measure of the angle between two non-zero vectors $\mathbf{x}, \mathbf{y}$ is defined to be the number $\theta \in [0,\pi]$ such that
 $$
@@ -13247,7 +13248,7 @@ Proof of 3: If $\mathbf{x} \in \mathcal{X}$, then $\mathbf{x} \perp \mathbf{u}$ 
 <li>$\mathcal{S} \cap \mathcal{S}^\perp = \{\mathbf{0}\}$ (essentially disjoint).  </li>
 <li>$\mathcal{V} = \mathcal{S} \oplus \mathcal{S}^\perp$.  </li>
 <li><p>$m = \text{dim}(\mathcal{S}) + \text{dim}(\mathcal{S}^\perp)$.<br>
-By the uniqueness of decomposition for direct sum, we know the expression of $\mathbf{y} = \mathbf{u} + \mathbf{v}$ is also unique.</p>
+By the uniqueness of decomposition for direct sum, we know the expression of $\mathbf{y} = \mathbf{u} + \mathbf{v}$ is also <strong>unique</strong>.</p>
 <p>Proof of 1: Let $\mathbf{z}_1, \ldots, \mathbf{z}_r$ be an orthonormal basis of $\mathcal{S}$, e.g., by applying Gram-Schmidt to a basis of $\mathcal{S}$. And let $\mathbf{z}_{r+1}, \ldots, \mathbf{z}_m$ be an orthonormal basis of $\mathbf{S}^\perp$. Then
 $$
 \mathbf{y} = \sum_{i=1}^r \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i + \sum_{i=r+1}^m \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i,
@@ -13326,6 +13327,8 @@ $$</p>
 </li>
 <li><p>BR Definition 8.1. Any square matrix $\mathbf{Q} \in \mathbb{R}^{n \times n}$ satisfying $\mathbf{Q} \mathbf{Q}' = \mathbf{Q}' \mathbf{Q} = \mathbf{I}$ is called an <strong>orthogonal matrix</strong>.<br>
   In other words, columns or rows of $\mathbf{Q}$ are orthonormal.</p>
+</li>
+<li><p>Any orthogonal matrix is full rank. And its inverse is its transpose.</p>
 </li>
 <li><p>Examples of orthogonal matrix: $\mathbf{I}$, Householder matrix $\mathbf{H} = \mathbf{I} - 2 \mathbf{u} \mathbf{u}'$ with $\|\mathbf{u}\|=1$, Jacobi matrix.</p>
 </li>
