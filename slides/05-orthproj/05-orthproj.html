@@ -13344,7 +13344,7 @@ $$</p>
 \mathbf{H}_8 &amp;=&amp; \begin{pmatrix} \mathbf{H}_4 &amp; \mathbf{H}_4 \\ \mathbf{H}_4 &amp; -\mathbf{H}_4 \end{pmatrix}.
 \end{eqnarray*}
 Are these orthogonal matrices?</p>
-<p><strong>Hadamard conjecture</strong> proposes that there is a $\pm 1$ matrix with orthogonal columns whenever 4 divides $n$. Wikipedia says $n=668$ is the smallest of those sizes without a known Hadamard matrix.</p>
+<p><strong>Hadamard conjecture</strong> proposes that there is a $\pm 1$ matrix with orthogonal columns whenever 4 divides $n$. <a href="https://en.wikipedia.org/wiki/Hadamard_matrix">Wikipedia</a> says $n=668$ is the smallest of those sizes without a known Hadamard matrix.</p>
 </li>
 <li><p><strong>Orthogonal matrix preserves length and angle.</strong> If $\mathbf{Q} \in \mathbb{R}^{n \times n}$ is an orthgonal matrix, then</p>
 <ol>
@@ -13362,7 +13362,8 @@ Are these orthogonal matrices?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Orthogonal-projection">Orthogonal projection<a class="anchor-link" href="#Orthogonal-projection">&#182;</a></h2><ul>
+<h2 id="Orthogonal-projection">Orthogonal projection<a class="anchor-link" href="#Orthogonal-projection">&#182;</a></h2><p><img src="../06-matinv/three_projs.png" width=600 align="center"/></p>
+<ul>
 <li><p>BR Definition 8.2. If $\mathcal{S}$ is a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$, then the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$ is called the <strong>orthogonal projection</strong> of $\mathbf{y}$ into $\mathcal{S}$.</p>
 </li>
 <li><p>BR Theorem 8.3. <strong>The closest point theorem.</strong> Let $\mathcal{S}$ be a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$. The orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$ is the <strong>unique</strong> point in $\mathbf{S}$ that is closest to $\mathbf{y}$. In other words, if $\mathbf{u}$ is the orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$, then
@@ -13372,15 +13373,24 @@ $$
 with equality holding only when $\mathbf{w} = \mathbf{u}$.</p>
 <p>Proof: Picture.</p>
 </li>
-<li><p>BR Definition 8.3. Let $\mathbb{R}^n = \mathcal{S} \oplus \mathcal{S}^\perp$. A square matrix $\mathbf{P}_{\mathcal{S}}$ is called the <strong>orthogonal porjector</strong> into $\mathcal{S}$ if, for every $\mathbf{y} \in \mathbb{R}^n$, $\mathbf{P}_{\mathcal{S}} \mathbf{y}$ is the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$.<br>
-  For a matrix $\mathbf{X}$, the orthogonal projector onto $\mathcal{C}(\mathbf{X})$ is written as $\mathbf{P}_{\mathbf{X}}$.</p>
+<li><p>BR Definition 8.3. Let $\mathbb{R}^n = \mathcal{S} \oplus \mathcal{S}^\perp$. A square matrix $\mathbf{P}_{\mathcal{S}}$ is called the <strong>orthogonal porjector</strong> into $\mathcal{S}$ if, for every $\mathbf{y} \in \mathbb{R}^n$, $\mathbf{P}_{\mathcal{S}} \mathbf{y}$ is the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$.</p>
 </li>
+<li><p>For a matrix $\mathbf{X}$, the orthogonal projector onto $\mathcal{C}(\mathbf{X})$ is written as $\mathbf{P}_{\mathbf{X}}$.</p>
+</li>
+</ul>
+<p><img src="./ls_projection.png" width=400 align="center"/></p>
+<ul>
 <li><p>BR Theorem 8.4. Let $\mathbf{y} \in \mathbb{R}^n$ and $\mathbf{X} \in \mathbb{R}^{n \times p}$.</p>
 <ol>
 <li>The orthogonal projector of $\mathbf{y}$ into $\mathcal{C}(\mathbf{X})$ is given by $\mathbf{u} = \mathbf{X} \boldsymbol{\beta}$, where $\mathbf{\beta}$ satisfies the <strong>normal equation</strong>
 $$
 \mathbf{X}' \mathbf{X} \boldsymbol{\beta} = \mathbf{X}' \mathbf{y}.
-$$</li>
+$$
+Therefore,
+$$
+\mathbf{P}_{\mathbf{X}} \mathbf{y} = \mathbf{X} (\mathbf{X}' \mathbf{X})^- \mathbf{X}' \mathbf{y}.
+$$
+for any generalized inverse $(\mathbf{X}' \mathbf{X})^-$.</li>
 <li><p>If $\mathbf{X}$ has full column rank, then the orthogonal projector into $\mathcal{C}(\mathbf{X})$ is given by
 $$
 \mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'.
