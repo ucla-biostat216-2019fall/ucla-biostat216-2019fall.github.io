@@ -13144,7 +13144,7 @@ $( document ).ready(function(){
 $$
   \det (\mathbf{A}) = \sum (-1)^{\phi(j_1,\ldots,j_n)} \prod_{i=1}^n a_{ij_i},
 $$
-where $\phi(j_1,\ldots,j_n)$ is the number of transposition to change $(1,\ldots,n)$ to $(j_1,\ldots,j_n)$.</p>
+where the summation is over all permutation $(j_1, \ldots, j_n)$ of the set of integers $(1,\ldots,n)$ and $\phi(j_1,\ldots,j_n)$ is the number of transposition to change $(1,\ldots,n)$ to $(j_1,\ldots,j_n)$.</p>
 </li>
 <li><p>Example
 $$
@@ -13159,9 +13159,9 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="./determinant.png" width=600 align="center"/></p>
+<p><img src="./determinant.png" width=400 align="center"/></p>
 <ul>
-<li><p>Interpretation of the (absolute value of) determinant as the <strong>volume of the parallelom</strong> defined by the columns of the matrix:
+<li>Interpretation of the (absolute value of) determinant as the <strong>volume of the parallelom</strong> defined by the columns of the matrix:
 \begin{eqnarray*}
   \text{area} &amp;=&amp; bh = \|\mathbf{x}_1\|\|\mathbf{x}_2\| \sin(\theta) \\
   &amp;=&amp; \|\mathbf{x}_1\| \|\mathbf{x}_2\| \sqrt{1 - \left( \frac{\langle \mathbf{x}_1, \mathbf{x}_2 \rangle}{\|\mathbf{x}_1\| \|\mathbf{x}_2\|} \right)^2} \\
@@ -13169,11 +13169,13 @@ $$</p>
   &amp;=&amp; \sqrt{(x_{11}^2 + x_{12}^2)(x_{21}^2+x_{22}^2) - (x_{11}x_{21} - x_{12}x_{22})^2} \\
   &amp;=&amp; |x_{11} x_{22} - x_{12} x_{21}| \\
   &amp;=&amp; |\det(\mathbf{X})|.
-\end{eqnarray*}</p>
-</li>
+\end{eqnarray*}</li>
+</ul>
+<p><img src="./Determinant_parallelepiped.svg" width=400 align="center"/></p>
+<ul>
 <li><p>Another interpretation of the determinant is the volume changing factor when operating on a set in $\mathbb{R}^n$. $\text{volume}(f(S)) = |\det(\mathbf{A})| \text{volume}(f(S))$ where $f: \mathbb{R}^n \mapsto \mathbb{R}^n$ is the linear mapping defined by $\mathbf{A}$.</p>
 </li>
-<li><p>The determinant of a lower or upper triangular matrix $\mathbf{A}$ is the product of the diagonal elements $\prod_{i=1}^n a_{ii}$.</p>
+<li><p>The determinant of a <strong>lower or upper triangular matrix</strong> $\mathbf{A}$ is the product of the diagonal elements $\prod_{i=1}^n a_{ii}$.</p>
 </li>
 <li><p>Determinant of a singular matrix is 0.</p>
 </li>
