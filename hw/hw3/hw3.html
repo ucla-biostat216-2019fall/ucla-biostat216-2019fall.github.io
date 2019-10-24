@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>05-orthproj</title>
+<title>hw3</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13123,7 +13123,7 @@ div#notebook {
 <script>
 $( document ).ready(function(){
 
-            var cfg = {};
+            var cfg = {"colors": {"hover_highlight": "#DAA520", "running_highlight": "#FF0000", "selected_highlight": "#FFD700"}, "moveMenuLeft": true, "nav_menu": {"height": "87px", "width": "252px"}, "navigate_menu": true, "number_sections": true, "sideBar": true, "skip_h1_title": true, "threshold": 4, "toc_cell": false, "toc_section_display": "block", "toc_window_display": false, "widenNotebook": false};
 
             // fire the main function with these parameters
             require(['nbextensions/toc2/toc2'], function (toc2) {
@@ -13138,9 +13138,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Orthogonal-projections-(BR-Chapters-7,-8)">Orthogonal projections (BR Chapters 7, 8)<a class="anchor-link" href="#Orthogonal-projections-(BR-Chapters-7,-8)">&#182;</a></h1><p><strong>Highlights</strong> In this lecture, we'll show (1) the <strong>fundamental theorem of linear algebra</strong>:</p>
-<p><img src="../02-vecsp/four_fundamental_subspaces.png" width=400 align="center"/></p>
-<p>and (2) any symmetric, idempotent matrix $\mathbf{P}$ is the orthogonal projector onto $\mathcal{C}(\mathbf{P})$.</p>
+<h1 id="Biostat-216-Homework-3">Biostat 216 Homework 3<a class="anchor-link" href="#Biostat-216-Homework-3">&#182;</a></h1><p><strong>Due Nov 7 in class</strong></p>
 
 </div>
 </div>
@@ -13148,298 +13146,14 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Inner-product-and-orthogonality">Inner product and orthogonality<a class="anchor-link" href="#Inner-product-and-orthogonality">&#182;</a></h2><ul>
-<li><p>The <strong>inner product</strong> between two vectors $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ is defined as
-$$
-  \langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}' \mathbf{y} = \sum_{i=1}^n x_i y_i.
-$$</p>
-</li>
-<li><p>The $\ell_2$ <strong>norm</strong> or <strong>Euclidean norm</strong> of a vector $\mathbf{x} \in \mathbb{R}^n$ is $\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{y} \rangle} = \sqrt{\sum_i x_i^2}$.</p>
-</li>
-<li><p><strong>Cauchy-Schwarz inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$, then
-$$
-  \langle \mathbf{x}, \mathbf{y} \rangle^2 \le \|\mathbf{x}\|^2 \|\mathbf{y}\|^2,
-$$
-with equality holding if and only if $\mathbf{x} = \alpha \mathbf{y}$ for some real number $\alpha$.</p>
-<p>Proof: BR p180. Expand $0 \le \|\mathbf{x} - \alpha \mathbf{y}\|^2$.</p>
-</li>
-<li><p><strong>Triangular inequality.</strong> Let $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$. Then
-$$
-  \|\mathbf{x} + \mathbf{y}\| \le \|\mathbf{x}\| + \|\mathbf{y}\|.
-$$</p>
-<p>Proof: Use Cauchy-Schwarz.</p>
-</li>
-<li><p><strong>Angle between vectors.</strong> The radian measure of the angle between two non-zero vectors $\mathbf{x}, \mathbf{y}$ is defined to be the number $\theta \in [0,\pi]$ such that
-$$
-  \cos \theta = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \|\mathbf{y}\|} = \left \langle \frac{\mathbf{x}}{\|\mathbf{x}\|}, \frac{\mathbf{y}}{\|\mathbf{y}\|} \right \rangle = \langle \mathbf{u}_x, \mathbf{u}_y \rangle,
-$$
-where
-$$
-  \mathbf{u}_x = \frac{\mathbf{x}}{\|\mathbf{x}\|}, \quad \mathbf{u}_y = \frac{\mathbf{y}}{\|\mathbf{y}\|}
-$$
-are called <strong>unit vectors</strong> or <strong>direction vectors</strong>.</p>
-</li>
-<li><p>Two vectors $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ are <strong>orthogonal</strong>, denoted as $\mathbf{x} \perp \mathbf{y}$, if $\langle \mathbf{x}, \mathbf{y} \rangle = 0$ or the angle $\theta$ between them is such that $\cos \theta = 0$.</p>
-</li>
-<li><p><strong>Pythagorean identity.</strong> If $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ and $\mathbf{x} \perp \mathbf{y}$, then
-$$
-  \|\mathbf{x} + \mathbf{y}\|^2 = \|\mathbf{x}\|^2 + \|\mathbf{y}\|^2.
-$$</p>
-</li>
-<li><p>A set of vectors are <strong>orthonormal</strong> if all vectors are unit vectors and orthogonal to each other.</p>
-</li>
-<li><p>BR Lemma 7.3. A set of non-zero orthogonal vectors are linearly independent.</p>
-<p>Proof: Let $\mathbf{x}_1, \ldots, \mathbf{x}_k$ be a set of orthogonal, non-zero vectors. If $\sum_i \alpha_i \mathbf{x}_i = \mathbf{0}$, then
-$$
-  \left \langle \sum_i \alpha_i \mathbf{x}_i, \sum_i \alpha_i \mathbf{x}_i \right \rangle = \sum_i \alpha_i^2 \|\mathbf{x}_i\|^2 = 0.
-$$
-Since $\|\mathbf{x}_i\|^2 &gt; 0$ for all $i$, $\alpha_i=0$ for all $i$. This shows $\mathbf{x}_i$ are linearly independent.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Row-rank-=-column-rank:-a-proof-using-orthogonality">Row rank = column rank: a proof using orthogonality<a class="anchor-link" href="#Row-rank-=-column-rank:-a-proof-using-orthogonality">&#182;</a></h2><p>We show that the row rank of a matrix $\mathbf{A} \in \mathbb{R}^{m \times n}$ is equal to its column rank.</p>
-<p>Let $r$ be the row rank of $\mathbf{A}$ and $\mathbf{x}_1, \ldots, \mathbf{x}_r \in \mathbb{R}^n$ be a basis of the row space of $\mathbf{A}$.</p>
-<ul>
-<li><p>Lemma: The vectors $\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A} \mathbf{x}_r$ are linearly independent.</p>
-<p>Proof: Suppose
-$$
-  \sum_{i=1}^r c_i \mathbf{A} \mathbf{x}_i = \mathbf{A} \sum_{i=1}^r c_i \mathbf{x}_i = \mathbf{A} \mathbf{v} = \mathbf{0},
-$$
-where $\mathbf{v} = \sum_{i=1}^r c_i \mathbf{x}_i$. $\mathbf{v}$ is a linear combination of vectors in $\mathcal{R}(\mathbf{A})$ so $\mathbf{v} \in \mathcal{R}(\mathbf{A})$. Since $\mathbf{A} \mathbf{v} = \mathbf{0}$, $\mathbf{v}$ is orthogonal to each row of $\mathbf{A}$ thus is orthogonal to all vectors in $\mathcal{R}(\mathbf{A})$, including itself. Thus $\mathbf{v}=\mathbf{0}$ and $c_i$ are zero for all $i$. Thus we have shown $\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A} \mathbf{x}_r$ are linearly independent.</p>
-</li>
-</ul>
-<p>By the lemma, the column rank of $\mathbf{A}$ must be $\ge r$. Now apply the same argument to $\mathbf{A}'$, we have the column rank of $\mathbf{A}$ is $\le r$.</p>
-<p>The lemma also provides a convenient way to produce a basis for the column space given a basis for the row space.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Orthogonal-projections">Orthogonal projections<a class="anchor-link" href="#Orthogonal-projections">&#182;</a></h2><ul>
-<li><p>An <strong>orthocomplement set</strong> of a set $\mathcal{X}$ (not necessarily a subspace) in a vector space $\mathcal{S} \subseteq \mathbb{R}^m$ is defined as
-$$
-  \mathcal{X}^\perp = \{ \mathbf{u} \in \mathcal{S}: \langle \mathbf{x}, \mathbf{u} \rangle = 0 \text{ for all } \mathbf{x} \in \mathcal{X}\}.
-$$</p>
-</li>
-<li><p>TODD: visualize $\mathbb{R}^3 = \text{a plane} \oplus \text{plan}^\perp$.</p>
-</li>
-<li><p>BR Lemma 7.6. Let $\mathcal{X}$ be a subset (not necessarily a subspace) of a vector space $\mathcal{S}$. Then the following statements are true.</p>
 <ol>
-<li>If $\mathbf{u} \in \mathcal{X}^\perp$, then $\mathbf{u} \in \text{span}(\mathcal{X})^\perp$.  </li>
-<li>$\mathcal{X}^\perp$ is always a subspace, whether or not $\mathcal{X}$ is a subspace.  </li>
-<li><p>$\text{span}(\mathcal{X}) \subseteq (\mathcal{X}^\perp)^\perp$ is always true, whether or not $\mathcal{X}$ is a subspace.</p>
-<p>Proof of 1: Since $\mathbf{u}$ is orthogonal to vectors in $\mathcal{X}$, it is orthogonal to any linear combination of them.<br>
-Proof of 2: If $\mathbf{u}$ and $\mathbf{v}$ are othogonal to all $\mathbf{x} \in \mathcal{X}$, then $\alpha \mathbf{u} + \mathbf{v}$ is orthogonal to all $\mathbf{x} \in \mathcal{X}$. Thus $\mathcal{X}^\perp$ is closed under axpy operation. Note $\{\mathbf{0}\} \in \mathcal{X}^\perp$ trivially.<br>
-Proof of 3: If $\mathbf{x} \in \mathcal{X}$, then $\mathbf{x} \perp \mathbf{u}$ for any $\mathbf{u} \in \mathcal{X}^\perp$. Thus $\mathbf{x} \in (\mathcal{X}^\perp)^\perp$. Therefore any linear combinations of vectors in $\mathcal{X}$ belongs to $(\mathcal{X}^\perp)^\perp$.</p>
+<li><p>Choose and sovle 5 problems from the set $\{\text{exercise } 3k+1: k=0,1,\ldots\} = \{\text{exercise} 1, \text{exercise 4}, \text{exercise 7}, \ldots, \}$ in BR Chapter 10 (Determinants).</p>
+</li>
+<li><p>Choose and sovle 5 problems from the set $\{\text{exercise } 3k+1: k=0,1,\ldots\} = \{\text{exercise} 1, \text{exercise 4}, \text{exercise 7}, \ldots, \}$ in BR Chapter 11 (Eigenvalues and eigenvectors).</p>
+</li>
+<li><p>Choose and sovle 5 problems from the set $\{\text{exercise } 3k+1: k=0,1,\ldots\} = \{\text{exercise} 1, \text{exercise 4}, \text{exercise 7}, \ldots, \}$ in BR Chapter 12 (SVD).</p>
 </li>
 </ol>
-</li>
-<li><p>BR Theorem 7.4. <strong>Direct sum theorem for orthocomplementary subspaces.</strong> Let $\mathcal{S}$ be a subspace of a vector space $\mathcal{V}$ with $\text{dim}(\mathcal{V}) = m$. Then the following statements are true.</p>
-<ol>
-<li>Every vector $\mathbf{y} \in \mathcal{V}$ can be expressed as $\mathbf{y} = \mathbf{u} + \mathbf{v}$, where $\mathbf{u} \in \mathcal{S}$ and $\mathbf{v} \in \mathcal{S}^\perp$.  </li>
-<li>$\mathcal{S} \cap \mathcal{S}^\perp = \{\mathbf{0}\}$ (essentially disjoint).  </li>
-<li>$\mathcal{V} = \mathcal{S} \oplus \mathcal{S}^\perp$.  </li>
-<li><p>$m = \text{dim}(\mathcal{S}) + \text{dim}(\mathcal{S}^\perp)$.<br>
-By the uniqueness of decomposition for direct sum, we know the expression of $\mathbf{y} = \mathbf{u} + \mathbf{v}$ is also <strong>unique</strong>.</p>
-<p>Proof of 1: Let $\mathbf{z}_1, \ldots, \mathbf{z}_r$ be an orthonormal basis of $\mathcal{S}$, e.g., by applying Gram-Schmidt to a basis of $\mathcal{S}$. And let $\mathbf{z}_{r+1}, \ldots, \mathbf{z}_m$ be an orthonormal basis of $\mathbf{S}^\perp$. Then
-$$
-\mathbf{y} = \sum_{i=1}^r \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i + \sum_{i=r+1}^m \langle \mathbf{y}, \mathbf{z}_i \rangle \mathbf{z}_i,
-$$
-where the first sum belongs to $\mathcal{S}$ and the second to $\mathcal{S}^\perp$.<br>
-Proof of 2: Suppose $\mathbf{x} \in \mathcal{S} \cap \mathcal{S}^\perp$, then $\mathbf{x} \perp \mathbf{x}$, i.e., $\langle \mathbf{x}, \mathbf{x} \rangle = 0$. Therefore $\mathbf{x} = \mathbf{0}$.<br>
-Proof of 3: Statement 1 says $\mathcal{V} = \mathcal{S} + \mathcal{S}^\perp$. Statement 2 says $\mathcal{S}$ and $\mathcal{S}^\perp$ are essentially disjoint. Thus $\mathcal{V} = \mathcal{S} \oplus \mathcal{S}^\perp$.<br>
-Proof of 4: Follows from essential disjointness between $\mathcal{S}$ and $\mathcal{S}^\perp$.</p>
-</li>
-</ol>
-</li>
-<li><p>Some facts:</p>
-<ol>
-<li>If $\mathcal{S}$ is a subspace of $\mathcal{V}$, then $(\mathcal{S}^\perp)^\perp = \mathcal{S}$.  </li>
-<li>If $\mathcal{S}_1 \subseteq \mathcal{S}_2$ are subsets of $\mathcal{V}$, then $\mathcal{S}_1^\perp \supseteq \mathcal{S}_2^\perp$.  </li>
-<li>If $\mathcal{S}_1 = \mathcal{S}_2$ are two subsets of $\mathcal{V}$, then $\mathcal{S}_1^\perp = \mathcal{S}_2^\perp$.  </li>
-<li><p>If $\mathcal{S}_1$ and $\mathcal{S}_2$ are two subspaces in $\mathcal{V}$, then $(\mathcal{S}_1 + \mathcal{S}_2)^\perp = \mathcal{S}_1^\perp \cap \mathcal{S}_2^\perp$ and $(\mathcal{S}_1 \cap \mathcal{S}_2)^\perp = \mathcal{S}_1^\perp + \mathcal{S}_2^\perp$.</p>
-<p>See BR p198-199 for proofs.</p>
-</li>
-</ol>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-fundamental-theorem-of-linear-algebra">The fundamental theorem of linear algebra<a class="anchor-link" href="#The-fundamental-theorem-of-linear-algebra">&#182;</a></h2><ul>
-<li><p>BR Theorem 7.5. Let $\mathbf{A} \in \mathbb{R}^{m \times n}$. Then</p>
-<ol>
-<li>$\mathcal{C}(\mathbf{A})^\perp = \mathcal{N}(\mathbf{A}')$ and $\mathbb{R}^m = \mathcal{C}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A}')$.  </li>
-<li>$\mathcal{C}(\mathbf{A}) = \mathcal{N}(\mathbf{A}')^\perp$.  </li>
-<li><p>$\mathcal{N}(\mathbf{A})^\perp = \mathcal{C}(\mathbf{A}')$ and $\mathbb{R}^n = \mathcal{N}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A}')$.</p>
-<p>Proof of 1: To show $\mathcal{C}(\mathbf{A})^\perp = \mathcal{N}(\mathbf{A}')$,
-\begin{eqnarray*}
-&amp; &amp; \mathbf{x} \in \mathcal{N}(\mathbf{A}') \\
-&amp;\Leftrightarrow&amp; \mathbf{A}' \mathbf{x} = \mathbf{0} \\
-&amp;\Leftrightarrow&amp; \mathbf{x} \text{ is orthogonal to columns of } \mathbf{A} \\
-&amp;\Leftrightarrow&amp; \mathbf{x} \in \mathcal{C}(\mathbf{A})^\perp.
-\end{eqnarray*}
-Then, by Part 3 of Theorem 7.4, $\mathbb{R}^m = \mathcal{C}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A})^\perp = \mathcal{C}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A}')$.</p>
-<p>Proof of 2: Since $\mathcal{C}(\mathbf{A})$ is a subspace, $(\mathcal{C}(\mathbf{A})^\perp)^\perp = \mathcal{N}(\mathbf{A}')^\perp$.</p>
-<p>Proof of 3: Applying part 2 to $\mathbf{A}'$, we have
-$$
-\mathcal{C}(\mathbf{A}') = \mathcal{N}((\mathbf{A}')')^\perp = \mathcal{N}(\mathbf{A})^\perp
-$$
-and
-$$
-\mathbb{R}^n = \mathcal{N}(\mathbf{A}) \oplus \mathcal{N}(\mathbf{A})^\perp = \mathcal{N}(\mathbf{A}) \oplus \mathcal{C}(\mathbf{A}').
-$$</p>
-</li>
-</ol>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Orthogonal-matrix">Orthogonal matrix<a class="anchor-link" href="#Orthogonal-matrix">&#182;</a></h2><ul>
-<li><p>BR Theorem 8.1. Let $\mathbf{Q} \in \mathbb{R}^{n \times n}$. The following statements are equivalent:</p>
-<ol>
-<li>The columns of $\mathbf{Q}$ are orthonormal vectors.  </li>
-<li>$\mathbf{Q}'\mathbf{Q} = \mathbf{I} = \mathbf{Q} \mathbf{Q}'$.  </li>
-<li><p>The rows of $\mathbf{Q}$ are orthonormal vectors.</p>
-<p>Proof: We show $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 1$.</p>
-<p>Proof of $1 \Rightarrow 2$: Let $\mathbf{Q} = (\mathbf{q}_1 : \cdots : \mathbf{q}_n)$. Orthonormality of $\mathbf{q}_i$ shows $\mathbf{Q}' \mathbf{Q} = \mathbf{I}$. Also $\mathbf{q}_i$ are linearly independent thus $\mathbf{Q}$ is non-singular. Thus $\mathbf{Q}^{-1} = \mathbf{Q}'$ and $\mathbf{Q} \mathbf{Q}' = \mathbf{Q} \mathbf{Q}^{-1} = \mathbf{I}$.</p>
-<p>Proof of $2 \Rightarrow 3$: $\mathbf{Q} \mathbf{Q}' = \mathbf{I}$ shows that the rows of $\mathbf{Q}$ are orthonormal.</p>
-<p>Proof of $3 \Rightarrow 1$: Statement 3 says columns of $\mathbf{Q}'$ are orthonormal. We have shown $1 \Rightarrow 2 \Rightarrow 3$. Thus we know rows of $\mathbf{Q}'$ are orthonormal, i.e., columns of $\mathbf{Q}$ are orthonormal.</p>
-</li>
-</ol>
-</li>
-<li><p>BR Definition 8.1. Any square matrix $\mathbf{Q} \in \mathbb{R}^{n \times n}$ satisfying $\mathbf{Q} \mathbf{Q}' = \mathbf{Q}' \mathbf{Q} = \mathbf{I}$ is called an <strong>orthogonal matrix</strong>.<br>
-  In other words, columns or rows of $\mathbf{Q}$ are orthonormal.</p>
-</li>
-<li><p>Any orthogonal matrix is full rank. And its inverse is its transpose.</p>
-</li>
-<li><p>Examples of orthogonal matrix: $\mathbf{I}$, Householder matrix $\mathbf{H} = \mathbf{I} - 2 \mathbf{u} \mathbf{u}'$ with $\|\mathbf{u}\|=1$, Jacobi matrix.</p>
-</li>
-<li><p>More example: <strong>Hadamard matrix</strong>
-\begin{eqnarray*}
-\mathbf{H}_2 &amp;=&amp; \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}  \\
-\mathbf{H}_4 &amp;=&amp; \begin{pmatrix} 
-1 &amp; 1 &amp; 1 &amp; 1 \\ 
-1 &amp; -1 &amp; 1 &amp; -1 \\ 
-1 &amp; 1 &amp; -1 &amp; 1 \\
-1 &amp; -1 &amp; -1 &amp; 1
-\end{pmatrix} \\
-\mathbf{H}_8 &amp;=&amp; \begin{pmatrix} \mathbf{H}_4 &amp; \mathbf{H}_4 \\ \mathbf{H}_4 &amp; -\mathbf{H}_4 \end{pmatrix}.
-\end{eqnarray*}
-Are these orthogonal matrices?</p>
-<p><strong>Hadamard conjecture</strong> proposes that there is a $\pm 1$ matrix with orthogonal columns whenever 4 divides $n$. Wikipedia says $n=668$ is the smallest of those sizes without a known Hadamard matrix.</p>
-</li>
-<li><p><strong>Orthogonal matrix preserves length and angle.</strong> If $\mathbf{Q} \in \mathbb{R}^{n \times n}$ is an orthgonal matrix, then</p>
-<ol>
-<li>$\|\mathbf{Q} \mathbf{x}\| = \|\mathbf{x}\|$ for any $\mathbf{x} \in \mathbb{R}^n$.  </li>
-<li>$\langle \mathbf{Q} \mathbf{x}, \mathbf{Q} \mathbf{y} \rangle = \langle \mathbf{x}, \mathbf{y} \rangle$ for any $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$.</li>
-</ol>
-</li>
-<li><p>If $\mathbf{Q}_1, \ldots, \mathbf{Q}_k$ are othgononal matrices, then the product $\mathbf{Q} = \mathbf{Q}_1 \cdots \mathbf{Q}_k$ is orthogonal.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Orthogonal-projection">Orthogonal projection<a class="anchor-link" href="#Orthogonal-projection">&#182;</a></h2><ul>
-<li><p>BR Definition 8.2. If $\mathcal{S}$ is a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$, then the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$ is called the <strong>orthogonal projection</strong> of $\mathbf{y}$ into $\mathcal{S}$.</p>
-</li>
-<li><p>BR Theorem 8.3. <strong>The closest point theorem.</strong> Let $\mathcal{S}$ be a subspace of some vector space $\mathcal{V}$ and $\mathbf{y} \in \mathcal{V}$. The orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$ is the <strong>unique</strong> point in $\mathbf{S}$ that is closest to $\mathbf{y}$. In other words, if $\mathbf{u}$ is the orthogonal projection of $\mathbf{y}$ into $\mathcal{S}$, then
-$$
-  \|\mathbf{y} - \mathbf{u}\|^2 \le \|\mathbf{y} - \mathbf{w}\|^2 \text{ for all } \mathbf{w} \in \mathcal{S},
-$$
-with equality holding only when $\mathbf{w} = \mathbf{u}$.</p>
-<p>Proof: Picture.</p>
-</li>
-<li><p>BR Definition 8.3. Let $\mathbb{R}^n = \mathcal{S} \oplus \mathcal{S}^\perp$. A square matrix $\mathbf{P}_{\mathcal{S}}$ is called the <strong>orthogonal porjector</strong> into $\mathcal{S}$ if, for every $\mathbf{y} \in \mathbb{R}^n$, $\mathbf{P}_{\mathcal{S}} \mathbf{y}$ is the projection of $\mathbf{y}$ into $\mathcal{S}$ along $\mathcal{S}^\perp$.<br>
-  For a matrix $\mathbf{X}$, the orthogonal projector onto $\mathcal{C}(\mathbf{X})$ is written as $\mathbf{P}_{\mathbf{X}}$.</p>
-</li>
-<li><p>BR Theorem 8.4. Let $\mathbf{y} \in \mathbb{R}^n$ and $\mathbf{X} \in \mathbb{R}^{n \times p}$.</p>
-<ol>
-<li>The orthogonal projector of $\mathbf{y}$ into $\mathcal{C}(\mathbf{X})$ is given by $\mathbf{u} = \mathbf{X} \boldsymbol{\beta}$, where $\mathbf{\beta}$ satisfies the <strong>normal equation</strong>
-$$
-\mathbf{X}' \mathbf{X} \boldsymbol{\beta} = \mathbf{X}' \mathbf{y}.
-$$</li>
-<li><p>If $\mathbf{X}$ has full column rank, then the orthogonal projector into $\mathcal{C}(\mathbf{X})$ is given by
-$$
-\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'.
-$$</p>
-<p>Proof of 1: Since the projection of $\mathbf{y}$ into $\mathcal{C}(\mathbf{X})$ lives in $\mathcal{C}(\mathbf{X})$, thus can be written as $\mathbf{u} = \mathbf{X} \boldsymbol{\beta}$ for some $\boldsymbol{\beta} \in \mathbb{R}^p$. Furthermore, $\mathbf{v} = \mathbf{y} - \mathbf{X} \boldsymbol{\beta} \in \mathcal{C}(\mathbf{X})^\perp$ thus is orthogonal to any vectors in $\mathcal{C}(\mathbf{X})$ including the columns of $\mathbf{X}$. Thus
-$$
-\mathbf{X}' (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) = \mathbf{0},
-$$
-or equivalently,
-$$
-\mathbf{X}' \mathbf{X} \boldsymbol{\beta} = \mathbf{X}' \mathbf{y}.
-$$</p>
-<p>Proof of 2: If $\mathbf{X}$ has full column rank, $\mathbf{X}' \mathbf{X}$ is non-singular and the solution to the normal equation is uniquely determined by $\boldsymbol{\beta} = (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y}$, and the orthogonal projection is $\mathbf{u} = \mathbf{X} \boldsymbol{\beta} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y}$.</p>
-</li>
-</ol>
-</li>
-<li><p>BR Lemma 8.4. <strong>Uniqueness of orthogonal projector.</strong> Let $\mathbf{A}, \mathbf{B} \in \mathbb{R}^{n \times p}$, both of full column rank and $\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{B})$. Then $\mathbf{P}_{\mathbf{A}} = \mathbf{P}_{\mathbf{B}}$.</p>
-<p>Proof: Since $\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{B})$, there exists a non-singular $\mathbf{C} \in \mathbb{R}^{p \times p}$ such that $\mathbf{A} = \mathbf{B} \mathbf{C}$. Then
-\begin{eqnarray*}
-  \mathbf{P}_{\mathbf{A}} &amp;=&amp; \mathbf{A} (\mathbf{A}' \mathbf{A})^{-1} \mathbf{A}' \\
-  &amp;=&amp; \mathbf{B} \mathbf{C} (\mathbf{C}' \mathbf{B}' \mathbf{B} \mathbf{C})^{-1} \mathbf{C}' \mathbf{B}' \\
-  &amp;=&amp; \mathbf{B} \mathbf{C} \mathbf{C}^{-1} (\mathbf{B}' \mathbf{B})^{-1} (\mathbf{C}')^{-1} \mathbf{C}' \mathbf{B}' \\
-  &amp;=&amp;  \mathbf{B} (\mathbf{B}' \mathbf{B})^{-1} \mathbf{B}' \\
-  &amp;=&amp; \mathbf{P}_{\mathbf{B}}.
-\end{eqnarray*}</p>
-</li>
-<li><p>BR Theorem 8.5. Let $\mathbf{P}_\mathbf{X}$ be the orthogonal projector into $\mathcal{C}(\mathbf{X})$, where $\mathbf{X} \in \mathbb{R}^{n \times p}$ has full column rank. Following statements are true.</p>
-<ol>
-<li>$\mathbf{P}_\mathbf{X}$ and $\mathbf{I} - \mathbf{P}_\mathbf{X}$ are both symmetric and idemponent. </li>
-<li>$\mathbf{P}_\mathbf{X} \mathbf{X} = \mathbf{X}$ and $(\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{X} = \mathbf{O}$.  </li>
-<li>$\mathcal{C}(\mathbf{X}) = \mathcal{C}(\mathbf{P}_\mathbf{X})$ and $\text{rank}(\mathbf{P}_\mathbf{X}) = \text{rank}(\mathbf{X}) = p$.  </li>
-<li>$\mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) = \mathcal{N}(\mathbf{X}') = \mathcal{C}(\mathbf{X})^\perp$.  </li>
-<li><p>$\mathbf{I} - \mathbf{P}_\mathbf{X}$ is the orthogonal projector into $\mathcal{N}(\mathbf{X}')$ (or $\mathcal{C}(\mathbf{X})^\perp)$.</p>
-<p>Proof of 1: Check directly using $\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'$.</p>
-<p>Proof of 2: Check directly using $\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'$.</p>
-<p>Proof of 3: Since $\mathbf{P}_{\mathbf{X}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'$, 
-$$
-\mathcal{C}(\mathbf{P}_\mathbf{X}) \subseteq \mathcal{C}(\mathbf{X}) = \mathcal{C}(\mathbf{P}_\mathbf{X} \mathbf{X}) \subseteq \mathcal{C}(\mathbf{P}_\mathbf{X}). 
-$$</p>
-<p>Proof of 4: The second equality is simply the fundamental theorem of linear algebra. For the first equality, first we show $\mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) \subseteq \mathcal{N}(\mathbf{X}')$:
-\begin{eqnarray*}
-&amp; &amp; \mathbf{u} \in \mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) \\
-&amp;\Rightarrow&amp; \mathbf{u} = (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{v} \text{ for some } \mathbf{v} \\
-&amp;\Rightarrow&amp; \mathbf{X}' \mathbf{u} = [(\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{X}]' \mathbf{v} = \mathbf{O} \mathbf{v} = \mathbf{0} \\
-&amp;\Rightarrow&amp; \mathbf{u} \in \mathcal{N}(\mathbf{X}').
-\end{eqnarray*}
-To show the other direction $\mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}) \supseteq \mathcal{N}(\mathbf{X}')$,
-\begin{eqnarray*}
-&amp; &amp; \mathbf{u} \in \mathcal{N}(\mathbf{X}') \\
-&amp;\Rightarrow&amp; \mathbf{X}' \mathbf{u} = \mathbf{0} \\
-&amp;\Rightarrow&amp; \mathbf{P}_\mathbf{X} \mathbf{u} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{u} = \mathbf{0} \\
-&amp;\Rightarrow&amp; \mathbf{u} = \mathbf{u} - \mathbf{P}_\mathbf{X} \mathbf{u} = (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{u} \\
-&amp;\Rightarrow&amp; \mathbf{u} \in \mathcal{C}(\mathbf{I} - \mathbf{P}_\mathbf{X}).
-\end{eqnarray*}</p>
-<p>Proof of 5: For any $\mathbf{y} \in \mathbb{R}^n$, write $\mathbf{y} = \mathbf{P}_\mathbf{X} \mathbf{y} + (\mathbf{I} - \mathbf{P}_\mathbf{X}) \mathbf{y}$.</p>
-</li>
-</ol>
-</li>
-</ul>
 
 </div>
 </div>
