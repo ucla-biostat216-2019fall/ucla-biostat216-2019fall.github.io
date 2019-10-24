@@ -13383,7 +13383,7 @@ That is $\mathbf{B} \mathbf{x}$ is an eigenvector of the matrix $\mathbf{B} \mat
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Diagonalizing-a-matrix">Diagonalizing a matrix<a class="anchor-link" href="#Diagonalizing-a-matrix">&#182;</a></h2><ul>
-<li><p>Collecting the $n$ eigen-equations
+<li>Collecting the $n$ eigen-equations
 $$
   \mathbf{A} \mathbf{x}_i = \lambda_i \mathbf{x}_i, \quad i = 1,\ldots,n,
 $$
@@ -13398,13 +13398,7 @@ $$
 or
 $$
 \mathbf{A} = \mathbf{X} \boldsymbol{\Lambda} \mathbf{X}^{-1}. \quad \quad \text{eigen-decomposition}.
-$$</p>
-</li>
-<li><p>Given $\mathbf{A} = \mathbf{X} \boldsymbol{\Lambda} \mathbf{X}^{-1}$, we have
-$$
-\mathbf{A}^k = \mathbf{X} \boldsymbol{\Lambda}^k \mathbf{X}^{-1}.
-$$</p>
-</li>
+$$</li>
 </ul>
 
 </div>
@@ -13449,6 +13443,11 @@ $$
 $$
 showing that $\lambda^2$ is an eigenvalue of $\mathbf{A}$ with eigenvector $\mathbf{x}$.</p>
 <p>Similarly $\lambda^k$ is an eigenvalue of $\mathbf{A}^k$ with eigenvector $\mathbf{x}$.</p>
+</li>
+<li><p>Given $\mathbf{A} = \mathbf{X} \boldsymbol{\Lambda} \mathbf{X}^{-1}$, we have
+$$
+\mathbf{A}^k = \mathbf{X} \boldsymbol{\Lambda}^k \mathbf{X}^{-1}.
+$$</p>
 </li>
 <li><p><strong>Shifting $\mathbf{A}$ shifts all eigenvalues.</strong> 
 $$
@@ -13513,7 +13512,7 @@ $$
 $$
 and
 $$
-\mathbf{x}^* \mathbf{A} \mathbf{x} = s_{11} x_1^* x_1 + s_{12}(x_1^* x_2 + x_1 x_2^*) + \cdots
+\mathbf{x}^* \mathbf{A} \mathbf{x} = \sum_{i,j} s_{ij} x_i^* x_j = s_{11} x_1^* x_1 + s_{12}(x_1^* x_2 + x_1 x_2^*) + \cdots
 $$
 are real numbers. Therefore $\lambda$ is a real number.</p>
 <p>Proof of 2: Suppose
