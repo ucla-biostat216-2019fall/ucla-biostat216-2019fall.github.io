@@ -14,7 +14,7 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 | 3 | [10/10](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/10/week3.html) linear equations and matrix inverses (BR 9) \[[slide](./slides/06-matinv/06-matinv.html)\] | [HW2](./hw/hw2/hw2.html) |  
 | 4 | [10/17](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/17/week4.html) projection (BR 6) \[[slide](./slides/04-proj/04-proj.html)\], orthogonal projection (BR 7, 8) \[[slide](./slides/05-orthproj/05-orthproj.html)\] | |  
 | 5 | [10/24](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/24/week5.html) determinant (BR 10) \[[slide](./slides/07-det/07-det.html)\], GE/LU \[[slide](./slides/08-gelu/08-gelu.html)\], QR \[[slide](./slides/09-gsqr/09-gsqr.html)\], eigen-decomposition \[[slide](./slides/10-eig/10-eig.html)\] | [HW3](./hw/hw3/hw3.html) |  
-| 6 | [10/31](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/31/week6.html) SVD, quadratic form, positive (semi)definite matrix, Schur complement, Cholesky | |   
+| 6 | [10/31](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/31/week6.html) positive (semi)definite matrix/Cholesky/Schur complement \[[slide](./slides/11-pd/11-pd.html)\], SVD | |   
 | 7 | 11/7 (BR 14) Kronecker product, vec, vech, communtation, duplication | HW4 |  
 | 8 | 11/14 matrix calculus: differential, Jacobian, Hessian, multiple integrals | |   
 | 9 | 11/21 matrix calculus: chain rule | HW5 |   
