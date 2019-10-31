@@ -13193,7 +13193,7 @@ We observe that (1) $\text{tr}(\mathbf{A}) = \lambda_1 + \lambda_2$, (2) $\det(\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span>
@@ -13211,7 +13211,7 @@ We observe that (1) $\text{tr}(\mathbf{A}) = \lambda_1 + \lambda_2$, (2) $\det(\
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[1]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -13372,7 +13372,7 @@ $$
   (\mathbf{B} \mathbf{A} \mathbf{B}^{-1}) (\mathbf{B} \mathbf{x}) = \mathbf{B} \mathbf{A} \mathbf{x} = \lambda (\mathbf{B} \mathbf{x}).
 $$
 That is $\mathbf{B} \mathbf{x}$ is an eigenvector of the matrix $\mathbf{B} \mathbf{A} \mathbf{B}^{-1}$.</p>
-<p>We say the matrix $\mathbf{B} \mathbf{A} \mathbf{B}^{-1}$ is similar to $\mathbf{A}$ because they share the same eigenvalues.</p>
+<p>We say the matrix $\mathbf{B} \mathbf{A} \mathbf{B}^{-1}$ is <strong>similar</strong> to $\mathbf{A}$ because they share the same eigenvalues.</p>
 </li>
 </ul>
 
@@ -13391,7 +13391,7 @@ into a matrix multiplication format gives
 $$
   \mathbf{A} \mathbf{X} = \mathbf{X} \boldsymbol{\Lambda}, \text{where } \boldsymbol{\Lambda} = \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix}.
 $$
-If we assume that the $n$ eigenvectors are linearly independent (most matrices do, but not all matrices), then we have
+If we assume that the $n$ eigenvectors are linearly independent (most matrices do, but <strong>not all matrices</strong>), then we have
 $$
 \mathbf{X}^{-1} \mathbf{A} \mathbf{X} = \boldsymbol{\Lambda}  \quad \quad \text{diagonalizing a matrix}
 $$
@@ -13433,6 +13433,170 @@ have AM=2 and GM=1.</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">eigen</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Eigen{Float64,Float64,Array{Float64,2},Array{Float64,1}}
+eigenvalues:
+2-element Array{Float64,1}:
+ 0.0
+ 0.0
+eigenvectors:
+2×2 Array{Float64,2}:
+ 1.0  -1.0         
+ 0.0   2.00417e-292</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">eigen</span><span class="p">([</span><span class="mi">5</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Eigen{Float64,Float64,Array{Float64,2},Array{Float64,1}}
+eigenvalues:
+2-element Array{Float64,1}:
+ 5.0
+ 5.0
+eigenvectors:
+2×2 Array{Float64,2}:
+ 1.0  -1.0        
+ 0.0   1.11022e-15</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">eigen</span><span class="p">([</span><span class="mi">6</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Eigen{Float64,Float64,Array{Float64,2},Array{Float64,1}}
+eigenvalues:
+2-element Array{Float64,1}:
+ 5.0
+ 5.0
+eigenvectors:
+2×2 Array{Float64,2}:
+ 0.707107  0.707107
+ 0.707107  0.707107</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">eigen</span><span class="p">([</span><span class="mi">7</span> <span class="mi">2</span><span class="p">;</span> <span class="o">-</span><span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Eigen{Complex{Float64},Complex{Float64},Array{Complex{Float64},2},Array{Complex{Float64},1}}
+eigenvalues:
+2-element Array{Complex{Float64},1}:
+ 5.0 - 4.2146848510894035e-8im
+ 5.0 + 4.2146848510894035e-8im
+eigenvectors:
+2×2 Array{Complex{Float64},2}:
+  0.707107-0.0im          0.707107+0.0im       
+ -0.707107-1.49012e-8im  -0.707107+1.49012e-8im</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13444,7 +13608,7 @@ $$
 showing that $\lambda^2$ is an eigenvalue of $\mathbf{A}$ with eigenvector $\mathbf{x}$.</p>
 <p>Similarly $\lambda^k$ is an eigenvalue of $\mathbf{A}^k$ with eigenvector $\mathbf{x}$.</p>
 </li>
-<li><p>Given $\mathbf{A} = \mathbf{X} \boldsymbol{\Lambda} \mathbf{X}^{-1}$, we have
+<li><p>For a diagonalizable matrix $\mathbf{A} = \mathbf{X} \boldsymbol{\Lambda} \mathbf{X}^{-1}$, we have
 $$
 \mathbf{A}^k = \mathbf{X} \boldsymbol{\Lambda}^k \mathbf{X}^{-1}.
 $$</p>
@@ -13487,7 +13651,7 @@ $$
 $$
 Since $\mathbf{x}^* \mathbf{x} \ne 0$, we have $\lambda^* \lambda = |\lambda| = 1$.</p>
 </li>
-<li><p>Let $\mathbf{A} \in \mathbb{R}^{n \times n}$ (not required to be diagonalizable), then $\text{tr}(\mathbf{A}) = \sum_i \lambda_i$ and $\det(\mathbf{A}) = \prod_i \lambda_i$.</p>
+<li><p>Let $\mathbf{A} \in \mathbb{R}^{n \times n}$ (not required to be diagonalizable), then $\text{tr}(\mathbf{A}) = \sum_i \lambda_i$ and $\det(\mathbf{A}) = \prod_i \lambda_i$. The general version can be proved by the Jordan canonical form, a generalization of the eigen-decomposition.</p>
 </li>
 </ul>
 
@@ -13502,7 +13666,7 @@ Since $\mathbf{x}^* \mathbf{x} \ne 0$, we have $\lambda^* \lambda = |\lambda| = 
 <ol>
 <li>all eigenvalues of $\mathbf{A}$ are real numbers, and</li>
 <li><p>the eigenvectors corresponding to distinct eigenvalues are orthogonal to each other.</p>
-<p>Proof of 1: Pre-multiplying the eigen-equation $\mathbf{A} \mathbf{x} = \lambda \mathbf{x}$ by $\mathbf{x}^*$ gives
+<p>Proof of 1: Pre-multiplying the eigen-equation $\mathbf{A} \mathbf{x} = \lambda \mathbf{x}$ by $\mathbf{x}^*$ (conjugate transpose) gives
 $$
 \mathbf{x}^* \mathbf{A} \mathbf{x} = \lambda \mathbf{x}^* \mathbf{x}.
 $$
@@ -13512,7 +13676,7 @@ $$
 $$
 and
 $$
-\mathbf{x}^* \mathbf{A} \mathbf{x} = \sum_{i,j} s_{ij} x_i^* x_j = s_{11} x_1^* x_1 + s_{12}(x_1^* x_2 + x_1 x_2^*) + \cdots
+\mathbf{x}^* \mathbf{A} \mathbf{x} = \sum_{i,j} a_{ij} x_i^* x_j = \sum_i a_{ii} x_i^*x_i + \sum_{i &lt; j} a_{ij} (x_i^*x_j + x_i x_j^*) = a_{11} x_1^* x_1 + a_{12}(x_1^* x_2 + x_1 x_2^*) + \cdots
 $$
 are real numbers. Therefore $\lambda$ is a real number.</p>
 <p>Proof of 2: Suppose
@@ -13528,9 +13692,9 @@ Thus $\mathbf{x}_1 \in \mathcal{C}(\mathbf{A} - \lambda_2 \mathbf{I})$ and $\mat
 </li>
 </ol>
 </li>
-<li><p>For an eigenvalue with multiplicity, we can choose its eigenvectors to be orthogonal to each other. Also we normalize each eigenvector to have unit $\ell_2$ norm. Thus we obtain the <strong>spectral decomposition</strong>
+<li><p>For an eigenvalue with multiplicity, we can choose its eigenvectors to be orthogonal to each other. Also we normalize each eigenvector to have unit $\ell_2$ norm. Thus we obtain the extremely useful <strong>spectral decomposition</strong>
 $$
-  \mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}' = \begin{pmatrix} \mid &amp; &amp; \mid \\ \mathbf{q}_1 &amp; \cdots &amp; \mathbf{q}_n \\ \mid &amp; &amp; \mid \end{pmatrix} \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix} \begin{pmatrix} - &amp; \mathbf{q}_1' &amp; - \\ &amp; \vdots &amp; \\ - &amp; \mathbf{q}_n' &amp; - \end{pmatrix},
+  \mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}' = \begin{pmatrix} \mid &amp; &amp; \mid \\ \mathbf{q}_1 &amp; \cdots &amp; \mathbf{q}_n \\ \mid &amp; &amp; \mid \end{pmatrix} \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix} \begin{pmatrix} - &amp; \mathbf{q}_1' &amp; - \\ &amp; \vdots &amp; \\ - &amp; \mathbf{q}_n' &amp; - \end{pmatrix} = \sum_{i=1}^n \lambda_i \mathbf{q}_i \mathbf{q}_i',
 $$
 where $\mathbf{Q}$ is orthogonal (columns are eigenvectors) and $\boldsymbol{\Lambda} = \text{diag}(\lambda_1, \ldots, \lambda_n)$ (diagonal entries are eigenvalues).</p>
 </li>

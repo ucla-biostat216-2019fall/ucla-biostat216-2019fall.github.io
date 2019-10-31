@@ -13139,11 +13139,11 @@ $( document ).ready(function(){
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Symmetric-Positive-Definite-Matrices">Symmetric Positive Definite Matrices<a class="anchor-link" href="#Symmetric-Positive-Definite-Matrices">&#182;</a></h1><ul>
-<li><p>In last lecture, we learn every symmetric matrix $\mathbf{A} = \mathbf{A}'$ admits an eigen-decomposition
+<li><p>In last lecture, we learnt every symmetric matrix $\mathbf{A} = \mathbf{A}'$ admits an eigen-decomposition
 $$
 \mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}',
 $$
-where $\mathbf{Q}$ is orthogonal and $\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_n)$ has eigenvalues on its diagonal.</p>
+where $\mathbf{Q}$ is orthogonal and $\boldsymbol{\Lambda} = \text{diag}(\lambda_1, \ldots, \lambda_n)$ has eigenvalues on its diagonal.</p>
 </li>
 <li><p>A <strong>positive definite matrix</strong> is a symmetric matrix with all its eigenvalues positive. That is $\lambda_i &gt; 0$ for all $i$. We use $\mathbf{A} \succ \mathbf{O}$ to indicate positive definiteness of $\mathbf{A}$.</p>
 <p>A <strong>positive semidefinite matrix</strong> is a symmetric matrix with all its eigenvalues nonnegative. That is $\lambda_i \ge 0$ for all $i$. We use $\mathbf{A} \succeq \mathbf{O}$ to indicate positive definiteness of $\mathbf{A}$.</p>
@@ -13188,7 +13188,8 @@ Since $\mathbf{Q}$ is orthogonal, $\mathbf{Q}' \mathbf{x} \ne \mathbf{0}$ (other
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Gram-matrix-based-definition">Gram-matrix based definition<a class="anchor-link" href="#Gram-matrix-based-definition">&#182;</a></h2><ul>
-<li><p>A square matrix $\mathbf{A}$ is positive definite if and only if $\mathbf{A} = \mathbf{B}' \mathbf{B}$ for some matrix $\mathbf{B}$ with independent columns.</p>
+<li><p>A square matrix $\mathbf{A}$ is <strong>positive semidefinite</strong> if and only if $\mathbf{A} = \mathbf{B}' \mathbf{B}$ for some matrix $\mathbf{B}$.</p>
+<p>A square matrix $\mathbf{A}$ is <strong>positive definite</strong> if and only if $\mathbf{A} = \mathbf{B}' \mathbf{B}$ for some matrix $\mathbf{B}$ with independent columns.</p>
 <p>Proof of the "if" part: use the energy-based definition.</p>
 <p>Proof of the "only if" part: take $\mathbf{B} = \mathbf{Q} \boldsymbol{\Lambda}^{1/2}$.</p>
 </li>
@@ -13278,7 +13279,7 @@ $$
   \mathbf{L}_{22} \mathbf{L}_{22}^T &amp;=&amp; \mathbf{A}_{22}  - \mathbf{l} \mathbf{l}^T = \mathbf{A}_{22}  - a_{11}^{-1} \mathbf{a} \mathbf{a}^T.
 \end{eqnarray*}
 $$<br>
-Now $a_{11}&gt;0$ (why?), so $\ell_{11}$ and $\mathbf{l}$ are uniquely determined. $\mathbf{A}_{22} - a_{11}^{-1} \mathbf{a} \mathbf{a}^T$ is positive definite because $\mathbf{A}$ is positive definite (why?). By induction hypothesis, $\mathbf{L}_{22}$ exists and is unique.</p>
+Now $a_{11}&gt;0$ (why?), so $\ell_{11}$ and $\mathbf{l}$ are uniquely determined. $\mathbf{A}_{22} - a_{11}^{-1} \mathbf{a} \mathbf{a}^T$ is positive definite because $\mathbf{A}$ is positive definite (why?). By the induction hypothesis, $\mathbf{L}_{22}$ exists and is unique.</p>
 </li>
 <li><p><strong>Pivot test of positive definiteness.</strong> A symmetric matrix $\mathbf{A}$ is positive definite if the Cholesky decomposition can be carried out without encountering zero pivot.</p>
 </li>
@@ -13450,11 +13451,11 @@ U factor:
 <h2 id="Positive-definite-matrices-and-minimization-problems">Positive definite matrices and minimization problems<a class="anchor-link" href="#Positive-definite-matrices-and-minimization-problems">&#182;</a></h2><ul>
 <li><p>For a scalar function $f: \mathbb{R} \mapsto \mathbb{R}$, the test for a minimum is:
 $$
-\frac{df}{dx} = 0 \quad (\text{first derivative test})
+\frac{df(x)}{dx} = 0 \quad (\text{first derivative test})
 $$
 and
 $$
-\frac{d^2f}{dx^2} &gt; 0 \quad (\text{second derivative test}).
+\frac{d^2f(x)}{dx^2} &gt; 0 \quad (\text{second derivative test}).
 $$</p>
 </li>
 <li><p>For a multivariate function $f: \mathbb{R}^n \mapsto \mathbb{R}$, the test for a minimum is:

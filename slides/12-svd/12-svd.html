@@ -13163,8 +13163,9 @@ $$
 $$
 Multiplying both sides by $\mathbf{V}'$, we have the famous <strong>singular value decomposition (SVD)</strong>
 $$
-\mathbf{A} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}' = \sigma_1 \mathbf{u}_1 \mathbf{v}_1' + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r'.
-$$</p>
+\mathbf{A} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}' = \sigma_1 \mathbf{u}_1 \mathbf{v}_1' + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r',
+$$
+where $\mathbf{U} \in \mathbb{R}^{m \times n}$, $\boldsymbol{\Sigma} = \text{diag}(\sigma_1, \ldots, \sigma_r, \mathbf{0}_{n-r})$, and $\mathbf{V} \in \mathbb{R}^{n \times n}$.</p>
 </li>
 </ul>
 
@@ -13213,7 +13214,8 @@ $$</p>
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># eigenvalues and eigenvectors</span>
+<span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13251,10 +13253,11 @@ eigenvectors:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># singular values and singular vectors</span>
+<span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13267,7 +13270,7 @@ eigenvectors:
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -13294,7 +13297,7 @@ where $\mathbf{U}_r \in \mathbb{R}^{m \times r}$, $\boldsymbol{\Sigma}_r = \text
 </li>
 <li><p><strong>Full SVD.</strong> Opposite to the reduced format of SVD, we can also augment the $\mathbf{U}$ matrix to be a square orthogonal matrix to obtain the <strong>full SVD</strong>
 $$
-\mathbf{A} = \begin{pmatrix} \mid &amp; &amp; \mid \\ \mathbf{u}_1 &amp; \cdots &amp; \mathbf{u}_m \\ \mid &amp; &amp; \mid \end{pmatrix} \begin{pmatrix} \sigma_1 &amp; &amp; &amp; \\ &amp; \ddots &amp; &amp; \\ &amp; &amp; \sigma_r &amp; \\ &amp; &amp; &amp; \mathbf{O}_{n-r} \\ &amp; \mathbf{O}_{m-n, n} \end{pmatrix} \begin{pmatrix} - &amp; \mathbf{v}_1' &amp; - \\
+\mathbf{A} = \begin{pmatrix} \mid &amp; &amp; \mid \\ \mathbf{u}_1 &amp; \cdots &amp; \mathbf{u}_m \\ \mid &amp; &amp; \mid \end{pmatrix} \begin{pmatrix} \sigma_1 &amp; &amp; &amp; \\ &amp; \ddots &amp; &amp; \\ &amp; &amp; \sigma_r &amp; \\ &amp; &amp; &amp; \mathbf{O}_{n-r} \\ \\ \\ &amp; &amp; \mathbf{O}_{m-n, n} \end{pmatrix} \begin{pmatrix} - &amp; \mathbf{v}_1' &amp; - \\
 &amp; \vdots &amp; \\ - &amp; \mathbf{v}_n' &amp; - \end{pmatrix}.
 $$</p>
 </li>
@@ -13306,12 +13309,12 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="SVD-tells-everything-about-$\mathbf{A}$">SVD tells everything about $\mathbf{A}$<a class="anchor-link" href="#SVD-tells-everything-about-$\mathbf{A}$">&#182;</a></h2><p><img src="../02-vecsp/four_fundamental_subspaces.png" width=400 align="center"/></p>
+<h2 id="SVD-tells-us-everything-about-$\mathbf{A}$">SVD tells us everything about $\mathbf{A}$<a class="anchor-link" href="#SVD-tells-us-everything-about-$\mathbf{A}$">&#182;</a></h2><p><img src="../02-vecsp/four_fundamental_subspaces.png" width=400 align="center"/></p>
 <ul>
 <li><p><strong>SVD and four fundamental subspaces.</strong> Given the full SVD
 \begin{eqnarray*}
-\mathbf{A} &amp;=&amp; \begin{pmatrix} \mid &amp; &amp; \mid &amp; \mid &amp; &amp; \mid \\ \mathbf{u}_1 &amp; \cdots &amp; \mathbf{u}_r &amp; \mathbf{u}_{r+1} &amp; \cdots &amp; \mathbf{u}_n \\ \mid &amp; &amp; \mid &amp; \mid &amp; &amp; \mid \end{pmatrix} \begin{pmatrix} \sigma_1 &amp; &amp; &amp; \\ &amp; \ddots &amp; &amp; \\ &amp; &amp; \sigma_r &amp; \\ &amp; &amp; &amp; \mathbf{O}_{n-r}  \\ &amp; &amp; \mathbf{O}_{m-n, n} &amp; \end{pmatrix} \begin{pmatrix} - &amp; \mathbf{v}_1' &amp; - \\ &amp; \vdots &amp; \\ - &amp; \mathbf{v}_r' &amp; - \\ - &amp; \mathbf{v}_{r+1}' &amp; - \\ &amp; \vdots &amp; \\ - &amp; \mathbf{v}_n' &amp; - \end{pmatrix} \\
-&amp;=&amp; \begin{pmatrix} \mathbf{U}_r &amp; \mathbf{U}_{m-r} \end{pmatrix} \begin{pmatrix} \boldsymbol{\Sigma}_r &amp; &amp; \\ &amp; &amp; \mathbf{O}_{n-r} \\ &amp; \mathbf{O}_{m-n,n} &amp; \end{pmatrix} \begin{pmatrix} \mathbf{V}_r' \\ \mathbf{V}_{n-r}' \end{pmatrix},
+\mathbf{A} &amp;=&amp; \begin{pmatrix} \mid &amp; &amp; \mid &amp; \mid &amp; &amp; \mid \\ \mathbf{u}_1 &amp; \cdots &amp; \mathbf{u}_r &amp; \mathbf{u}_{r+1} &amp; \cdots &amp; \mathbf{u}_m \\ \mid &amp; &amp; \mid &amp; \mid &amp; &amp; \mid \end{pmatrix} \begin{pmatrix} \sigma_1 &amp; &amp; &amp; \\ &amp; \ddots &amp; &amp; \\ &amp; &amp; \sigma_r &amp; \\ &amp; &amp; &amp; \mathbf{O}_{n-r} \\ \\ &amp; &amp; \mathbf{O}_{m-n, n} &amp; \end{pmatrix} \begin{pmatrix} - &amp; \mathbf{v}_1' &amp; - \\ &amp; \vdots &amp; \\ - &amp; \mathbf{v}_r' &amp; - \\ - &amp; \mathbf{v}_{r+1}' &amp; - \\ &amp; \vdots &amp; \\ - &amp; \mathbf{v}_n' &amp; - \end{pmatrix} \\
+&amp;=&amp; \begin{pmatrix} \mathbf{U}_r &amp; \mathbf{U}_{m-r} \end{pmatrix} \begin{pmatrix} \boldsymbol{\Sigma}_r &amp; &amp; \\ &amp; &amp; \mathbf{O}_{n-r} \\ \\ &amp; \mathbf{O}_{m-n,n} &amp; \end{pmatrix} \begin{pmatrix} \mathbf{V}_r' \\ \mathbf{V}_{n-r}' \end{pmatrix},
 \end{eqnarray*}
 Then</p>
 <ol>
@@ -13323,9 +13326,9 @@ Then</p>
 </li>
 <li><p>$\text{rank}(\mathbf{A}) = r = \text{# positive singular values}$.</p>
 </li>
-<li><p>$\|\mathbf{A}\|_{\text{F}}^2 = \sum_{i,j} a_{ij}^2 = \sum_i \sigma_i^2$.</p>
+<li><p><strong>Frobenius norm</strong> $\|\mathbf{A}\|_{\text{F}}^2 = \sum_{i,j} a_{ij}^2 = \text{tr}(\mathbf{A}' \mathbf{A}) = \sum_i \sigma_i^2$.</p>
 </li>
-<li><p>Spectral norm: $\|\mathbf{A}\|_2 = \sigma_1$.</p>
+<li><p><strong>Spectral norm</strong> or <strong>$\ell_2$ matrix norm</strong> : $\|\mathbf{A}\|_2 = \sigma_1$.</p>
 </li>
 </ul>
 
@@ -13372,28 +13375,176 @@ $$</p>
 <ul>
 <li><p>Question: If $\mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}'$ is symmetric positive definite, what is its SVD?</p>
 <p>Answer: The SVD is exactly same as eigen-decomposition $\mathbf{U} \boldsymbol{\Sigma} \mathbf{V}' = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}'$.</p>
-<p>TODO: example</p>
 </li>
 </ul>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Eigen{Float64,Float64,Array{Float64,2},Array{Float64,1}}
+eigenvalues:
+2-element Array{Float64,1}:
+ 0.5857864376269051
+ 3.414213562373095 
+eigenvectors:
+2×2 Array{Float64,2}:
+ -0.92388   0.382683
+  0.382683  0.92388 </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>SVD{Float64,Float64,Array{Float64,2}}([-0.3826834323650894 -0.9238795325112865; -0.9238795325112867 0.3826834323650897], [3.4142135623730945, 0.5857864376269051], [-0.38268343236508984 -0.9238795325112866; -0.9238795325112866 0.38268343236508984])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><p>Question: If $\mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}'$ is symmetric and has negative eigenvalues, then what is its SVD?</p>
+<li><p>Question: If $\mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}'$ is symmetric and indefinite (has negative eigenvalues), then what is its SVD?</p>
 <p>Answer: Its SVD is
 $$
 \mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}' = \mathbf{Q} \begin{pmatrix} |\lambda_1| &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; |\lambda_n| \end{pmatrix} \begin{pmatrix} \text{sgn}(\lambda_1) &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \text{sgn}(\lambda_n) \end{pmatrix} \mathbf{Q}'.
 $$</p>
-<p>TODO: example</p>
 </li>
 </ul>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Eigen{Float64,Float64,Array{Float64,2},Array{Float64,1}}
+eigenvalues:
+2-element Array{Float64,1}:
+ -0.2360679774997897
+  4.23606797749979  
+eigenvectors:
+2×2 Array{Float64,2}:
+ -0.850651  0.525731
+  0.525731  0.850651</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>SVD{Float64,Float64,Array{Float64,2}}([-0.5257311121191336 -0.8506508083520399; -0.8506508083520399 0.5257311121191336], [4.236067977499789, 0.23606797749978947], [-0.5257311121191337 -0.8506508083520399; 0.8506508083520399 -0.5257311121191337])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13406,6 +13557,112 @@ $$</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># Hadamard matrix of order 2</span>
+<span class="n">H</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2×2 Array{Float64,2}:
+ 0.707107   0.707107
+ 0.707107  -0.707107</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># check orthogonality</span>
+<span class="n">H</span><span class="o">&#39;</span><span class="n">H</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2×2 Array{Float64,2}:
+ 1.0  0.0
+ 0.0  1.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># singular values are all 1</span>
+<span class="n">svd</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>SVD{Float64,Float64,Array{Float64,2}}([-0.7071067811865475 -0.7071067811865475; -0.7071067811865475 0.7071067811865476], [1.0, 0.9999999999999999], [-1.0 -0.0; -0.0 -1.0])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13421,18 +13678,94 @@ $$
 \|\mathbf{A} \mathbf{x}\| = |\lambda| \|\mathbf{x}\|.
 $$
 Thus we have $|\lambda| \le \sigma_1$.</p>
-<p>TODO: example</p>
 </li>
 </ul>
 
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5-element Array{Complex{Float64},1}:
+   -1.781666884307893 - 0.9095720644196156im
+   -1.781666884307893 + 0.9095720644196156im
+   -1.355674103270339 + 0.0im               
+ -0.09045905614031886 + 0.0im               
+   1.5273647080620558 + 0.0im               </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">svdvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5-element Array{Float64,1}:
+ 2.6654987292684424 
+ 1.7831414115242992 
+ 1.5513401587754985 
+ 1.2398522726435222 
+ 0.08198772839247528</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><p>If $\mathbf{A} = \mathbf{x} \mathbf{y}'$, find the singular values and singular vectors. Check $|\lambda| \le \sigma_1$.</p>
+<li><p>Question: If $\mathbf{A} = \mathbf{x} \mathbf{y}'$, find the singular values and singular vectors. Check $|\lambda| \le \sigma_1$.</p>
 <p>Answer: TODO.</p>
 </li>
 </ul>
@@ -13473,42 +13806,25 @@ yields
 $$
 \mathbf{S} \mathbf{x} = f(\mathbf{x}) \cdot \mathbf{x}.
 $$
-That is the optimal $\mathbf{x}$ must be an eigenvector of $\mathbf{S} = \mathbf{A}' \mathbf{A}$ with corresponding eigenvalue $f(\mathbf{x})$. Early on we also showed that
-$$
-\|\mathbf{A} \mathbf{x}\| \le \sigma_1 \|\mathbf{x}\|
-$$
-for any $\mathbf{x}$. Thus the global maximum is given by the top right singular vector $\mathbf{x}^\star = \mathbf{v}_1$ with the optimal value equal to $\lambda_1 = \sigma_1^2$.</p>
+That is the optimal $\mathbf{x}$ must be an eigenvector of $\mathbf{S} = \mathbf{A}' \mathbf{A}$ with corresponding eigenvalue $f(\mathbf{x})$. Which one shall we choose? Apparently the top right singular vector $\mathbf{x}^\star = \mathbf{v}_1$ gives us the maximal value which is equal to $\lambda_1 = \sigma_1^2$.</p>
 </li>
 </ul>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c"># TODO example</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><p>Similarly, the second right singular vector is the solution to the optimization problem
+<li><p>Similarly, the second right singular vector maximizes the Rayleigh quotient subject to an orthogonality constraint
 \begin{eqnarray*}
 \text{maximize} &amp;\quad&amp; f(\mathbf{x}) = \frac{\|\mathbf{A} \mathbf{x}\|^2}{\|\mathbf{x}\|^2} = \frac{\mathbf{x}' \mathbf{A}' \mathbf{A} \mathbf{x}}{\mathbf{x}' \mathbf{x}} = \frac{\mathbf{x}' \mathbf{S} \mathbf{x}}{\mathbf{x}' \mathbf{x}} \\
 \text{subject to} &amp;\quad&amp; \mathbf{x} \perp \mathbf{v}_1.
 \end{eqnarray*}</p>
 <p>The proof uses the method of Lagrange multipliers.</p>
 </li>
-<li><p>Theorem. <strong>Submatrices have smaller singular values</strong>. Let $\mathbf{B}$ be a submatrix of $\mathbf{A} \in \mathbb{R}^{m \times n}$. Then
+<li><p><strong>Submatrices have smaller singular values</strong>. Let $\mathbf{B}$ be a submatrix of $\mathbf{A} \in \mathbb{R}^{m \times n}$. Then
 $$
 \|\mathbf{B}\| \le \|\mathbf{A}\|
 $$
@@ -13529,19 +13845,40 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SVD-and-generalized-inverse">SVD and generalized inverse<a class="anchor-link" href="#SVD-and-generalized-inverse">&#182;</a></h2><p>Using the SVD, the Moore-Penrose inverse is given by
+$$
+\mathbf{A}^+ = \mathbf{V} \Sigma^+ \mathbf{U}^T,
+$$
+where $\Sigma^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1}, 0, \ldots, 0)$, $r= \text{rank}(\mathbf{A})$. This is how the <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv"><code>pinv</code></a> function is implemented in Julia, Matlab, Python, or R.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Eckart-Young-theorem:-best-approximation-to-$\mathbf{A}$">Eckart-Young theorem: best approximation to $\mathbf{A}$<a class="anchor-link" href="#Eckart-Young-theorem:-best-approximation-to-$\mathbf{A}$">&#182;</a></h2><ul>
-<li><p><strong>TODO</strong>: Golub picture example.</p>
+<li>Image compression: <ul>
+<li>Gene Golub's $897 \times 598$ picture requires $3 \times 897 \times 598 \times 8 = 12,873,744$ bytes (3 RGB channels).  </li>
+<li>Rank 50 approximation requires $3 \times 50 \times (897 + 598) \times 8 = 1,794,000$ bytes. </li>
+<li>Rank 12 approximation requires $12 \times (2691+598) \times 8 = 430,560$ bytes.</li>
+</ul>
 </li>
+</ul>
+<p><img src="https://www.mathworks.com/content/mathworks/www/en/company/newsletters/articles/professor-svd/_jcr_content/mainParsys/columns/3/image_7.img.jpg/1490211663024.jpg" width="150" align="center"/></p>
+<p><img src="https://www.mathworks.com/content/mathworks/www/en/company/newsletters/articles/professor-svd/_jcr_content/mainParsys/columns/2/image_6.img.jpg/1490211662986.jpg" width="150" align="center"/></p>
+<p><img src="https://www.mathworks.com/content/mathworks/www/en/company/newsletters/articles/professor-svd/_jcr_content/mainParsys/columns/1/image_5.img.jpg/1490211662955.jpg" width="150" align="center"/></p>
+<ul>
 <li><p>SVD has some inherent optimality properties. The prescribe how to approximate a general matrix $\mathbf{A}$ by a low rank matrix.</p>
 </li>
 <li><p>Before talking about approximation, we need metric that measures the quality of approximation. We discuss 3 matrix norms.</p>
-</li>
+<ul>
 <li><p><strong>Spectral norm</strong> or $\ell_2$ norm:
 $$
 \|\mathbf{A}\|_2 = \max \frac{\|\mathbf{A} \mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_1.
 $$</p>
 </li>
-<li><p><strong>Frobeniusnorm</strong>:
+<li><p><strong>Frobenius norm</strong>:
 $$
 \|\mathbf{A}\|_{\text{F}} = \sqrt{\sum_{i,j} a_{ij}^2} = \text{tr}(\mathbf{A}' \mathbf{A}) = \sqrt{\sigma_1^2 + \cdots + \sigma_r^2}.
 $$</p>
@@ -13550,6 +13887,8 @@ $$</p>
 $$
 \|\mathbf{A}\|_{\text{nuc}} = \sigma_1 + \cdots + \sigma_r.
 $$</p>
+</li>
+</ul>
 </li>
 <li><p>These 3 norms already have different values for the identity matrix:
 \begin{eqnarray*}
@@ -13573,11 +13912,11 @@ $$</p>
 $$
 \mathbf{A} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}' = \sum_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i'.
 $$
-Then the rank-$k$ matrix
+Then the matrix
 $$
 \mathbf{A}_k = \sum_{i=1}^k \sigma_i \mathbf{u}_i \mathbf{v}_i'
 $$
-is the best approximation to the original matrix $\mathbf{A}$ in the 3 matrix norms ($\ell_2$, Frobenius, and nuclear). That is
+is the best rank-$k$ approximation to the original matrix $\mathbf{A}$ in the 3 matrix norms ($\ell_2$, Frobenius, and nuclear). More precisely,
 $$
 \|\mathbf{A} - \mathbf{B}\|
 $$
@@ -13644,7 +13983,9 @@ Which $\mathbf{u}_i$ and $\mathbf{v}_i$ shall we take to minimize $f$? Apparentl
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Principal-component-analysis-(PCA)">Principal component analysis (PCA)<a class="anchor-link" href="#Principal-component-analysis-(PCA)">&#182;</a></h2><ul>
+<h2 id="Principal-component-analysis-(PCA)">Principal component analysis (PCA)<a class="anchor-link" href="#Principal-component-analysis-(PCA)">&#182;</a></h2><p><img src="http://www.nature.com/nature/journal/v456/n7218/images/nature07331-f1.2.jpg" width="400" align="center"/></p>
+<p>Above picture is from the article <a href="http://www.nature.com/nature/journal/v456/n7218/full/nature07331.html">Genes mirror geography within Europe</a> by Novembre et al (2008) published in <em>Nature</em>.</p>
+<ul>
 <li><p>PCA is a dimension reduction technique that finds the most informative linear combinations of the $p$ random variables $\mathbf{X} \in \mathbb{R}^p$. Mathematically it finds the linear combinations of the $p$ variables that have the largest variances. If we know the population covariance of the $p$ variables is $\text{Cov}(\mathbf{X}) = \boldsymbol{\Sigma} \in \mathbb{R}^{p \times p}$, then
 $$
 \text{Var}(\mathbf{a}' \mathbf{X}) = \mathbf{a}' \text{Cov}(\mathbf{X}) \mathbf{a} = \mathbf{a}' \boldsymbol{\Sigma} \mathbf{a}.
