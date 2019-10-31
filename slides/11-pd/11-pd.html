@@ -13166,12 +13166,13 @@ where $\mathbf{Q}$ is orthogonal and $\boldsymbol{\Lambda} = \text{diag}(\lambda
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Energy-based-definition">Energy-based definition<a class="anchor-link" href="#Energy-based-definition">&#182;</a></h2><ul>
-<li><p>A symmetric matrix $\mathbf{A}$ is positive definite if and only if the energe $\mathbf{x}' \mathbf{A} \mathbf{x} &gt; 0$ for all $\mathbf{x} \ne \mathbf{0}$.</p>
+<li><p>A symmetric matrix $\mathbf{A}$ is positive definite if and only if the energy $\mathbf{x}' \mathbf{A} \mathbf{x} &gt; 0$ for all $\mathbf{x} \ne \mathbf{0}$.</p>
+<p>A symmetric matrix $\mathbf{A}$ is positive semidefinite if and only if the energy $\mathbf{x}' \mathbf{A} \mathbf{x} \ge 0$ for all $\mathbf{x} \ne \mathbf{0}$.</p>
 <p>Proof of the "only if" part: $\mathbf{A} = \mathbf{Q} \boldsymbol{\Lambda} \mathbf{Q}' = \sum_{i=1}^n \lambda_i \mathbf{q}_i \mathbf{q}_i'$, where $\lambda_i &gt; 0$ and $\mathbf{q}_i$ are orthonormal to each other. Then
 $$
-\mathbf{x}' \mathbf{A} \mathbf{x} = \mathbf{x}' \left( \sum_{i=1}^n \lambda_i \mathbf{q}_i \mathbf{q}_i' \right) \mathbf{x} = \sum_{i=1}^n \lambda_i \|\mathbf{q}_i' \mathbf{x}\|^2
+\mathbf{x}' \mathbf{A} \mathbf{x} = \mathbf{x}' \left( \sum_{i=1}^n \lambda_i \mathbf{q}_i \mathbf{q}_i' \right) \mathbf{x} = \sum_{i=1}^n \lambda_i (\mathbf{q}_i' \mathbf{x})^2
 $$
-Since $\mathbf{Q}$ is orthogonal, $\mathbf{Q}' \mathbf{x} \ne \mathbf{0}$ (otherwise it conflicts with linear indepence between $\mathbf{q}_i$s). Therefore $\mathbf{x}' \mathbf{A} \mathbf{x} = \sum_{i=1}^n \lambda_i \|\mathbf{q}_i' \mathbf{x}\|^2 &gt; 0$.</p>
+Since $\mathbf{Q}$ is orthogonal, $\mathbf{Q}' \mathbf{x} \ne \mathbf{0}$ (otherwise it conflicts with linear indepence between $\mathbf{q}_i$s). Therefore $\mathbf{x}' \mathbf{A} \mathbf{x} = \sum_{i=1}^n \lambda_i (\mathbf{q}_i' \mathbf{x})^2 &gt; 0$.</p>
 <p>Proof of the "if" part: Take $\mathbf{x} = \mathbf{q}_i$. Then $\mathbf{x}' \mathbf{A} \mathbf{x} = \lambda_i &gt; 0$.</p>
 </li>
 <li><p>Show Examples 3 and 4 above.</p>
@@ -13191,7 +13192,7 @@ Since $\mathbf{Q}$ is orthogonal, $\mathbf{Q}' \mathbf{x} \ne \mathbf{0}$ (other
 <li><p>A square matrix $\mathbf{A}$ is <strong>positive semidefinite</strong> if and only if $\mathbf{A} = \mathbf{B}' \mathbf{B}$ for some matrix $\mathbf{B}$.</p>
 <p>A square matrix $\mathbf{A}$ is <strong>positive definite</strong> if and only if $\mathbf{A} = \mathbf{B}' \mathbf{B}$ for some matrix $\mathbf{B}$ with independent columns.</p>
 <p>Proof of the "if" part: use the energy-based definition.</p>
-<p>Proof of the "only if" part: take $\mathbf{B} = \mathbf{Q} \boldsymbol{\Lambda}^{1/2}$.</p>
+<p>Proof of the "only if" part: take $\mathbf{B} = \boldsymbol{\Lambda}^{1/2} \mathbf{Q}'$.</p>
 </li>
 </ul>
 
@@ -13245,6 +13246,84 @@ for any vector $\mathbf{a}$.</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="o">≥</span> <span class="n">i</span> <span class="o">?</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5×5 Array{Int64,2}:
+ 5  4  3  2  1
+ 4  8  6  4  2
+ 3  6  9  6  3
+ 2  4  6  8  4
+ 1  2  3  4  5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span>
+<span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5-element Array{Float64,1}:
+  1.6076951545867355
+  2.000000000000001 
+  2.9999999999999996
+  6.0               
+ 22.39230484541327  </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13261,13 +13340,13 @@ If $n=1$, then $\ell = \sqrt{a}$. For $n&gt;1$, the block equation
 $$
 \begin{eqnarray*}
 \begin{pmatrix}
-a_{11} &amp; \mathbf{a}^T \\ \mathbf{a} &amp; \mathbf{A}_{22}
+a_{11} &amp; \mathbf{a}' \\ \mathbf{a} &amp; \mathbf{A}_{22}
 \end{pmatrix} =
 \begin{pmatrix}
-  \ell_{11} &amp; \mathbf{0}_{n-1}^T \\ \mathbf{l} &amp; \mathbf{L}_{22}
+  \ell_{11} &amp; \mathbf{0}_{n-1}' \\ \mathbf{l} &amp; \mathbf{L}_{22}
 \end{pmatrix}
 \begin{pmatrix}
-  \ell_{11} &amp; \mathbf{l}^T \\ \mathbf{0}_{n-1} &amp; \mathbf{L}_{22}^T
+  \ell_{11} &amp; \mathbf{l}' \\ \mathbf{0}_{n-1} &amp; \mathbf{L}_{22}'
 \end{pmatrix}
 \end{eqnarray*}
 $$
@@ -13276,10 +13355,10 @@ $$
 \begin{eqnarray*}
   \ell_{11} &amp;=&amp; \sqrt{a_{11}} \\
   \mathbf{l} &amp;=&amp; \ell_{11}^{-1} \mathbf{a}    \\
-  \mathbf{L}_{22} \mathbf{L}_{22}^T &amp;=&amp; \mathbf{A}_{22}  - \mathbf{l} \mathbf{l}^T = \mathbf{A}_{22}  - a_{11}^{-1} \mathbf{a} \mathbf{a}^T.
+  \mathbf{L}_{22} \mathbf{L}_{22}' &amp;=&amp; \mathbf{A}_{22}  - \mathbf{l} \mathbf{l}' = \mathbf{A}_{22}  - a_{11}^{-1} \mathbf{a} \mathbf{a}'.
 \end{eqnarray*}
 $$<br>
-Now $a_{11}&gt;0$ (why?), so $\ell_{11}$ and $\mathbf{l}$ are uniquely determined. $\mathbf{A}_{22} - a_{11}^{-1} \mathbf{a} \mathbf{a}^T$ is positive definite because $\mathbf{A}$ is positive definite (why?). By the induction hypothesis, $\mathbf{L}_{22}$ exists and is unique.</p>
+Now $a_{11}&gt;0$ (why?), so $\ell_{11}$ and $\mathbf{l}$ are uniquely determined. $\mathbf{A}_{22} - a_{11}^{-1} \mathbf{a} \mathbf{a}'$ is positive definite because $\mathbf{A}$ is positive definite (why?). By the induction hypothesis, $\mathbf{L}_{22}$ exists and is unique.</p>
 </li>
 <li><p><strong>Pivot test of positive definiteness.</strong> A symmetric matrix $\mathbf{A}$ is positive definite if the Cholesky decomposition can be carried out without encountering zero pivot.</p>
 </li>
