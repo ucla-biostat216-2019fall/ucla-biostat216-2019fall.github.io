@@ -17,5 +17,5 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 | 6 | [10/31](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/31/week6.html) positive (semi)definite matrix/Cholesky/Schur complement \[[slide](./slides/11-pd/11-pd.html)\] | |   
 | 7 | [11/7](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/07/week7.html) SVD \[[slide](./slides/12-svd/12-svd.html)\], Kronecker product, vec, vech, communtation, duplication \[[slide](./slides/13-kron/13-kron.html)\] | [HW4](./hw/hw4/hw4.html) |  
 | 8 | 11/14 matrix calculus: differential, Jacobian, Hessian, multiple integrals | |   
-| 9 | 11/21 matrix calculus: chain rule | HW5 |   
-| 10 | 12/5 applications: neural network, image compression, matrix completion, PCA/CCA, clustering, optimization, Google PageRank | Final |   
+| 9 | 11/21 matrix calculus: chain rule | HW5 + Final |   
+| 10 | 12/5 applications: neural network, image compression, matrix completion, PCA/CCA, clustering, optimization, Google PageRank | |   
