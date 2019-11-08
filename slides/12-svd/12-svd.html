@@ -13174,7 +13174,7 @@ where $\mathbf{U} \in \mathbb{R}^{m \times n}$ has orthogonal columns, $\boldsym
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span><span class="p">,</span> <span class="n">Random</span>
@@ -13187,7 +13187,7 @@ where $\mathbf{U} \in \mathbb{R}^{m \times n}$ has orthogonal columns, $\boldsym
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.0</span> <span class="mf">0.0</span><span class="p">;</span> <span class="mf">4.0</span> <span class="mf">5.0</span><span class="p">]</span>
@@ -13203,7 +13203,7 @@ where $\mathbf{U} \in \mathbb{R}^{m \times n}$ has orthogonal columns, $\boldsym
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[53]:</div>
 
 
 
@@ -13222,7 +13222,7 @@ where $\mathbf{U} \in \mathbb{R}^{m \times n}$ has orthogonal columns, $\boldsym
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># eigenvalues and eigenvectors</span>
@@ -13239,7 +13239,7 @@ where $\mathbf{U} \in \mathbb{R}^{m \times n}$ has orthogonal columns, $\boldsym
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[54]:</div>
 
 
 
@@ -13264,12 +13264,12 @@ eigenvectors:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># singular values and singular vectors</span>
 <span class="c"># different from eigenvalues and eigenvectors</span>
-<span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13282,15 +13282,16 @@ eigenvectors:
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>SVD{Float64,Float64,Array{Float64,2}}([-0.316227766016838 -0.9486832980505135; -0.9486832980505135 0.3162277660168379], [6.70820393249937, 2.2360679774997894], [-0.7071067811865475 -0.7071067811865475; -0.7071067811865475 0.7071067811865475])</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SVD{Float64,Float64,Array{Float64,2}}
+  U: Array{Float64}((2, 2)) [-0.316227766016838 -0.9486832980505135; -0.9486832980505135 0.3162277660168379]
+  S: Array{Float64}((2,)) [6.70820393249937, 2.2360679774997894]
+  Vt: Array{Float64}((2, 2)) [-0.7071067811865475 -0.7071067811865475; -0.7071067811865475 0.7071067811865475]
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -13320,11 +13321,11 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span>
-<span class="c"># a rank r matrix</span>
+<span class="c"># a rank r matrix by rank factorization</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </pre></div>
 
@@ -13338,18 +13339,18 @@ $$</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[56]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>5×3 Array{Float64,2}:
-  0.108499  -1.67616    0.0552963
-  0.362368  -0.867806   0.386574 
-  0.21226   -1.55022    0.18197  
-  0.274397  -0.493131   0.299726 
- -0.959259   1.81624   -1.04387  </pre>
+  0.182414    1.37299    0.859435 
+  1.8803      1.52243   -0.0978125
+ -1.00968    -1.50328   -0.433797 
+ -0.415969    0.207121   0.407361 
+  0.0625647  -0.673975  -0.51713  </pre>
 </div>
 
 </div>
@@ -13360,10 +13361,11 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># svd: U is mxn, Σ is nxn, V is nxn</span>
+<span class="c"># SVD</span>
 <span class="n">dump</span><span class="p">(</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
 </pre></div>
 
@@ -13382,9 +13384,9 @@ $$</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>SVD{Float64,Float64,Array{Float64,2}}
-  U: Array{Float64}((5, 3)) [-0.47114687036879455 -0.632233358750947 0.3696540392738756; -0.3009428012238366 0.14443329606624827 -0.7910623765804411; … ; -0.1837617487314894 0.18758567647046764 -0.020136067040470176; 0.6672448726638057 -0.6117513213249465 -0.3399439765685968]
-  S: Array{Float64}((3,)) [3.3501263568959496, 0.9127005239672714, 5.448012862942165e-17]
-  Vt: Array{Float64}((3, 3)) [-0.2828460376763218 0.9137494009902087 -0.2916507348882206; 0.5856545515312824 0.4053305818949771 0.7019372234405094; -0.7596096795338361 -0.027733582002937185 0.6497876446869311]
+  U: Array{Float64}((5, 3)) [-0.4095688544013541 -0.6099626348284598 -0.6361586557774891; -0.6940699852687023 0.533017605486693 0.1019958426446552; … ; 0.0016249330400059695 -0.41163919811846594 0.44149034814188914; 0.17930089477665412 0.40904397852059016 -0.6075353697508437]
+  S: Array{Float64}((3,)) [3.292617668935751, 1.5011580340710777, 3.21059119833768e-16]
+  Vt: Array{Float64}((3, 3)) [-0.5888710108017183 -0.7859179370707587 -0.1885840100003323; 0.668061130134979 -0.3419870272965876 -0.6608624664509384; 0.45489038134493137 -0.5151483954660889 0.7264274716780588]
 </pre>
 </div>
 </div>
@@ -13395,7 +13397,7 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">dump</span><span class="p">(</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">true</span><span class="p">))</span>
@@ -13416,11 +13418,48 @@ $$</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>SVD{Float64,Float64,Array{Float64,2}}
-  U: Array{Float64}((5, 5)) [-0.47114687036879455 -0.632233358750947 … -0.06658959916212331 0.48705577006757855; -0.3009428012238366 0.14443329606624827 … -0.20872331252067242 0.46821720231991865; … ; -0.1837617487314894 0.18758567647046764 … 0.9416150818289349 0.20975893345145477; 0.6672448726638057 -0.6117513213249465 … 0.2139419309171346 0.1386057132704897]
-  S: Array{Float64}((3,)) [3.3501263568959496, 0.9127005239672714, 5.448012862942165e-17]
-  Vt: Array{Float64}((3, 3)) [-0.2828460376763218 0.9137494009902087 -0.2916507348882206; 0.5856545515312824 0.4053305818949771 0.7019372234405094; -0.7596096795338361 -0.027733582002937185 0.6497876446869311]
+  U: Array{Float64}((5, 5)) [-0.4095688544013541 -0.6099626348284598 … 0.13299805700334835 -0.19445467114522613; -0.6940699852687023 0.533017605486693 … 0.3766746467186487 -0.2861330920968834; … ; 0.0016249330400059695 -0.41163919811846594 … 0.7223121532883439 0.3374936382726518; 0.17930089477665412 0.40904397852059016 … 0.34203623760149465 0.5607550262257645]
+  S: Array{Float64}((3,)) [3.292617668935751, 1.5011580340710777, 3.21059119833768e-16]
+  Vt: Array{Float64}((3, 3)) [-0.5888710108017183 -0.7859179370707587 -0.1885840100003323; 0.668061130134979 -0.3419870272965876 -0.6608624664509384; 0.45489038134493137 -0.5151483954660889 0.7264274716780588]
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Asvd</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">true</span><span class="p">)</span>
+<span class="n">Asvd</span><span class="o">.</span><span class="n">V</span><span class="o">&#39;</span><span class="n">Asvd</span><span class="o">.</span><span class="n">V</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[61]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3×3 Array{Float64,2}:
+ 1.0          2.77556e-17  0.0
+ 2.77556e-17  1.0          0.0
+ 0.0          0.0          1.0</pre>
+</div>
+
 </div>
 
 </div>
@@ -14509,7 +14548,7 @@ Thus we have $|\lambda| \le \sigma_1$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span>
@@ -14526,7 +14565,7 @@ Thus we have $|\lambda| \le \sigma_1$.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[62]:</div>
 
 
 
@@ -14548,10 +14587,10 @@ Thus we have $|\lambda| \le \sigma_1$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">.|&gt;</span> <span class="n">abs</span>
 </pre></div>
 
     </div>
@@ -14564,18 +14603,18 @@ Thus we have $|\lambda| \le \sigma_1$.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[63]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>5-element Array{Complex{Float64},1}:
- -1.6948209445252074 + 0.0im               
- -0.4923552951282544 - 2.0656031424335812im
- -0.4923552951282544 + 2.0656031424335812im
-  0.6922214431747319 + 0.0im               
-   1.368017351950627 + 0.0im               </pre>
+<pre>5-element Array{Float64,1}:
+ 1.6948209445252074
+ 2.1234712333046373
+ 2.1234712333046373
+ 0.6922214431747319
+ 1.368017351950627 </pre>
 </div>
 
 </div>
@@ -14586,7 +14625,7 @@ Thus we have $|\lambda| \le \sigma_1$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">svdvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -14602,7 +14641,7 @@ Thus we have $|\lambda| \le \sigma_1$.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[64]:</div>
 
 
 
@@ -14660,10 +14699,12 @@ where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1},
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">Asvd</span><span class="o">.</span><span class="n">Vt</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span><span class="o">&#39;</span> <span class="o">*</span> <span class="kt">Diagonal</span><span class="p">(</span><span class="n">inv</span><span class="o">.</span><span class="p">(</span><span class="n">Asvd</span><span class="o">.</span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">]))</span> <span class="o">*</span> <span class="n">Asvd</span><span class="o">.</span><span class="n">U</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">]</span><span class="o">&#39;</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span>
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14676,7 +14717,46 @@ where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1},
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt output_prompt">Out[65]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5×3 Array{Float64,2}:
+ -1.0641     0.119504     0.0684963
+ -1.31293   -1.57973e-5  -0.0936312
+ -0.726329  -0.584099    -0.757408 
+ -1.56673   -1.47246     -1.89051  
+  2.11855    0.495045     0.749092 </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Asvd</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">Asvd</span><span class="o">.</span><span class="n">Vt</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span><span class="o">&#39;</span> <span class="o">*</span> <span class="kt">Diagonal</span><span class="p">(</span><span class="n">inv</span><span class="o">.</span><span class="p">(</span><span class="n">Asvd</span><span class="o">.</span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">]))</span> <span class="o">*</span> <span class="n">Asvd</span><span class="o">.</span><span class="n">U</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">]</span><span class="o">&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[67]:</div>
 
 
 
@@ -14696,7 +14776,7 @@ where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1},
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">pinv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -14712,18 +14792,16 @@ where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1},
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[66]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>5×5 Array{Float64,2}:
- -0.121996     0.0158642   0.101073   0.163048    0.506976  
- -0.00918841   0.370158   -0.169796  -0.319001    0.202722  
-  0.887639     0.450626    0.9026     0.0822648   1.0954    
- -0.00131721  -0.353411   -0.84805    0.219196   -0.348326  
-  0.472344    -0.470282    0.48035   -0.153135   -0.00276257</pre>
+<pre>3×5 Array{Float64,2}:
+ -0.233131  -0.2489     0.0157725   0.0898613   0.271563 
+  0.144729   0.136605  -0.0906491  -0.256015   -0.0795545
+  0.158217   0.147279  -0.108384   -0.302872   -0.0767433</pre>
 </div>
 
 </div>
@@ -14744,7 +14822,7 @@ where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1},
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Images</span><span class="p">,</span> <span class="n">LinearAlgebra</span><span class="p">,</span> <span class="n">Interact</span>
@@ -14764,71 +14842,72 @@ where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1},
 
 <div class="output_area">
 
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<script>
-// Immediately-invoked-function-expression to avoid global variables.
-(function() {
-    var warning_div = document.getElementById("webio-warning-9296636893828844232");
-    var hide = function () {
-        var script = document.getElementById("webio-setup-15072777133847485577");
-        var parent = script && script.parentElement;
-        var grandparent = parent && parent.parentElement;
-        if (grandparent) {
-            grandparent.style.display = "none";
-        }
-        warning_div.style.display = "none";
-    };
-    if (typeof Jupyter !== "undefined") {
-        console.log("WebIO detected Jupyter notebook environment.");
-        // Jupyter notebook.
-        var extensions = (
-            Jupyter
-            && Jupyter.notebook.config.data
-            && Jupyter.notebook.config.data.load_extensions
-        );
-        if (extensions && extensions["webio-jupyter-notebook"]) {
-            // Extension already loaded.
-            console.log("Jupyter WebIO nbextension detected; not loading ad-hoc.");
-            hide();
-            return;
-        }
-    } else if (window.location.pathname.includes("/lab")) {
-        // Guessing JupyterLa
-        console.log("Jupyter Lab detected; make sure the @webio/jupyter-lab-provider labextension is installed.");
-        hide();
-        return;
-    }
-})();
-
-</script>
-<p
-    id="webio-warning-9296636893828844232"
-    class="output_text output_stderr"
-    style="padding: 1em; font-weight: bold;"
->
-    Unable to load WebIO. Please make sure WebIO works for your Jupyter client.
-    For troubleshooting, please see <a href="https://juliagizmos.github.io/WebIO.jl/latest/providers/ijulia/">
-    the WebIO/IJulia documentation</a>.
-    <!-- TODO: link to installation docs. -->
-</p>
-
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[38]:</div>
+    <div class="prompt output_prompt">Out[68]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>(3, 838, 561)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">channels</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">:</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[72]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>838×561 Array{Float32,2}:
+ 0.486275  0.482353  0.482353  0.439216  …  0.478431  0.462745  0.478431
+ 0.482353  0.470588  0.447059  0.435294     0.466667  0.478431  0.478431
+ 0.482353  0.447059  0.423529  0.54902      0.435294  0.427451  0.478431
+ 0.443137  0.435294  0.54902   0.984314     0.537255  0.462745  0.478431
+ 0.490196  0.439216  0.482353  0.976471     0.486275  0.415686  0.478431
+ 0.454902  0.431373  0.47451   0.976471  …  0.490196  0.458824  0.478431
+ 0.498039  0.458824  0.47451   0.956863     0.486275  0.45098   0.478431
+ 0.498039  0.447059  0.47451   0.976471     0.517647  0.462745  0.478431
+ 0.470588  0.431373  0.490196  0.968628     0.498039  0.45098   0.478431
+ 0.466667  0.423529  0.490196  0.980392     0.494118  0.458824  0.478431
+ 0.462745  0.423529  0.490196  0.976471  …  0.501961  0.462745  0.478431
+ 0.462745  0.427451  0.490196  0.976471     0.501961  0.462745  0.478431
+ 0.470588  0.427451  0.490196  0.964706     0.501961  0.454902  0.478431
+ ⋮                                       ⋱                      ⋮       
+ 0.478431  0.431373  0.396078  0.431373     0.396078  0.419608  0.478431
+ 0.486275  0.435294  0.392157  0.423529     0.403922  0.427451  0.478431
+ 0.490196  0.435294  0.388235  0.415686     0.392157  0.419608  0.478431
+ 0.494118  0.435294  0.388235  0.415686     0.407843  0.419608  0.478431
+ 0.486275  0.435294  0.392157  0.423529  …  0.411765  0.423529  0.478431
+ 0.478431  0.431373  0.396078  0.431373     0.4       0.415686  0.478431
+ 0.478431  0.411765  0.388235  0.407843     0.407843  0.403922  0.494118
+ 0.470588  0.427451  0.419608  0.45098      0.431373  0.423529  0.482353
+ 0.470588  0.458824  0.447059  0.458824     0.470588  0.466667  0.458824
+ 0.423529  0.423529  0.415686  0.419608  …  0.431373  0.439216  0.431373
+ 0.388235  0.380392  0.372549  0.364706     0.380392  0.392157  0.372549
+ 1.0       1.0       1.0       1.0          1.0       1.0       1.0     </pre>
 </div>
 
 </div>
@@ -14908,6 +14987,83 @@ where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1},
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">rank_approx</span><span class="p">(</span><span class="n">F</span><span class="o">::</span><span class="n">SVD</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">S</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">Vt</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="kt">Diagonal</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">k</span><span class="p">])</span> <span class="o">*</span> <span class="n">Vt</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="n">k</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span>
+    <span class="n">M</span> <span class="o">.=</span> <span class="n">clamp</span><span class="o">.</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">svdfactors</span> <span class="o">=</span> <span class="p">(</span><span class="n">svd</span><span class="p">(</span><span class="n">channels</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">,</span> <span class="o">:</span><span class="p">]),</span> <span class="n">svd</span><span class="p">(</span><span class="n">channels</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="p">,</span> <span class="o">:</span><span class="p">]),</span> <span class="n">svd</span><span class="p">(</span><span class="n">channels</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">:</span><span class="p">,</span> <span class="o">:</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[73]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(SVD{Float32,Float32,Array{Float32,2}}(Float32[-0.003201127 -0.0029711816 … 0.063501656 -0.018671475; -0.0041820407 -0.003956642 … 0.03171113 0.037942678; … ; -0.0063472968 -0.0061110826 … -0.024975946 -0.0205824; -0.04618214 -0.038482077 … -0.004199179 -0.0015758779], Float32[468.93704, 54.575035, 39.72175, 28.824512, 22.577719, 19.781693, 18.400646, 16.750614, 15.209273, 13.959431  …  0.018809672, 0.018746085, 0.018220583, 0.018147789, 0.017952539, 0.017445087, 0.01719639, 0.017101845, 0.01633041, 0.015538299], Float32[-0.003792159 -0.0050134063 … -0.005576717 -0.0040300395; -0.0009210165 -0.0010787451 … -0.001424789 -0.0004640298; … ; 0.039903246 -0.0046934625 … 0.069537506 -0.0671383; -0.04118015 -0.01409792 … -0.00090598874 0.029236076]), SVD{Float32,Float32,Array{Float32,2}}(Float32[-0.012597024 -0.016373156 … -0.009303845 -0.025560979; -0.012313485 -0.016414464 … -0.06487671 -0.0071538123; … ; -0.011940538 -0.016432794 … 0.0043642614 -0.009932868; -0.055147693 -0.07242119 … 0.02291314 0.009163091], Float32[419.95956, 60.726654, 34.20169, 29.930443, 23.477402, 21.344364, 16.51298, 16.356625, 15.089839, 12.111712  …  0.017568486, 0.016782546, 0.016724119, 0.016491562, 0.016371625, 0.01577605, 0.015774291, 0.015144074, 0.0146682635, 0.013853766], Float32[-0.015238976 -0.014965594 … -0.01480304 -0.015215306; -0.0031973203 -0.002948952 … -0.0029819617 -0.0033105335; … ; -0.04289294 0.08758404 … -0.028907152 0.01769764; 0.0010402817 0.031613845 … -0.011965975 -0.035158202]), SVD{Float32,Float32,Array{Float32,2}}(Float32[-0.028401136 -0.044610694 … -0.0144824395 -0.0026077332; -0.02591753 -0.040858477 … 0.029586107 -0.030325025; … ; -0.022012524 -0.035037924 … -0.05976062 0.0013332515; -0.05971126 -0.094077684 … -0.005332835 -0.009971296], Float32[383.6886, 59.94334, 34.007774, 27.138838, 24.214834, 21.362972, 17.506678, 16.533255, 14.504245, 12.662757  …  0.020750163, 0.02036577, 0.019924434, 0.019518789, 0.019465964, 0.01912894, 0.018933607, 0.017828913, 0.017233869, 0.016600385], Float32[-0.03475884 -0.031883895 … -0.032425266 -0.034796096; -0.01866697 -0.015722007 … -0.013515507 -0.018629666; … ; 0.011948569 -0.047937628 … 0.02514852 0.044578794; -0.012338921 0.06579735 … 0.01310142 -0.027308453]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span>
+<span class="n">colorview</span><span class="p">(</span><span class="n">RGB</span><span class="p">,</span>
+    <span class="n">rank_approx</span><span class="p">(</span><span class="n">svdfactors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">k1</span><span class="p">),</span>
+    <span class="n">rank_approx</span><span class="p">(</span><span class="n">svdfactors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">k2</span><span class="p">),</span>
+    <span class="n">rank_approx</span><span class="p">(</span><span class="n">svdfactors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">k3</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[77]:</div>
+
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="output_56_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14968,11 +15124,11 @@ is minimized by $\mathbf{A}_k$ among all matrices with rank $\le r$.</p>
 <li><p><strong>Proof of Eckart-Young theorem for the $\ell_2$ norm.</strong></p>
 <p>First we note
 $$
-\|\mathbf{A} - \mathbf{A}_k\| = \left\|\sum_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i' - \sum_{i=1}^k \sigma_i \mathbf{u}_i \mathbf{v}_i' \right\| = \left\|\sum_{i=k+1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i' \right\| = \sigma_{k+1}.
+\|\mathbf{A} - \mathbf{A}_k\|_2 = \left\|\sum_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i' - \sum_{i=1}^k \sigma_i \mathbf{u}_i \mathbf{v}_i' \right\|_2 = \left\|\sum_{i=k+1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i' \right\|_2 = \sigma_{k+1}.
 $$
 We want to show that
 $$
-\|\mathbf{A} - \mathbf{B}\| = \max \frac{\|(\mathbf{A} - \mathbf{B}) \mathbf{x}\|}{\|\mathbf{x}\|} \ge \sigma_{k+1}
+\|\mathbf{A} - \mathbf{B}\|_2 = \max \frac{\|(\mathbf{A} - \mathbf{B}) \mathbf{x}\|}{\|\mathbf{x}\|} \ge \sigma_{k+1}
 $$
 for any $\mathbf{B}$ with $\text{rank}(\mathbf{B}) \le k$. We show this by choosing a particular $\mathbf{x}$ such that 
 $$
@@ -15600,6 +15756,21 @@ subject to the constraint $\mathbf{a} \perp \mathbf{v}_i$ for $i =1,\ldots,k-1$.
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="PCA-example:-genomics">PCA example: genomics<a class="anchor-link" href="#PCA-example:-genomics">&#182;</a></h2><p><img src="http://www.nature.com/nature/journal/v456/n7218/images/nature07331-f1.2.jpg" width="400" align="center"/></p>
 <p>Above picture is from the article <a href="http://www.nature.com/nature/journal/v456/n7218/full/nature07331.html">Genes mirror geography within Europe</a> by Novembre et al (2008) published in <em>Nature</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Matrix-completion">Matrix completion<a class="anchor-link" href="#Matrix-completion">&#182;</a></h2><p>Missing data is ubiquitous. Matrix completion (a hot topic in machine learning) aims to recover the missing values in a huge matrix.</p>
+<p>Candes and Tao proposes a technique to complete a matrix $\mathbf{Y}$ with a large number of missing entries by an optimization problem
+\begin{eqnarray*}
+    &amp;\text{minimize}&amp; \|\mathbf{X}\|_{\text{nuc}} \\
+    &amp;\text{subject to }&amp; x_{ij}=y_{ij} \text{ for all observed entries} y_{ij}.
+\end{eqnarray*}
+That is we seek the matrix with minimal nuclear norm that agrees with the observed entries.</p>
+<p>See an example <a href="http://hua-zhou.github.io/teaching/biostatm280-2019spring/slides/20-juliaopt/juliaopt.html#Example:-matrix-completion">here</a>.</p>
 
 </div>
 </div>
