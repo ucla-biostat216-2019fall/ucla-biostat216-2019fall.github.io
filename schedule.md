@@ -16,6 +16,6 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 | 5 | [10/24](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/24/week5.html) determinant (BR 10) \[[slide](./slides/07-det/07-det.html)\], GE/LU \[[slide](./slides/08-gelu/08-gelu.html)\], QR \[[slide](./slides/09-gsqr/09-gsqr.html)\], eigen-decomposition \[[slide](./slides/10-eig/10-eig.html)\] | [HW3](./hw/hw3/hw3.html) |  
 | 6 | [10/31](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/31/week6.html) positive (semi)definite matrix/Cholesky/Schur complement \[[slide](./slides/11-pd/11-pd.html)\] | |   
 | 7 | [11/7](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/07/week7.html) SVD \[[slide](./slides/12-svd/12-svd.html)\], Kronecker product, vec, vech, communtation, duplication \[[slide](./slides/13-kron/13-kron.html)\] | [HW4](./hw/hw4/hw4.html) |  
-| 8 | 11/14 matrix calculus: differential, Jacobian, Hessian, multiple integrals | |   
+| 8 | [11/14](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/14/week8.html) matrix calculus: differential, Jacobian, Hessian, multiple integrals | |   
 | 9 | 11/21 matrix calculus: chain rule | HW5 + Final |   
 | 10 | 12/5 applications: neural network, image compression, matrix completion, PCA/CCA, clustering, optimization, Google PageRank | |   
