@@ -13480,8 +13480,8 @@ Then</p>
 <ol>
 <li>$\mathcal{C}(\mathbf{A}) = \mathcal{C}(\mathbf{U}_r)$;  $\quad \mathbf{U}_r \mathbf{U}_r'$ is the orthogonal projector into $\mathcal{C}(\mathbf{A})$.</li>
 <li>$\mathcal{N}(\mathbf{A}') = \mathcal{C}(\mathbf{U}_{m-r})$; $\quad \mathbf{U}_{m-r} \mathbf{U}_{m-r}'$ is the orthogonal projector into $\mathcal{N}(\mathbf{A}')$.</li>
-<li>$\mathcal{C}(\mathbf{A}') = \mathcal{C}(\mathbf{V}_{n-r})$; $\quad \mathbf{V}_{n-r} \mathbf{V}_{n-r}'$ is the orthogonal projector into $\mathcal{C}(\mathbf{A}')$.</li>
-<li>$\mathcal{N}(\mathbf{A}) = \mathcal{C}(\mathbf{V}_r)$; $\quad \mathbf{V}_r \mathbf{V}_r'$ is the orthogonal projector into $\mathcal{N}(\mathbf{A})$.</li>
+<li>$\mathcal{C}(\mathbf{A}') = \mathcal{C}(\mathbf{V}_{r})$; $\quad \mathbf{V}_{r} \mathbf{V}_{r}'$ is the orthogonal projector into $\mathcal{C}(\mathbf{A}')$.</li>
+<li>$\mathcal{N}(\mathbf{A}) = \mathcal{C}(\mathbf{V}_{n-r})$; $\quad \mathbf{V}_{n-r} \mathbf{V}_{n-r}'$ is the orthogonal projector into $\mathcal{N}(\mathbf{A})$.</li>
 </ol>
 </li>
 <li><p>$\text{rank}(\mathbf{A}) = r = \text{# positive singular values}$.</p>
@@ -15177,7 +15177,7 @@ is the best rank-$k$ approximation to the original matrix $\mathbf{A}$ in the 3 
 $$
 \|\mathbf{A} - \mathbf{B}\|
 $$
-is minimized by $\mathbf{A}_k$ among all matrices $\mathbf{B}$ with rank $\le r$.</p>
+is minimized by $\mathbf{A}_k$ among all matrices $\mathbf{B}$ with rank $\le k$.</p>
 </li>
 <li><p><strong>Proof of Eckart-Young theorem for the $\ell_2$ norm.</strong></p>
 <p>First we note
@@ -15209,7 +15209,7 @@ There exists such $\mathbf{x}$ because (1) $\mathcal{N}(\mathbf{B})$ has dimensi
 The proof is finished.</p>
 </li>
 <li><p><strong>(Nathan Srebro's) Proof of Eckart-Young theorem for the Frobenius norm.</strong></p>
-<p>Let $\mathbf{B}$ be a matrix of rank $k$. By the rank factorization, $\mathbf{B} = \mathbf{C} \mathbf{R}$, where $\mathbf{C} \in \mathbb{R}^{m \times k}$ and $\mathbf{R} \in \mathbb{R}^{k \times n}$. Using SVD of $\mathbf{B}$, we will assume that $\mathbf{C}$ has orthogonal columns (so $\mathbf{C}' \mathbf{C} = \mathbf{D}$) and $\mathbf{R}$ has orthonormal rows (so $\mathbf{R}' \mathbf{R} = \mathbf{I}$). We want to show $\mathbf{C} = \mathbf{U}_k \boldsymbol{\Sigma}_k$ and $\mathbf{R} = \mathbf{V}_k'$, where $(\boldsymbol{\Sigma}_k, \mathbf{U}_k, \mathbf{V}_k)$ are the top $k$ singular values/vectors of $\mathbf{A}$. 
+<p>Let $\mathbf{B}$ be a matrix of rank $k$. By the rank factorization, $\mathbf{B} = \mathbf{C} \mathbf{R}$, where $\mathbf{C} \in \mathbb{R}^{m \times k}$ and $\mathbf{R} \in \mathbb{R}^{k \times n}$. Using SVD of $\mathbf{B}$, we will assume that $\mathbf{C}$ has orthogonal columns (so $\mathbf{C}' \mathbf{C} = \mathbf{D}$) and $\mathbf{R}$ has orthonormal rows (so $\mathbf{R} \mathbf{R}' = \mathbf{I}_k$). We want to show $\mathbf{C} = \mathbf{U}_k \boldsymbol{\Sigma}_k$ and $\mathbf{R} = \mathbf{V}_k'$, where $(\boldsymbol{\Sigma}_k, \mathbf{U}_k, \mathbf{V}_k)$ are the top $k$ singular values/vectors of $\mathbf{A}$. 
   In order for $\mathbf{B} = \mathbf{C} \mathbf{R}$ to minimize
 $$
 f(\mathbf{C}, \mathbf{R}) = \|\mathbf{A} - \mathbf{C} \mathbf{R}\|_{\text{F}}^2,
@@ -15265,7 +15265,7 @@ Thus the optimal $\mathbf{x}$ must be an eigenvector of $\mathbf{S} = \mathbf{A}
 $$
 \max_{\mathbf{x} \ne \mathbf{0}} \frac{\|\mathbf{A} \mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_1,
 $$
-which is the spectral norm (or $\ell_1$ norm) of a matrix $\mathbf{A}$.</p>
+which is the spectral norm (or $\ell_2$ norm) of a matrix $\mathbf{A}$.</p>
 </li>
 </ul>
 
@@ -15274,7 +15274,7 @@ which is the spectral norm (or $\ell_1$ norm) of a matrix $\mathbf{A}$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span>
@@ -15292,7 +15292,7 @@ which is the spectral norm (or $\ell_1$ norm) of a matrix $\mathbf{A}$.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[45]:</div>
+    <div class="prompt output_prompt">Out[55]:</div>
 
 
 
@@ -15314,11 +15314,11 @@ which is the spectral norm (or $\ell_1$ norm) of a matrix $\mathbf{A}$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">^</span><span class="mi">2</span>
+<span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -15331,13 +15331,13 @@ which is the spectral norm (or $\ell_1$ norm) of a matrix $\mathbf{A}$.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[46]:</div>
+    <div class="prompt output_prompt">Out[61]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>2.882246043493588</pre>
+<pre>1.9120522417287493</pre>
 </div>
 
 </div>
@@ -15383,7 +15383,7 @@ which is the spectral norm (or $\ell_1$ norm) of a matrix $\mathbf{A}$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Asvd</span><span class="o">.</span><span class="n">Vt</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">]</span>
@@ -15400,7 +15400,7 @@ which is the spectral norm (or $\ell_1$ norm) of a matrix $\mathbf{A}$.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[48]:</div>
+    <div class="prompt output_prompt">Out[62]:</div>
 
 
 
@@ -15531,7 +15531,7 @@ are called the <strong>principal components</strong>.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">RDatasets</span><span class="p">,</span> <span class="n">Plots</span><span class="p">,</span> <span class="n">StatsBase</span>
@@ -15555,7 +15555,7 @@ are called the <strong>principal components</strong>.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[50]:</div>
+    <div class="prompt output_prompt">Out[63]:</div>
 
 
 
@@ -15598,7 +15598,66 @@ are called the <strong>principal components</strong>.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">X_labels</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[69]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>150-element Array{CategoricalString{UInt8},1}:
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ &#34;setosa&#34;   
+ ⋮          
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;
+ &#34;virginica&#34;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># center but not scale</span>
@@ -15615,7 +15674,7 @@ are called the <strong>principal components</strong>.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[51]:</div>
+    <div class="prompt output_prompt">Out[64]:</div>
 
 
 
@@ -15658,7 +15717,7 @@ are called the <strong>principal components</strong>.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># Xsvd.V contains the principal components</span>
@@ -15676,7 +15735,7 @@ are called the <strong>principal components</strong>.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[52]:</div>
+    <div class="prompt output_prompt">Out[65]:</div>
 
 
 
@@ -15697,7 +15756,7 @@ are called the <strong>principal components</strong>.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># compute the top 3 principal scores</span>
@@ -15714,7 +15773,7 @@ are called the <strong>principal components</strong>.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[53]:</div>
+    <div class="prompt output_prompt">Out[66]:</div>
 
 
 
@@ -15757,7 +15816,7 @@ are called the <strong>principal components</strong>.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># group results by testing set labels for color coding</span>
@@ -15766,10 +15825,10 @@ are called the <strong>principal components</strong>.</p>
 <span class="n">virginica</span>  <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">X_labels</span> <span class="o">.==</span> <span class="s">&quot;virginica&quot;</span> <span class="p">,</span> <span class="o">:</span><span class="p">]</span>
 
 <span class="c"># visualize first 3 principal components in 3D interacive plot</span>
-<span class="c"># p  = scatter(setosa[:, 1], setosa[:, 2], setosa[:, 3], marker=:circle, linewidth=0)</span>
-<span class="c"># scatter!(versicolor[:, 1], versicolor[:, 2], versicolor[:, 3], marker=:circle, linewidth=0)</span>
-<span class="c"># scatter!(virginica[:, 1], virginica[:, 2], virginica[:, 3], marker=:circle, linewidth=0)</span>
-<span class="c"># plot!(p, xlabel=&quot;PC1&quot;, ylabel=&quot;PC2&quot;, zlabel=&quot;PC3&quot;)</span>
+<span class="n">p</span>  <span class="o">=</span> <span class="n">scatter</span><span class="p">(</span><span class="n">setosa</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">setosa</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">setosa</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">marker</span><span class="o">=:</span><span class="n">circle</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">versicolor</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">versicolor</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">versicolor</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">marker</span><span class="o">=:</span><span class="n">circle</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">scatter!</span><span class="p">(</span><span class="n">virginica</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">virginica</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">virginica</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">marker</span><span class="o">=:</span><span class="n">circle</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;PC1&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;PC2&quot;</span><span class="p">,</span> <span class="n">zlabel</span><span class="o">=</span><span class="s">&quot;PC3&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -15782,39 +15841,907 @@ are called the <strong>principal components</strong>.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[54]:</div>
+    <div class="prompt output_prompt">Out[68]:</div>
 
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Plots.jl</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+    <body>
+            <div id="bce55632-49e4-4226-a450-5032d74ba872" style="width:600px;height:400px;"></div>
+    <script>
+    PLOT = document.getElementById('bce55632-49e4-4226-a450-5032d74ba872');
+    Plotly.plot(PLOT, [
+    {
+        "xaxis": "x1",
+        "colorbar": {
+            "title": ""
+        },
+        "yaxis": "y1",
+        "text": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        "x": [
+            -2.6841256259695343,
+            -2.714141687294324,
+            -2.8889905690592945,
+            -2.745342855641408,
+            -2.728716536554528,
+            -2.280859632844491,
+            -2.820537750740607,
+            -2.626144973146631,
+            -2.886382731780551,
+            -2.672755797820952,
+            -2.506947090651854,
+            -2.612755230908721,
+            -2.786109266188016,
+            -3.2238037438656506,
+            -2.644750389942028,
+            -2.3860390335311314,
+            -2.6235278752244247,
+            -2.648296706254379,
+            -2.1998203236175784,
+            -2.5879863998787664,
+            -2.3102562152425166,
+            -2.5437052287571547,
+            -3.2159394156486094,
+            -2.3027331822262056,
+            -2.3557540491237705,
+            -2.5066689069258197,
+            -2.4688200731213374,
+            -2.562319906196014,
+            -2.6395347153845408,
+            -2.631989387274344,
+            -2.5873984766893505,
+            -2.4099324970021736,
+            -2.6488623343499103,
+            -2.598736749100585,
+            -2.636926878105797,
+            -2.866241652118668,
+            -2.62523804985037,
+            -2.80068411544822,
+            -2.980502043781991,
+            -2.590006313968094,
+            -2.7701024260278992,
+            -2.8493687050431014,
+            -2.9974065465949047,
+            -2.405614485097484,
+            -2.2094892377836777,
+            -2.7144514267577056,
+            -2.538148258998938,
+            -2.839462167642848,
+            -2.5430857498303907,
+            -2.7033597823351574
+        ],
+        "showlegend": true,
+        "mode": "markers",
+        "name": "y1",
+        "zmin": -0.1,
+        "legendgroup": "y1",
+        "z": [
+            0.027914827589413643,
+            0.21046427237824364,
+            -0.017900256320890446,
+            -0.031559373605681194,
+            -0.09007924055120133,
+            -0.16867765820910463,
+            -0.25789215825561806,
+            0.02187931788671958,
+            -0.020759570264780498,
+            0.1976327249881462,
+            0.07531800937912007,
+            -0.10215025995659001,
+            0.2068444304496443,
+            -0.06129967245709951,
+            0.15162752361780943,
+            -0.2777769027031355,
+            -0.13818322788071935,
+            -0.026668315612593953,
+            0.12030552339473102,
+            -0.2136651722247159,
+            0.2394440432449533,
+            -0.2084572324167151,
+            -0.2923967507452423,
+            -0.039123258742880807,
+            -0.12502108270287907,
+            0.25342004234465737,
+            -0.0949105760993919,
+            0.07849420513792409,
+            0.145908895730029,
+            -0.04077107906717938,
+            0.07722298907343554,
+            0.14552497200513081,
+            -0.2256691497201196,
+            -0.15781081295822,
+            0.14304958178613872,
+            0.16433230665302548,
+            0.2683503756939363,
+            -0.09369908247980026,
+            -0.07292704569269283,
+            0.08008230301732581,
+            -0.07724769316110411,
+            0.34923037730596596,
+            -0.1925092117127101,
+            -0.26386794551341564,
+            -0.29874274575510884,
+            0.09767814404562922,
+            -0.16670563660480467,
+            -0.08372684903359352,
+            0.017115024248513282,
+            0.08929400847882445
+        ],
+        "marker": {
+            "symbol": "circle",
+            "color": "rgba(0, 154, 250, 1.000)",
+            "line": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "width": 1
+            },
+            "size": 8
+        },
+        "zmax": 0.1,
+        "y": [
+            -0.31939724658510066,
+            0.17700122506478091,
+            0.14494942608555836,
+            0.318298979251917,
+            -0.3267545129349194,
+            -0.7413304490629149,
+            0.08946138452856968,
+            -0.16338495969832817,
+            0.5783117541867048,
+            0.11377424587411755,
+            -0.6450688986485738,
+            -0.01472993916137389,
+            0.23511200020171913,
+            0.5113945870063833,
+            -1.1787646364375752,
+            -1.3380623304006525,
+            -0.8106795141812575,
+            -0.3118491445933543,
+            -0.872839038962211,
+            -0.5135603087492765,
+            -0.3913459356538941,
+            -0.43299606327902773,
+            -0.1334680695385249,
+            -0.09870885481409902,
+            0.037281859677383095,
+            0.1460168804952683,
+            -0.13095148943524973,
+            -0.3677188574341996,
+            -0.3120399802352825,
+            0.1969612249243153,
+            0.20431849127413412,
+            -0.4109242642295726,
+            -0.8133638202969619,
+            -1.0931457594493568,
+            0.1213223478658639,
+            -0.06936447158008001,
+            -0.5993700213794234,
+            -0.26864373779798173,
+            0.4879583444286164,
+            -0.22904383682701215,
+            -0.26352753374425586,
+            0.940960573641198,
+            0.3419260574716109,
+            -0.1888714289302598,
+            -0.4366631416391875,
+            0.25020820418521184,
+            -0.5037711444614372,
+            0.22794556949382852,
+            -0.5794100215198891,
+            -0.10770608249941108
+        ],
+        "type": "scatter3d",
+        "hoverinfo": "text"
+    },
+    {
+        "xaxis": "x1",
+        "colorbar": {
+            "title": ""
+        },
+        "yaxis": "y1",
+        "text": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        "x": [
+            1.2848256888583531,
+            0.9324885323123201,
+            1.4643023219913958,
+            0.18331771995837243,
+            1.0881032577116674,
+            0.6416690842580794,
+            1.0950606626324486,
+            -0.7491226698296554,
+            1.0441318260534371,
+            -0.008745404082894086,
+            -0.5078408838353241,
+            0.5116985574475992,
+            0.26497650811204826,
+            0.984934510470892,
+            -0.173925371681766,
+            0.9278607809442492,
+            0.6602837616969387,
+            0.23610499331767343,
+            0.9447337280198149,
+            0.04522697629870167,
+            1.1162831773500514,
+            0.3578884179973091,
+            1.2981838753589154,
+            0.9217289224470387,
+            0.7148533259114134,
+            0.900174373172169,
+            1.3320244367220901,
+            1.557802155066072,
+            0.8132906498175432,
+            -0.30558377802430725,
+            -0.06812649206836177,
+            -0.18962247237850008,
+            0.13642871155801672,
+            1.3800264359155128,
+            0.5880064433398654,
+            0.806858312500414,
+            1.2206908824443548,
+            0.8150952357666014,
+            0.2459576798866943,
+            0.16641321714545868,
+            0.46480028840378107,
+            0.8908151984694512,
+            0.2305480235594572,
+            -0.7045317592446618,
+            0.35698149470104884,
+            0.3319344799450602,
+            0.3762156510666722,
+            0.6425760075543396,
+            -0.9064698649488342,
+            0.2990008418781451
+        ],
+        "showlegend": true,
+        "mode": "markers",
+        "name": "y2",
+        "zmin": -0.1,
+        "legendgroup": "y2",
+        "z": [
+            0.4065680254676944,
+            0.01801418664624041,
+            0.3383257649808964,
+            0.17959139187535517,
+            0.30775789623478494,
+            -0.04107609082395606,
+            -0.1698102398605751,
+            -0.012302919237595617,
+            0.4153360847593977,
+            -0.28114143117641,
+            0.2698171827688523,
+            -0.13054775024048615,
+            0.6941468301444189,
+            0.062114408322261075,
+            -0.09045769072570456,
+            0.3146209758321724,
+            -0.3280275283785952,
+            0.2711618372510667,
+            0.4995190464851128,
+            0.23500210497205573,
+            -0.459620991359104,
+            0.2298538876089515,
+            0.3478543522573081,
+            0.23107177773628473,
+            0.321800937244474,
+            0.3162090737115742,
+            0.5217027796644195,
+            0.1649209837435804,
+            -0.03542450484616019,
+            0.3184915806230469,
+            0.24421381043355433,
+            0.3064205612176582,
+            0.17724276601124422,
+            -0.016167127520728783,
+            -0.4444334986398079,
+            -0.3889630630982106,
+            0.2371670098838759,
+            0.6147208425918221,
+            -0.18836681164619481,
+            0.06000922585533797,
+            0.024306855718951588,
+            0.009946932894348854,
+            0.22941024143915648,
+            0.10569114890301941,
+            -0.016617170198265606,
+            -0.0832042908956767,
+            -0.07799635108767569,
+            0.2053949669832608,
+            0.012599647557889906,
+            -0.01058166049557071
+        ],
+        "marker": {
+            "symbol": "circle",
+            "color": "rgba(227, 111, 71, 1.000)",
+            "line": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "width": 1
+            },
+            "size": 8
+        },
+        "zmax": 0.1,
+        "y": [
+            -0.6851604704673098,
+            -0.31833363826262967,
+            -0.5042628153092051,
+            0.8279590118206321,
+            -0.07459067519771699,
+            0.41824687156867846,
+            -0.28346827006152975,
+            1.0048909611818957,
+            -0.22836189978839644,
+            0.7230819050048344,
+            1.265971190526394,
+            0.10398123549904006,
+            0.5500364636804744,
+            0.12481785412635683,
+            0.25485420870258924,
+            -0.46717949444151136,
+            0.3529696657238502,
+            0.3336107668249151,
+            0.543145550779766,
+            0.5838343774718643,
+            0.0846168521947876,
+            0.06892503165601352,
+            0.3277873083339167,
+            0.18273779362136688,
+            -0.14905594436978545,
+            -0.3285044738343241,
+            -0.24444087601634454,
+            -0.2674954473102556,
+            0.16335030068761583,
+            0.3682621897545879,
+            0.7051721317994655,
+            0.6802867635281334,
+            0.3140324382492365,
+            0.4209542873138814,
+            0.4842874199812182,
+            -0.19418231471315134,
+            -0.407619593611008,
+            0.3720370599095012,
+            0.26852439662201477,
+            0.6819267248636266,
+            0.6707115445117203,
+            0.0344644443682683,
+            0.40438584800732497,
+            1.0122482275317144,
+            0.5049100933371086,
+            0.21265468378116958,
+            0.29321892925141874,
+            -0.017738190112416837,
+            0.7560933665990144,
+            0.3488978064503357
+        ],
+        "type": "scatter3d",
+        "hoverinfo": "text"
+    },
+    {
+        "xaxis": "x1",
+        "colorbar": {
+            "title": ""
+        },
+        "yaxis": "y1",
+        "text": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        "x": [
+            2.5311927278036297,
+            1.4152358767039042,
+            2.6166760159956914,
+            1.9715310530434371,
+            2.3500059200446417,
+            3.39703873605326,
+            0.5212322439097756,
+            2.9325870689936906,
+            2.321228816573379,
+            2.916750966786074,
+            1.661774153636533,
+            1.8034019529650926,
+            2.1655917960801467,
+            1.3461635794584532,
+            1.5859282238732226,
+            1.9044563747934287,
+            1.9496890593990708,
+            3.4870553642902813,
+            3.795645422072885,
+            1.3007917126376587,
+            2.427817913066047,
+            1.1990011054655623,
+            3.4999200389245395,
+            1.3887661316914668,
+            2.2754305038722062,
+            2.614090473810833,
+            1.2585081605114894,
+            1.2911320591150226,
+            2.1236087227738962,
+            2.388003016003469,
+            2.8416727781038724,
+            3.2306736614320943,
+            2.1594376424890513,
+            1.4441612423295114,
+            1.7812948100451138,
+            3.076499931687189,
+            2.1442433143020834,
+            1.9050981488140772,
+            1.1693263393415019,
+            2.1076111432572437,
+            2.3141547052356013,
+            1.9222678009026026,
+            1.4152358767039042,
+            2.5630133750774773,
+            2.4187461827328267,
+            1.9441097945469696,
+            1.5271666148145189,
+            1.7643457170444308,
+            1.9009416142184252,
+            1.3901888619479155
+        ],
+        "showlegend": true,
+        "mode": "markers",
+        "name": "y3",
+        "zmin": -0.1,
+        "legendgroup": "y3",
+        "z": [
+            -0.7601654272458952,
+            -0.2963225273879645,
+            0.11078788321910919,
+            -0.10842466246342289,
+            -0.28538956318444125,
+            0.34843755579746755,
+            -0.545659295646813,
+            0.42023993576796825,
+            0.348304394934845,
+            -0.42333541768255817,
+            -0.24244018972576895,
+            0.03764816823148244,
+            -0.033326641844325114,
+            -0.2819028821184649,
+            -0.6290293264080106,
+            -0.47963981962659047,
+            -0.04418616763012199,
+            -0.13389487393609775,
+            0.5137677638178048,
+            0.34499503831341793,
+            -0.2191193243019431,
+            -0.511855508697001,
+            0.5731822425680029,
+            0.0645227566312683,
+            -0.28615009116914975,
+            0.2055345243536251,
+            -0.045847703927249996,
+            -0.23125646265997044,
+            -0.15418002392883007,
+            0.4495301919418501,
+            0.498898075870769,
+            0.11454820547541966,
+            -0.20876316713083767,
+            0.15323388806308996,
+            0.17287518911341973,
+            0.3355922924345413,
+            -0.734878936725511,
+            -0.16218023577073695,
+            -0.2818358402084804,
+            -0.02729113214163055,
+            -0.32269374717305893,
+            -0.11358659579935645,
+            -0.2963225273879645,
+            -0.2925695245967426,
+            -0.5044826639771799,
+            -0.17782509063265747,
+            0.12189817186718173,
+            -0.13048163128784807,
+            -0.723251563489917,
+            -0.36290964808537574
+        ],
+        "marker": {
+            "symbol": "circle",
+            "color": "rgba(62, 164, 78, 1.000)",
+            "line": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "width": 1
+            },
+            "size": 8
+        },
+        "zmax": 0.1,
+        "y": [
+            0.009849109498801195,
+            0.5749163475464891,
+            -0.34390315134173566,
+            0.17972790435224467,
+            0.0402609471425301,
+            -0.5508366730280573,
+            1.1927587270006457,
+            -0.355500002977498,
+            0.24383150231068965,
+            -0.7827919488152798,
+            -0.24222840775506785,
+            0.21563761733355463,
+            -0.21627558507402578,
+            0.7768183473443393,
+            0.5396407140267184,
+            -0.11925069209197345,
+            -0.04194325966321233,
+            -1.1757393297134313,
+            -0.2573229734204813,
+            0.761149636435063,
+            -0.3781960126170518,
+            0.6060915277579303,
+            -0.4606740989118971,
+            0.2043993273521503,
+            -0.33499060582167844,
+            -0.5609013551230793,
+            0.1797047947227461,
+            0.11666865117401089,
+            0.2097294766773019,
+            -0.4646398047087378,
+            -0.37526916719510484,
+            -1.3741650867930495,
+            0.2172775786690483,
+            0.14341341045758002,
+            0.4999016810781358,
+            -0.6880856775711776,
+            -0.1400642010897907,
+            -0.04930052601303109,
+            0.16499026202310912,
+            -0.3722878719607987,
+            -0.18365127916901983,
+            -0.4092034668160631,
+            0.5749163475464891,
+            -0.2778626029291959,
+            -0.30479819785469303,
+            -0.18753230280060607,
+            0.37531698258048785,
+            -0.07885885451847661,
+            -0.11662795851202432,
+            0.28266093799055014
+        ],
+        "type": "scatter3d",
+        "hoverinfo": "text"
+    }
+]
+, {
+    "showlegend": true,
+    "paper_bgcolor": "rgba(255, 255, 255, 1.000)",
+    "annotations": [],
+    "height": 400,
+    "margin": {
+        "l": 0,
+        "b": 20,
+        "r": 0,
+        "t": 20
+    },
+    "plot_bgcolor": "rgba(255, 255, 255, 1.000)",
+    "scene": {
+        "camera": {
+            "eye": {
+                "y": -1.9499999999999997,
+                "z": 1.3,
+                "x": 1.12583302491977
+            }
+        },
+        "xaxis": {
+            "showticklabels": true,
+            "gridwidth": 0.5,
+            "tickvals": [
+                -2.0,
+                0.0,
+                2.0,
+                4.0
+            ],
+            "visible": true,
+            "ticks": "inside",
+            "range": [
+                -3.4343872188438067,
+                4.006228897051041
+            ],
+            "domain": [
+                0.09128390201224845,
+                0.9934383202099738
+            ],
+            "tickmode": "array",
+            "linecolor": "rgba(0, 0, 0, 1.000)",
+            "showgrid": true,
+            "title": "PC1",
+            "mirror": false,
+            "tickangle": 0,
+            "showline": true,
+            "gridcolor": "rgba(0, 0, 0, 0.100)",
+            "titlefont": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "family": "sans-serif",
+                "size": 15
+            },
+            "tickcolor": "rgb(0, 0, 0)",
+            "ticktext": [
+                "-2",
+                "0",
+                "2",
+                "4"
+            ],
+            "zeroline": false,
+            "type": "-",
+            "tickfont": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "family": "sans-serif",
+                "size": 11
+            },
+            "zerolinecolor": "rgba(0, 0, 0, 1.000)",
+            "anchor": "y1"
+        },
+        "yaxis": {
+            "showticklabels": true,
+            "gridwidth": 0.5,
+            "tickvals": [
+                -1.0,
+                -0.5,
+                0.0,
+                0.5,
+                1.0
+            ],
+            "visible": true,
+            "ticks": "inside",
+            "range": [
+                -1.4533691751126327,
+                1.3451752788459772
+            ],
+            "domain": [
+                0.07581474190726165,
+                0.9901574803149606
+            ],
+            "tickmode": "array",
+            "linecolor": "rgba(0, 0, 0, 1.000)",
+            "showgrid": true,
+            "title": "PC2",
+            "mirror": false,
+            "tickangle": 0,
+            "showline": true,
+            "gridcolor": "rgba(0, 0, 0, 0.100)",
+            "titlefont": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "family": "sans-serif",
+                "size": 15
+            },
+            "tickcolor": "rgb(0, 0, 0)",
+            "ticktext": [
+                "-1.0",
+                "-0.5",
+                "0.0",
+                "0.5",
+                "1.0"
+            ],
+            "zeroline": false,
+            "type": "-",
+            "tickfont": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "family": "sans-serif",
+                "size": 11
+            },
+            "zerolinecolor": "rgba(0, 0, 0, 1.000)",
+            "anchor": "x1"
+        },
+        "zaxis": {
+            "showticklabels": true,
+            "gridwidth": 0.5,
+            "tickvals": [
+                -0.6000000000000001,
+                -0.30000000000000004,
+                0.0,
+                0.30000000000000004,
+                0.6000000000000001
+            ],
+            "visible": true,
+            "ticks": "inside",
+            "range": [
+                -0.8037947949676046,
+                0.7377761978661284
+            ],
+            "tickmode": "array",
+            "linecolor": "rgba(0, 0, 0, 1.000)",
+            "showgrid": true,
+            "title": "PC3",
+            "mirror": false,
+            "tickangle": 0,
+            "showline": true,
+            "gridcolor": "rgba(0, 0, 0, 0.100)",
+            "titlefont": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "family": "sans-serif",
+                "size": 15
+            },
+            "tickcolor": "rgb(0, 0, 0)",
+            "ticktext": [
+                "-0.6",
+                "-0.3",
+                "0.0",
+                "0.3",
+                "0.6"
+            ],
+            "zeroline": false,
+            "type": "-",
+            "tickfont": {
+                "color": "rgba(0, 0, 0, 1.000)",
+                "family": "sans-serif",
+                "size": 11
+            },
+            "zerolinecolor": "rgba(0, 0, 0, 1.000)"
+        }
+    },
+    "legend": {
+        "tracegroupgap": 0,
+        "bordercolor": "rgba(0, 0, 0, 1.000)",
+        "bgcolor": "rgba(255, 255, 255, 1.000)",
+        "font": {
+            "color": "rgba(0, 0, 0, 1.000)",
+            "family": "sans-serif",
+            "size": 11
+        },
+        "y": 1.0,
+        "x": 1.0
+    },
+    "width": 600
+}
+);
+    </script>
 
-<div class="output_text output_subarea output_execute_result">
-<pre>50×3 Array{Float64,2}:
- 2.53119    0.00984911  -0.760165 
- 1.41524    0.574916    -0.296323 
- 2.61668   -0.343903     0.110788 
- 1.97153    0.179728    -0.108425 
- 2.35001    0.0402609   -0.28539  
- 3.39704   -0.550837     0.348438 
- 0.521232   1.19276     -0.545659 
- 2.93259   -0.3555       0.42024  
- 2.32123    0.243832     0.348304 
- 2.91675   -0.782792    -0.423335 
- 1.66177   -0.242228    -0.24244  
- 1.8034     0.215638     0.0376482
- 2.16559   -0.216276    -0.0333266
- ⋮                                
- 1.16933    0.16499     -0.281836 
- 2.10761   -0.372288    -0.0272911
- 2.31415   -0.183651    -0.322694 
- 1.92227   -0.409203    -0.113587 
- 1.41524    0.574916    -0.296323 
- 2.56301   -0.277863    -0.29257  
- 2.41875   -0.304798    -0.504483 
- 1.94411   -0.187532    -0.177825 
- 1.52717    0.375317     0.121898 
- 1.76435   -0.0788589   -0.130482 
- 1.90094   -0.116628    -0.723252 
- 1.39019    0.282661    -0.36291  </pre>
+    </body>
+</html>
+
 </div>
 
 </div>
