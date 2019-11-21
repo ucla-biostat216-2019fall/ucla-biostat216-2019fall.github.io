@@ -13370,7 +13370,20 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example:-MLE-of-multivariate-normal-model">Example: MLE of multivariate normal model<a class="anchor-link" href="#Example:-MLE-of-multivariate-normal-model">&#182;</a></h2><p>TODO</p>
+<h2 id="Example:-MLE-of-multivariate-normal-model">Example: MLE of multivariate normal model<a class="anchor-link" href="#Example:-MLE-of-multivariate-normal-model">&#182;</a></h2><p>Let $\mathbf{y}_1, \ldots, \mathbf{y}_n$ be iid samples from a multivariate normal distribution $N(\boldsymbol{\mu}, \boldsymbol{\Omega})$. The log-likelihood is
+$$
+L(\boldsymbol{\mu}, \boldsymbol{\Omega}) = - \frac n2 \log \det \boldsymbol{\Omega} - \frac 12 \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})' \boldsymbol{\Omega}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}).
+$$
+We want to maximize $L(\boldsymbol{\mu}, \boldsymbol{\Omega})$ or minimize
+$$
+f(\boldsymbol{\mu}, \boldsymbol{\Omega}) = - L(\boldsymbol{\mu}, \boldsymbol{\Omega}) = \frac n2 \log \det \boldsymbol{\Omega} + \frac 12 \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})' \boldsymbol{\Omega}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}).
+$$
+The MLE is achieved by
+\begin{eqnarray*}
+\widehat{\boldsymbol{\mu}} &amp;=&amp; \frac{\sum_{i=1}^n \mathbf{y}_i}{n} \\
+\widehat{\boldsymbol{\Omega}} &amp;=&amp; \frac{\sum_{i=1}^n (\mathbf{y}_i - \hat{\boldsymbol{\mu}})(\mathbf{y}_i - \hat{\boldsymbol{\mu}})'}{n}.
+\end{eqnarray*}</p>
+<p>TODO: derivation.</p>
 
 </div>
 </div>
@@ -13378,7 +13391,34 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example:-MLE-of-multinomial-model">Example: MLE of multinomial model<a class="anchor-link" href="#Example:-MLE-of-multinomial-model">&#182;</a></h2><p>TODO</p>
+<h2 id="Example:-MLE-of-multinomial-model">Example: MLE of multinomial model<a class="anchor-link" href="#Example:-MLE-of-multinomial-model">&#182;</a></h2><p>Consider a multinomial experiment with $n$ trials and observed outcomes $n_1, \ldots, n_m$ over $m$ categories. The maximum likelihood estimate (MLE) seeks maximizer of likelihood
+$$
+L(p_1,\ldots,p_m) = \binom{n}{n_1 \cdots n_m} \prod_{i=1}^m p_i^{n_i}.
+$$
+To minimize the negative log-likelihood
+$$</p>
+<ul>
+<li>\log L(p_1,\ldots,p_m) = - \log \binom{n}{n_1 \cdots n<em>m} - \sum</em>{i=1}^m n_i \log p_i
+$$
+subject to constraint $p_1 + \cdots + p_m = 1$, we find the statinary point of Lagrangian
+$$
+L(\mathbf{p}, \lambda) = - \log \binom{n}{n_1 \cdots n<em>m} - \sum</em>{i=1}^m n_i \log p<em>i + \lambda \left( \sum</em>{i=1}^m p_i - 1 \right).
+$$
+Solving
+$$
+\frac{\partial}{\partial p_i} L = - \frac{n_i}{p_i} + \lambda = 0
+$$
+gives
+$$
+\frac{n_i}{p_i} = \lambda.
+$$
+Combining with constraint $\sum_i p_i=1$ yields
+\begin{eqnarray*}
+p_i^\star &amp;=&amp; \frac{n_i}{n}, \quad i=1,\ldots,m, \\
+\lambda^\star &amp;=&amp; n.
+\end{eqnarray*}
+Note the nonnegativity constraint is automatically satisfied.</li>
+</ul>
 
 </div>
 </div>
