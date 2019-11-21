@@ -13138,7 +13138,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Neural-Network-and-Backpropagation">Neural Network and Backpropagation<a class="anchor-link" href="#Neural-Network-and-Backpropagation">&#182;</a></h1>
+<h1 id="Neural-Network-and-Backpropagation-(Chain-Rule)">Neural Network and Backpropagation (Chain Rule)<a class="anchor-link" href="#Neural-Network-and-Backpropagation-(Chain-Rule)">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13156,9 +13156,9 @@ $( document ).ready(function(){
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Learning-sources">Learning sources<a class="anchor-link" href="#Learning-sources">&#182;</a></h2><ul>
-<li><p><em>Elements of Statistical Learning</em> (ESL) Chapter 11: <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">https://web.stanford.edu/~hastie/ElemStatLearn/</a>.</p>
+<li><p><a href="https://math.mit.edu/~gs/learningfromdata/"><em>Linear Algebra and Learning from Data</em></a> by Gill Strang.</p>
 </li>
-<li><p><em>Linear Algebra and Learning from Data</em> by Gill Strang.</p>
+<li><p><em>Elements of Statistical Learning</em> (ESL) Chapter 11: <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">https://web.stanford.edu/~hastie/ElemStatLearn/</a>.</p>
 </li>
 <li><p>UFLDL: <a href="http://ufldl.stanford.edu/tutorial/">http://ufldl.stanford.edu/tutorial/</a>.</p>
 </li>
@@ -13217,7 +13217,7 @@ $$</p>
 $$
 \mathbf{v}_1 \mapsto \mathbf{A}_2 \mathbf{v}_1 + \mathbf{b}_2,
 $$ 
-where $\mathbf{A}_2 \in \mathbb{R}^{K \times q}$ and $\mathbf{b}_2 \in \mathbb{K}$.</p>
+where $\mathbf{A}_2 \in \mathbb{R}^{K \times q}$ and $\mathbf{b}_2 \in \mathbb{R}^K$.</p>
 </li>
 <li><p><strong>Loss function</strong>: A loss function $L(\mathbf{w}, \mathbf{y})$ that measures the fitness of the output $\mathbf{w}$ to training labels.</p>
 </li>
@@ -13242,11 +13242,11 @@ $$
 </li>
 </ul>
 </li>
-<li><p><strong>Loss function</strong>: Given training data $(\mathbf{v}_{01}, y_1), \ldots, (\mathbf{v}_{0n}, y_n)$, the loss function $L$ can be:</p>
+<li><p><strong>Loss function</strong>: Given training data $(\mathbf{v}_{0,1}, y_1), \ldots, (\mathbf{v}_{0,n}, y_n)$, the loss function $L$ can be:</p>
 <ul>
-<li><p>Sum of squares error (SSE):
+<li><p>Sum of squared error (SSE):
 $$
-L = \sum_{k=1}^K \sum_{i=1}^n [y_{ik} - w_{ik}]^2.
+L = \frac 12 \sum_{k=1}^K \sum_{i=1}^n [y_{ik} - w_{ik}]^2.
 $$</p>
 </li>
 <li><p>Cross-entropy (deviance):
@@ -13260,27 +13260,29 @@ $$</p>
 </li>
 </ul>
 </li>
-<li><p>Model fitting: <strong>back-propagation</strong> (gradient descent)</p>
+<li><p>Model fitting: <strong>back-propagation</strong> (gradient descent) to find the weights $\mathbf{A}_i, \mathbf{b}_i$ that minimize the loss function.</p>
 <ul>
-<li><p>For notational simplicity, let's ignore the bias/intercept term $\mathbf{b}_1$. Then the network structure is
+<li>For notational simplicity, let's ignore the bias/intercept term $\mathbf{b}_1$.  </li>
+<li><p>Then the network structure is
 $$
-\mathbf{v}_0 \mapsto \mathbf{A}_1 \mathbf{v}_0 \mapsto \mathbf{v}_1 = \sigma(\mathbf{A}_1 \mathbf{v}_0) = F_1(\mathbf{v}_0) \mapsto \mathbf{w} = \mathbf{A}_2 \mathbf{v}_1 = F_2(\mathbf{v}_1) \mapsto L(\mathbf{w}, \mathbf{y})
+\mathbf{v}_0 \mapsto \mathbf{v}_1 = \mathbf{A}_1 \mathbf{v}_0 \mapsto \mathbf{w} = \mathbf{A}_2 \sigma(\mathbf{v}_1) \mapsto L(\mathbf{w}, \mathbf{y})
 $$
 or
 $$
-L(\mathbf{v}_0, \mathbf{y}) = L(F_2(F_1(\mathbf{v}_0)), \mathbf{y}).
+L(\mathbf{v}_0, \mathbf{y}) = L(\mathbf{A}_2\sigma(\mathbf{A}_1\mathbf{v}_0), \mathbf{y}).
 $$</p>
 </li>
-<li><p>Consider sum of squares error with $K=1$
+<li><p>Consider the sum of squared error with $K=1$
 \begin{eqnarray*}
 L = \sum_i L_i, \text{ where } L_i &amp;=&amp; (y_i - w_i)^2.
 \end{eqnarray*}</p>
 </li>
 <li><p>The derivatives for the $i$-th training data point:
 \begin{eqnarray*}
-\frac{\partial L_i}{\partial \mathbf{A}_2} &amp;=&amp; \frac{\partial L_i}{\partial w_i} \cdot \frac{\partial w_i}{\partial \mathbf{A}_2} = -2 (y_{i} - w_i) \mathbf{v}_1' \\
-\frac{\partial L_i}{\partial \mathbf{A}_1} &amp;=&amp; \frac{\partial L_i}{\partial w_i} \cdot \frac{\partial w_i}{\partial \mathbf{v}_1} \cdot \frac{\partial \mathbf{v}_1}{\partial \mathbf{A}_1} = -2 (y_{i} - w_i) \text{diag}(\sigma'(\mathbf{v}_1)) \mathbf{A}_2' \mathbf{v}_0'.
-\end{eqnarray*}</p>
+\frac{\partial L_i}{\partial \mathbf{A}_2} &amp;=&amp; \frac{\partial L_i}{\partial w_i} \cdot \frac{\partial w_i}{\partial \mathbf{A}_2} = - (y_{i} - w_i) \sigma(\mathbf{v}_{1,i}) \\
+\frac{\partial L_i}{\partial \mathbf{A}_1} &amp;=&amp; \frac{\partial L_i}{\partial w_i} \cdot \frac{\partial w_i}{\partial \mathbf{v}_{1,i}} \cdot \frac{\partial \mathbf{v}_{1,i}}{\partial \mathbf{A}_1} = - (y_{i} - w_i) \text{diag}(\sigma'(\mathbf{v}_{1,i})) \mathbf{A}_2' \mathbf{v}_{0,i}'.
+\end{eqnarray*}<br>
+Above is <em>bad</em> notation. Next lecture we learn how to derive chain rule properly.</p>
 </li>
 <li><p>Gradient descent update:
 \begin{eqnarray*}
@@ -13303,8 +13305,8 @@ where $s^{(t)}$ is the <strong>learning rate</strong>.</p>
 <!-- - Alternative fitting methods: conjugate gradients, variable metric methods. -->
 
 <ul>
-<li><p>Stochastic gradient descent (<strong>SGD</strong>). In real machine learning applications, training set can be large. Back-propagation over all training cases can be expensive. Learning can also be carried out <strong>online</strong> — processing each batch one at a time, updating the gradient after each training batch, and cycling through the training cases many times. A training <strong>epoch</strong> refers to one sweep through the entire training set.</p>
-<p><strong>AdaGrad</strong> and <strong>RMSProp</strong> improve the stability of SGD by trying to incorpoate Hessian information in a computationally cheap way.</p>
+<li><p>Stochastic gradient descent (<strong>SGD</strong>). In real machine learning applications, training set can be large. Backpropagation over all training cases can be expensive. Learning can also be carried out <strong>online</strong> — processing each batch one at a time, updating the gradient after each training batch, and cycling through the training cases many times. A training <strong>epoch</strong> refers to one sweep through the entire training set.</p>
+<p><strong>AdaGrad</strong>, <strong>RMSProp</strong>, and <strong>ADAM</strong> improve the stability of SGD by trying to incorpoate Hessian information in a computationally cheap way.</p>
 </li>
 </ul>
 
@@ -13316,6 +13318,12 @@ where $s^{(t)}$ is the <strong>learning rate</strong>.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Expressivity-of-neural-network">Expressivity of neural network<a class="anchor-link" href="#Expressivity-of-neural-network">&#182;</a></h2><ul>
 <li><p>Playground: <a href="http://playground.tensorflow.org">http://playground.tensorflow.org</a></p>
+</li>
+<li><p>Sources:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1606.05336">On the expressive power of deep neural network</a>.  </li>
+<li><a href="https://arxiv.org/abs/1312.6098">On the number of response regions of deep feed forward networks with piece-wise linear activations</a>.  </li>
+</ul>
 </li>
 <li><p>Consider the function $F: \mathbb{R}^m \mapsto \mathbb{R}^n$
 $$
