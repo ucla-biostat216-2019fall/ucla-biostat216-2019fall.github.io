@@ -13186,7 +13186,7 @@ Same identity holds for generalized inverses as well.</p>
 </li>
 </ol>
 </li>
-<li><p><strong>Eigenvalues of Kronecker product.</strong> Let $\mathbf{A}$ be an $m \times m$ matrix with eigenvalues $\lambda_1,\ldots, \lambda_m$, and $\mathbf{B}$ a $p \times p$ matrix with eigenvalues $\mu_1, \ldots, \mu_p$. Then the $mp$ eigenvalues of $\mathbf{A} \times \mathbf{B}$ are $\lambda_i \mu_j$, $i=1,\ldots,m$, $j=1,\ldots,p$.</p>
+<li><p><strong>Eigenvalues of Kronecker product.</strong> Let $\mathbf{A}$ be an $m \times m$ matrix with eigenvalues $\lambda_1,\ldots, \lambda_m$, and $\mathbf{B}$ a $p \times p$ matrix with eigenvalues $\mu_1, \ldots, \mu_p$. Then the $mp$ eigenvalues of $\mathbf{A} \otimes \mathbf{B}$ are $\lambda_i \mu_j$, $i=1,\ldots,m$, $j=1,\ldots,p$.</p>
 </li>
 </ul>
 
@@ -13405,6 +13405,42 @@ eigenvectors:
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="p">[</span><span class="n">Aeig</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Beig</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3×5 Array{Float64,2}:
+  4.82776  -0.444568  -1.02478   -3.08374  -6.51727
+  2.89789  -0.266854  -0.615129  -1.85103  -3.91202
+ -4.33973   0.399628   0.921187   2.77201   5.85846</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13490,7 +13526,16 @@ $$
 )' (\mathbf{C}' \otimes \mathbf{A}) (\text{vec} \, \mathbf{B}) = (\text{vec} \, \mathbf{D})' (\mathbf{A} \otimes \mathbf{C}') (\text{vec} \, \mathbf{B}').
 $$</p>
 </li>
-<li><p>For a symmetric $n \times n$ matrix
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="vech-operator">vech operator<a class="anchor-link" href="#vech-operator">&#182;</a></h2><ul>
+<li>For a symmetric $n \times n$ matrix
 $$
 \mathbf{A} = \begin{pmatrix}
 a_{11} &amp; \cdots &amp; a_{1n} \\
@@ -13503,12 +13548,89 @@ $$
 \text{vech} \, \mathbf{A} = \begin{pmatrix}
 a_{11} \\ a_{21} \\ \vdots \\ a_{n1} \\ a_{22} \\ a_{32} \\ \vdots \\ a_{n2} \\ a_{33} \\ \vdots \\ a_{nn}
 \end{pmatrix}.
-$$</p>
-</li>
+$$</li>
 </ul>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LinearAlgebra</span><span class="p">,</span> <span class="n">Permutations</span>
+
+<span class="n">vech</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">≥</span> <span class="n">j</span><span class="p">]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3×3 Array{Float64,2}:
+  0.333068   -0.474861   -0.254432
+  1.66378     0.0561321  -0.529029
+ -0.0676266   0.0104737  -0.904305</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">vech</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6-element Array{Float64,1}:
+  0.3330681151463122  
+  1.6637814534906514  
+ -0.06762655185911629 
+  0.05613206900523923 
+  0.010473695134034552
+ -0.9043054412667461  </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13517,8 +13639,9 @@ $$</p>
 <li><p>Let $\mathbf{A} \in \mathbb{R}^{m \times n}$. $\text{vec} \, \mathbf{A}$ and $\text{vec} \, \mathbf{A}'$ clearly contain the same $mn$ components. There exists a unique $mn \times mn$ permutation matrix that transforms $\text{vec} \, \mathbf{A}$ to $\text{vec} \, \mathbf{A}'$. We denote it $\mathbf{K}_{mn}$
 $$
   \mathbf{K}_{mn} \text{vec} \, \mathbf{A} = \text{vec} \mathbf{A}'.
-$$
-Since $\mathbf{K}_{mn}$ is an $mn \times mn$ permutation matrix, it is orthogonal, i.e.,
+$$</p>
+</li>
+<li><p>Since $\mathbf{K}_{mn}$ is an $mn \times mn$ permutation matrix, it is orthogonal, i.e.,
 $$
   \mathbf{K}_{mn}^{-1} = \mathbf{K}_{mn}' = \mathbf{K}_{nm}.
 $$
@@ -13527,6 +13650,241 @@ $$
   \mathbf{K}_{n1} = \mathbf{K}_{1n} = \mathbf{I}_n.
 $$</p>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2×3 Array{Int64,2}:
+ 1  3  5
+ 2  4  6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">vec</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6-element Array{Int64,1}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">vec</span><span class="p">(</span><span class="n">A</span><span class="o">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6-element reshape(::Adjoint{Int64,Array{Int64,2}}, 6) with eltype Int64:
+ 1
+ 3
+ 5
+ 2
+ 4
+ 6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">K23</span> <span class="o">=</span> <span class="kt">Matrix</span><span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">Permutation</span><span class="p">(</span><span class="n">vec</span><span class="p">(</span><span class="n">A</span><span class="o">&#39;</span><span class="p">))))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6×6 Array{Int64,2}:
+ 1  0  0  0  0  0
+ 0  0  1  0  0  0
+ 0  0  0  0  1  0
+ 0  1  0  0  0  0
+ 0  0  0  1  0  0
+ 0  0  0  0  0  1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">K23</span> <span class="o">*</span> <span class="n">vec</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="n">vec</span><span class="p">(</span><span class="n">A</span><span class="o">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>true</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># for general m, n</span>
+<span class="n">commutation</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="kt">Matrix</span><span class="p">(</span><span class="n">Permutation</span><span class="p">(</span><span class="n">vec</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">&#39;</span><span class="p">)))</span><span class="o">&#39;</span>
+<span class="n">K23</span> <span class="o">=</span> <span class="n">commutation</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6×6 Adjoint{Int64,Array{Int64,2}}:
+ 1  0  0  0  0  0
+ 0  0  1  0  0  0
+ 0  0  0  0  1  0
+ 0  1  0  0  0  0
+ 0  0  0  1  0  0
+ 0  0  0  0  0  1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li><p><strong>Commutation matrix allows us to exchange the two matrices in a Kronecker product.</strong> Let $\mathbf{A} \in \mathbb{R}^{m \times n}$, $\mathbf{B} \in \mathbb{R}^{p \times q}$, and $\mathbf{b} \in \mathbb{R}^{p}$. Then
 \begin{eqnarray*}
   \mathbf{K}_{pm} (\mathbf{A} \otimes \mathbf{B}) &amp;=&amp; (\mathbf{B} \otimes \mathbf{A}) \mathbf{K}_{qn} \\
@@ -13594,6 +13952,181 @@ $$</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">A</span><span class="p">[</span><span class="n">tril</span><span class="p">(</span><span class="n">trues</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">6</span>
+<span class="n">LinearAlgebra</span><span class="o">.</span><span class="n">copytri!</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="sc">&#39;L&#39;</span><span class="p">)</span>
+<span class="n">A</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3×3 Array{Int64,2}:
+ 1  2  3
+ 2  4  5
+ 3  5  6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">vech</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6-element Array{Int64,1}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">vec</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9-element Array{Int64,1}:
+ 1
+ 2
+ 3
+ 2
+ 4
+ 5
+ 3
+ 5
+ 6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">duplication</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="n">abs2</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">vechidx</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">j</span><span class="o">:</span><span class="n">n</span>
+            <span class="n">D</span><span class="p">[(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">vechidx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">D</span><span class="p">[(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">vechidx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">vechidx</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">D</span>
+<span class="k">end</span>
+<span class="n">duplication</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9×6 Array{Int64,2}:
+ 1  0  0  0  0  0
+ 0  1  0  0  0  0
+ 0  0  1  0  0  0
+ 0  1  0  0  0  0
+ 0  0  0  1  0  0
+ 0  0  0  0  1  0
+ 0  0  1  0  0  0
+ 0  0  0  0  1  0
+ 0  0  0  0  0  1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13611,8 +14144,7 @@ $$
 &amp; &amp; \ddots &amp; \\
 &amp; &amp; 1 &amp; -1
 \end{pmatrix}.
-$$
-The columns of DCT matrix $\mathbf{C}_n$ are orthogonal.</li>
+$$</li>
 </ul>
 
 </div>
@@ -13620,7 +14152,7 @@ The columns of DCT matrix $\mathbf{C}_n$ are orthogonal.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
@@ -13637,7 +14169,7 @@ The columns of DCT matrix $\mathbf{C}_n$ are orthogonal.</li>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -13660,9 +14192,17 @@ The columns of DCT matrix $\mathbf{C}_n$ are orthogonal.</li>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The columns of DCT matrix $\mathbf{C}_n$ are orthogonal.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">C</span><span class="o">&#39;</span><span class="n">C</span>
@@ -13678,7 +14218,7 @@ The columns of DCT matrix $\mathbf{C}_n$ are orthogonal.</li>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
