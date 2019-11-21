@@ -17,6 +17,6 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 | 6 | [10/31](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/10/31/week6.html) positive (semi)definite matrix/Cholesky/Schur complement \[[slide](./slides/11-pd/11-pd.html)\] | |   
 | 7 | [11/7](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/07/week7.html) SVD \[[slide](./slides/12-svd/12-svd.html)\] | [HW4](./hw/hw4/hw4.html) |  
 | 8 | [11/14](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/14/week8.html) Kronecker product, vec, vech, communtation, duplication \[[slide](./slides/13-kron/13-kron.html)\] | |   
-| 9 | 11/21 optimization and multivariate calculus \[[slide](./slides/14-optim/14-optim.html)\], neural network and backpropagation \[[slide](./slides/15-nn/15-nn.html)\] | HW5 + Final |   
+| 9 | [11/21](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/21/week9.html) optimization and multivariate calculus \[[slide](./slides/14-optim/14-optim.html)\], neural network and backpropagation \[[slide](./slides/15-nn/15-nn.html)\] | HW5 + Final |   
 |   | **Thanksgiving** (no class) | |  
 | 10 | 12/5 matrix calculus: chain rule | |   
