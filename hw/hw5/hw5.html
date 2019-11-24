@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>14-optim</title>
+<title>hw5</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13109,28 +13109,6 @@ div#notebook {
     });
     </script>
     <!-- End of mathjax configuration --></head>
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
-
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.js"></script>
-
-<script>
-$( document ).ready(function(){
-
-            var cfg = {};
-
-            // fire the main function with these parameters
-            require(['nbextensions/toc2/toc2'], function (toc2) {
-                toc2.table_of_contents(cfg);
-            });
-    });
-</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13138,7 +13116,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Optimization-and-Multivariate-Calculus">Optimization and Multivariate Calculus<a class="anchor-link" href="#Optimization-and-Multivariate-Calculus">&#182;</a></h1><p>We will use optimization to motivate the development of multivariate calculus.</p>
+<h1 id="Biostat-216-Homework-5">Biostat 216 Homework 5<a class="anchor-link" href="#Biostat-216-Homework-5">&#182;</a></h1><p><strong>Due Dec 11 @ 11:59PM</strong></p>
 
 </div>
 </div>
@@ -13146,778 +13124,65 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Multivariate-calculus">Multivariate calculus<a class="anchor-link" href="#Multivariate-calculus">&#182;</a></h2><ul>
-<li><p>For a sufficiently smooth scalar function $f: \mathbb{R} \mapsto \mathbb{R}$, we have the second order Taylor approximation:<br>
+<p>Turn in to me directly (CHS 21-254A) or (if I'm not in office) put in my mailbox @ CHS 51-254 by the deadline.</p>
+<ol>
+<li><ol>
+<li>If $\mathcal{C}(\mathbf{A}')=\mathcal{C}(\mathbf{A})$ and $\mathcal{N}(\mathbf{A}) = \mathcal{N}(\mathbf{A}')$, is $\mathbf{A}$ symmetric?  </li>
+<li>Give an example of $\mathbf{A}$ such that $\mathcal{C}(\mathbf{A}) = \mathcal{N}(\mathbf{A})$.  </li>
+<li>Can you find an example of $\mathbf{A}$ such that $\mathcal{C}(\mathbf{A}) = \mathcal{N}(\mathbf{A}')$?</li>
+</ol>
+</li>
+<li><p>Four possibilities for the rank $r$ and size $m, n$ match four possibilities for $\mathbf{A} \mathbf{x} = \mathbf{b}$. Find four matrices $\mathbf{A}_1$ to $\mathbf{A}_4$ that show those properties:</p>
+<ol>
+<li>$r=m=n$, $\mathbf{A}_1 \mathbf{x} = \mathbf{b}$ has 1 solution for every $\mathbf{b}$.  </li>
+<li>$r=m&lt;n$, $\mathbf{A}_2 \mathbf{x} = \mathbf{b}$ has 1 or $\infty$ solutions.  </li>
+<li>$r=n&lt;m$, $\mathbf{A}_3 \mathbf{x} = \mathbf{b}$ has 0 or 1 solution.  </li>
+<li>$r&lt;m, r&lt;n$, $\mathbf{A}_4 \mathbf{x} = \mathbf{b}$ has 0 or $\infty$ solutions.  </li>
+</ol>
+</li>
+<li><p>Show that
 $$
-f(x + \Delta x) \approx f(x) + \Delta x \frac{d}{dx}f(x) + \frac 12 (\Delta x)^2 \frac{d^2}{dx^2}f(x).
+\|\mathbf{A}\|_{\text{nuc}} = \min_{\mathbf{A} = \mathbf{U} \mathbf{V}} \|\mathbf{U}\|_{\text{F}} \|\mathbf{V}\|_{\text{F}} = \min_{\mathbf{A} = \mathbf{U} \mathbf{V}} \frac 12 \|\mathbf{U}\|_{\text{F}}^2 + \frac 12 \|\mathbf{V}\|_{\text{F}}^2.
 $$</p>
 </li>
-<li><p>TODO: graph</p>
-</li>
-<li><p>To generalize to a multivariate function $f: \mathbb{R}^n \mapsto \mathbb{R}$, we need notations:</p>
-<ul>
-<li><strong>Gradient</strong>:
+<li><p>(<strong>MLE of multivariate normal model</strong>) Let $\mathbf{y}_1, \ldots, \mathbf{y}_n$ be iid samples from a multivariate normal distribution $N(\boldsymbol{\mu}, \boldsymbol{\Omega})$. The log-likelihood is
 $$
-\nabla f(\mathbf{x}) = \begin{pmatrix}
-\frac{\partial}{\partial x_1} f(\mathbf{x}) \\
-\vdots \\
-\frac{\partial}{\partial x_n} f(\mathbf{x})
-\end{pmatrix}.
-$$  </li>
-<li><strong>Hessian</strong>:
+\ell(\boldsymbol{\mu}, \boldsymbol{\Omega}) = - \frac n2 \log \det \boldsymbol{\Omega} - \frac 12 \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})' \boldsymbol{\Omega}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}).
 $$
-H(\mathbf{x}) = \nabla^2 f(\mathbf{x}) = \begin{pmatrix}
-\frac{\partial^2}{\partial x_1^2} f(\mathbf{x}) &amp; \cdots &amp; \frac{\partial^2}{\partial x_1 \partial x_n} f(\mathbf{x}) \\
-\vdots &amp; \ddots &amp; \vdots \\
-\frac{\partial^2}{\partial x_n \partial x_1} f(\mathbf{x}) &amp; \cdots &amp; \frac{\partial^2}{\partial x_n^2} f(\mathbf{x})
-\end{pmatrix}.
-$$</li>
-</ul>
-</li>
-<li><p>Example: TODO.</p>
-</li>
-<li><p>For a sufficiently smooth multivariate function $f: \mathbb{R}^n \mapsto \mathbb{R}$, we have Taylor approximation:<br>
-$$
-f(\mathbf{x} + \Delta \mathbf{x}) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})' \Delta \mathbf{x} + \frac 12 \Delta \mathbf{x}' [\nabla^2 f(\mathbf{x})] \Delta \mathbf{x}.
-$$</p>
-</li>
-<li><p>For a vector function $f: \mathbb{R}^{n} \mapsto \mathbb{R}^m$
-$$
-f(\mathbf{x}) = \begin{pmatrix} f_1(\mathbf{x}) \\ \vdots \\ f_m(\mathbf{x}) \end{pmatrix},
-$$
-the $m \times n$ <strong>Jacobian matrix</strong> is
-$$
-\mathbf{J} = \begin{pmatrix} \nabla f_1' \\ \vdots \\ \nabla f_m' \end{pmatrix} = \begin{pmatrix}
-\frac{\partial f_1}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n} \\
-\vdots &amp; \ddots &amp; \vdots \\
-\frac{\partial f_m}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_m}{\partial x_n}
-\end{pmatrix}.
-$$
-The <strong>Jacobian</strong> is the determant of $\mathbf{J}$ and appears in the multi-dimensional integrals.</p>
-</li>
-</ul>
-<p>Later we will develop chain rule for the vector and matrix functions.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optimization-and-optimality-conditions">Optimization and optimality conditions<a class="anchor-link" href="#Optimization-and-optimality-conditions">&#182;</a></h2><ul>
-<li><p>Optimization aims to minimize a multivariate function $f: \mathbb{R}^n \mapsto \mathbb{R}$ possibly subject to certain constraints. Possible constrains include</p>
-<ul>
-<li>Linear constraints: $\mathbf{A} \mathbf{x} = \mathbf{b}$.  </li>
-<li>Inequality constraints: $\mathbf{x} \ge \mathbf{0}$.  </li>
-<li>Integer constraints: Each $x_i$ is either 0 or 1.</li>
-</ul>
-</li>
-<li><p>Statisticians often talk about <em>maximization</em>, because of the maximum likelihood estimation (MLE). Note maximizing $f$ is same as minimizing $-f$.</p>
-</li>
-<li><p>For unconstrained optimization of a scalar function $f$, we know</p>
-<ul>
-<li>the necessary condition for a point $x$ to be a local minimum is $\frac{d}{dx} f(x)= 0$.  </li>
-<li>a sufficient condition for a strict local minimum is (1) $\frac{d}{dx} f(x) = 0$ and (2) $\frac{d^2}{dx^2} f(x) &gt; 0$.<br>
-These are called the <strong>optimality conditions</strong>.  </li>
-</ul>
-</li>
-<li><p>Similarly for unconstrained optimization of a multivariate function $f: \mathbb{R}^n \mapsto \mathbb{R}$,</p>
-<ul>
-<li>the necessary condition for a point $\mathbf{x}$ to be a local minimum is
-$$
-\nabla f(\mathbf{x}) = \mathbf{0}_n.
-$$</li>
-<li>a sufficient condition for a strict local minimum is
-$$
-\nabla f(\mathbf{x}) = \mathbf{0}_n
-$$
-and
-$$
-\nabla^2 f(\mathbf{x}) \succ \mathbf{O}_{n \times n}.
-$$</li>
-</ul>
-</li>
-<li><p>A body of work in optimization is to generalize these optimality conditions to the constrained case.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convexity">Convexity<a class="anchor-link" href="#Convexity">&#182;</a></h2><ul>
-<li><p>Convexity plays a key role in optimization.</p>
-<ul>
-<li>A <strong>convex set $\mathcal{K}$</strong>: If $\mathbf{x}, \mathbf{y} \in \mathcal{K}$, then the line from $\mathbf{x}$ to $\mathbf{y}$ $\{\alpha \mathbf{x} + (1 - \alpha) \mathbf{y}: \alpha \in [0, 1]\} \subseteq \mathcal{K}$.  </li>
-<li>A <strong>convex function $f$</strong>: 
-$$
-f(\alpha \mathbf{x} + (1 - \alpha) \mathbf{y}) \le \alpha f(\mathbf{x}) + (1 - \alpha) f(\mathbf{y})
-$$
-for all $\mathbf{x}, \mathbf{y}$ and $\alpha \in (0, 1)$.   </li>
-<li>A <strong>strictly convex function</strong> satisifies above definition but replacing $\le$ by $&lt;$.  </li>
-<li>A <strong>convex function $f$</strong> (alternative definition): The set of points on and above the graph of $f$, $\{(\mathbf{x},y): f(\mathbf{x}) \le y\}$, is convex.  </li>
-<li>A <strong>smooth and convex $f$</strong>: $f(\mathbf{x}) \ge f(\mathbf{y}) + \nabla f(\mathbf{y})' (\mathbf{x} - \mathbf{y})$ for all $\mathbf{x}, \mathbf{y}$. The function $f$ sits above its tangent lines.  </li>
-</ul>
-</li>
-<li><p>TODO: A convex function sits between its tangent lines and its chords.</p>
-</li>
-<li><p>TODO: graph of convex and nonconvex sets/functions.</p>
-</li>
-<li><p>Examples: $f_1(x) = ax + b$, $f_2(x) = x^2$, and $f_3(x) = \max(f_1(x), f_2(x))$.</p>
-</li>
-<li><p><strong>Intersection of convex sets is convex.</strong></p>
-</li>
-<li><p><strong>The maximum of two or more convex functions is always convex.</strong></p>
-<p>Proof: Let $f(\mathbf{x}) = \sup_{i \in \mathcal{I}} f_i (\mathbf{x})$. Then
-$$
-f_i(\alpha \mathbf{x} + (1 - \alpha) \mathbf{y}) \le \alpha f_i(\mathbf{x}) + (1 - \alpha) f_i(\mathbf{y}) \le \alpha f(\mathbf{x}) + (1 - \alpha) f(\mathbf{y})
-$$
-for all $i \in \mathcal{I}$. Taking supremum over $i$ on the left hand side yields
-$$
-f(\alpha \mathbf{x} + (1 - \alpha) \mathbf{y}) \le \alpha f(\mathbf{x}) + (1 - \alpha) f(\mathbf{y}).
-$$</p>
-<p>Note the minimum of convex functions is usually not convex.</p>
-</li>
-<li><p>The set of positive (semi)definite matrices is convex.</p>
-</li>
-<li><p>A twice differentiable function is convex if $\nabla^2 f(\mathbf{x}) \succeq \mathbf{O}_{n \times n}$ at all $\mathbf{x}$. It is strictly convex $\nabla^2 f(\mathbf{x}) \succ \mathbf{O}_{n \times n}$ at all $\mathbf{x}$.</p>
-</li>
-<li><p><strong>Convexity prevents two local minima.</strong> For a convex function, any stationary point with $\nabla f(\mathbf{x}) = \mathbf{0}$ is a global minimum.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optimality-conditions-for-constrained-optimization">Optimality conditions for constrained optimization<a class="anchor-link" href="#Optimality-conditions-for-constrained-optimization">&#182;</a></h2><ul>
-<li><p>Example:
-\begin{eqnarray*}
-  &amp;\text{minimize}&amp; f(x_1,x_2) = x_1^2 + x_2^2 \\
-  &amp;\text{subject to}&amp; a_1 x_1 + a_2 x_2 = b.
-\end{eqnarray*}
-Define the <strong>Lagrangian</strong>
-$$
-L(x_1, x_2, \lambda) = f(x_1, x_2) + \lambda (a_1 x_1 + a_2 x_2 - b) = x_1^2 + x_2^2 + \lambda (a_1 x_1 + a_2 x_2 - b),
-$$
-where $\lambda$ is the <strong>Lagrange multiplier</strong>. Solve the equations
-\begin{eqnarray*}
-\frac{\partial}{\partial x_1} L &amp;=&amp; 2 x_1 + \lambda a_1 \\
-\frac{\partial}{\partial x_2} L &amp;=&amp; 2 x_2 + \lambda a_2 \\
-\frac{\partial}{\partial \lambda} L &amp;=&amp; a_1 x_1 + a_2 x_2 - b
-\end{eqnarray*}
-to get optimal $x_1$, $x_2$, and $\lambda$:
-\begin{eqnarray*}
-x_1^\star &amp;=&amp; \frac{a_1 b}{a_1^2 + a_2^2} \\
-x_2^\star &amp;=&amp; \frac{a_2 b}{a_1^2 + a_2^2} \\
-\lambda^\star &amp;=&amp; - \frac{2b}{a_1^2 + a_2^2}
-\end{eqnarray*}
-with optimal objective value
-$$
-(x_1^\star)^2 + (x_2^\star)^2 = \frac{b^2}{a_1^2 + a_2^2}.
-$$
-We found <strong>$-\lambda^\star$ is simply the derivative of the minimum cost with respect to the constraint level $b$</strong>
-$$
-\frac{d}{d b} \left( \frac{b^2}{a_1^2 + a_2^2} \right) = \frac{2b}{a_1^2 + a_2^2} = - \lambda.
-$$</p>
-</li>
-<li><p>We generalize above example to the general problem of <strong>minimizing a convex quadratic function with linear constraints</strong>. For $\mathbf{S} \succ \mathbf{0}$ and $\mathbf{A} \in \mathbb{R}^{n \times m}$,
-\begin{eqnarray*}
-  &amp;\text{minimize}&amp; \frac 12 \mathbf{x}' \mathbf{S} \mathbf{x} \\
-  &amp;\text{subject to}&amp; \mathbf{A}' \mathbf{x} = \mathbf{b}.
-\end{eqnarray*}
-The <strong>Lagrangian</strong> function is
-$$
-L(\mathbf{x}, \boldsymbol{\lambda}) = \frac 12 \mathbf{x}' \mathbf{S} \mathbf{x} + \boldsymbol{\lambda}' (\mathbf{A}' \mathbf{x} - \mathbf{b}),
-$$
-where $\boldsymbol{\lambda} \in \mathbb{R}^m$ is the <strong>Lagrange multipliers</strong>. Solving equations
-\begin{eqnarray*}
-  \nabla_\mathbf{x} L(\mathbf{x}, \boldsymbol{\lambda}) &amp;=&amp; \mathbf{S} \mathbf{x} + \mathbf{A} \boldsymbol{\lambda} = \mathbf{0}_n \\
-  \nabla_\boldsymbol{\lambda} L(\mathbf{x}, \boldsymbol{\lambda}) &amp;=&amp; \mathbf{A}' \mathbf{x} - \mathbf{b} = \mathbf{0}_m,
-\end{eqnarray*}
-or equivalently
-$$
-\begin{pmatrix}
-\mathbf{S} &amp; \mathbf{A} \\
-\mathbf{A}' &amp; \mathbf{O}
-\end{pmatrix} \begin{pmatrix} \mathbf{x} \\ \boldsymbol{\lambda} \end{pmatrix} = \begin{pmatrix} \mathbf{0}_n \\ \mathbf{b} \end{pmatrix} \quad \quad (\text{saddle point matrix or KKT matrix})
-$$
-yields the solution
-\begin{eqnarray*}
-\mathbf{x}^\star &amp;=&amp; \mathbf{S}^{-1} \mathbf{A} (\mathbf{A}' \mathbf{S}^{-1} \mathbf{A})^{-1} \mathbf{b} \\
-\boldsymbol{\lambda}^\star &amp;=&amp; - (\mathbf{A}' \mathbf{S}^{-1} \mathbf{A})^{-1} \mathbf{b}.
-\end{eqnarray*}
-Further calculation shows the minimum cost
-$$
-f^\star = \frac 12 \mathbf{b}' (\mathbf{A}' \mathbf{S}^{-1} \mathbf{A})^{-1} \mathbf{b}
-$$
-and the gradient of cost
-$$
-\nabla_\mathbf{b} f^\star = (\mathbf{A}' \mathbf{S}^{-1} \mathbf{A})^{-1} \mathbf{b} = - \boldsymbol{\lambda}^\star.
-$$</p>
-</li>
-<li><p>The saddle point matrix (or KKT matrix) has $n$ positive eigenvalues and $m$ negative eigenvalue. The Lagrangian function is convex in $\mathbf{x}$ and concave in $\boldsymbol{\lambda}$.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example:-MLE-of-multivariate-normal-model">Example: MLE of multivariate normal model<a class="anchor-link" href="#Example:-MLE-of-multivariate-normal-model">&#182;</a></h2><p>Let $\mathbf{y}_1, \ldots, \mathbf{y}_n$ be iid samples from a multivariate normal distribution $N(\boldsymbol{\mu}, \boldsymbol{\Omega})$. The log-likelihood is
-$$
-L(\boldsymbol{\mu}, \boldsymbol{\Omega}) = - \frac n2 \log \det \boldsymbol{\Omega} - \frac 12 \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})' \boldsymbol{\Omega}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}).
-$$
-We want to maximize $L(\boldsymbol{\mu}, \boldsymbol{\Omega})$ or minimize
-$$
-f(\boldsymbol{\mu}, \boldsymbol{\Omega}) = - L(\boldsymbol{\mu}, \boldsymbol{\Omega}) = \frac n2 \log \det \boldsymbol{\Omega} + \frac 12 \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})' \boldsymbol{\Omega}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}).
-$$
-The MLE is achieved by
+Show that the maximum likelihood estimate (MLE) is achieved by
 \begin{eqnarray*}
 \widehat{\boldsymbol{\mu}} &amp;=&amp; \frac{\sum_{i=1}^n \mathbf{y}_i}{n} \\
 \widehat{\boldsymbol{\Omega}} &amp;=&amp; \frac{\sum_{i=1}^n (\mathbf{y}_i - \hat{\boldsymbol{\mu}})(\mathbf{y}_i - \hat{\boldsymbol{\mu}})'}{n}.
-\end{eqnarray*}</p>
-<p>TODO: derivation.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example:-MLE-of-multinomial-model">Example: MLE of multinomial model<a class="anchor-link" href="#Example:-MLE-of-multinomial-model">&#182;</a></h2><p>Consider a multinomial experiment with $n$ trials and observed outcomes $n_1, \ldots, n_m$ over $m$ categories. The maximum likelihood estimate (MLE) seeks maximizer of likelihood
-$$
-L(p_1,\ldots,p_m) = \binom{n}{n_1 \cdots n_m} \prod_{i=1}^m p_i^{n_i}.
-$$
-To minimize the negative log-likelihood
-$$</p>
-<ul>
-<li>\log L(p_1,\ldots,p_m) = - \log \binom{n}{n_1 \cdots n<em>m} - \sum</em>{i=1}^m n_i \log p_i
-$$
-subject to constraint $p_1 + \cdots + p_m = 1$, we find the statinary point of Lagrangian
-$$
-L(\mathbf{p}, \lambda) = - \log \binom{n}{n_1 \cdots n<em>m} - \sum</em>{i=1}^m n_i \log p<em>i + \lambda \left( \sum</em>{i=1}^m p_i - 1 \right).
-$$
-Solving
-$$
-\frac{\partial}{\partial p_i} L = - \frac{n_i}{p_i} + \lambda = 0
-$$
-gives
-$$
-\frac{n_i}{p_i} = \lambda.
-$$
-Combining with constraint $\sum_i p_i=1$ yields
-\begin{eqnarray*}
-p_i^\star &amp;=&amp; \frac{n_i}{n}, \quad i=1,\ldots,m, \\
-\lambda^\star &amp;=&amp; n.
 \end{eqnarray*}
-Note the nonnegativity constraint is automatically satisfied.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Newton's-method">Newton's method<a class="anchor-link" href="#Newton's-method">&#182;</a></h2><ul>
-<li><p>We are looking for a point $\mathbf{x}^\star$ such that $\nabla f(\mathbf{x}^\star) = \mathbf{0}$. Multivariate calculus gives us a principled way to move towards such an $\mathbf{x}^\star$.</p>
+That is to show that $\widehat{\boldsymbol{\mu}}, \widehat{\boldsymbol{\Omega}}$ maximize $\ell$.</p>
+<p>Hint: To show the optimality of $\widehat{\boldsymbol{\Omega}}$, work on the Cholesky factor of $\boldsymbol{\Omega}$.</p>
 </li>
-<li><p>Second-order Taylor approximation to a function $f$ at current iterate $\mathbf{x}^{(t)}$ says
-$$
-f(\mathbf{x}^{(t)} + \Delta \mathbf{x}) \approx f(\mathbf{x}^{(t)}) + \nabla f(\mathbf{x}^{(t)})' \Delta \mathbf{x} + \frac 12 \Delta \mathbf{x}' [\nabla^2 f(\mathbf{x}^{(t)})] \Delta \mathbf{x}.
-$$
-Which direction $\Delta \mathbf{x}$ shall we move from $\mathbf{x}^{(t)}$?</p>
-<p>Minimizing the quadratic approximation gives the <strong>Newton direction</strong>
-$$
-\Delta \mathbf{x}_{\text{newton}} = - [\nabla^2 f(\mathbf{x}^{(t)})]^{-1} \nabla f(\mathbf{x}^{(t)}).
-$$</p>
+<li><p>(<strong>Smallest matrix subject to linear constraints</strong>) Find the matrix $\mathbf{X}$ with the smallest Frobenius norm subject to the constraint $\mathbf{X} \mathbf{U} = \mathbf{V}$, assuming $\mathbf{U}$ has full column rank.</p>
+<p>Hint: write down the optimization problem and use the method of Lagrange multipliers.</p>
 </li>
-<li><p>So the <strong>Newton method</strong> iterates according to
+<li><p>(<strong>Linear mixed model</strong>) Given data $\mathbf{y} \in \mathbb{R}^n$, $\mathbf{X} \in \mathbb{R}^{n \times p}$, and $\mathbf{Z} \in \mathbb{R}^{n \times q}$, the log-likelihood of a linear mixed model (LMM) takes the form
 $$
-\mathbf{x}^{(t+1)} = \mathbf{x}^{(t)} + \Delta \mathbf{x}_{\text{newton}} = \mathbf{x}^{(t)} - [\nabla^2 f(\mathbf{x}^{(t)})]^{-1} \nabla f(\mathbf{x}^{(t)}).
-$$</p>
-</li>
-<li><p>Quadratic convergence of Newton's method:
+\ell(\boldsymbol{\beta}, \boldsymbol{\Sigma}, \sigma_0^2) = - \frac n2 \log \det \left( \mathbf{Z} \boldsymbol{\Sigma} \mathbf{Z}' + \sigma_0^2 \mathbf{I}_n \right) - \frac 12 (\mathbf{y} - \mathbf{X} \boldsymbol{\beta})' \left( \mathbf{Z} \boldsymbol{\Sigma} \mathbf{Z}' + \sigma_0^2 \mathbf{I}_n \right)^{-1} (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}),
 $$
-\|\mathbf{x}^{(t+1)} - \mathbf{x}^\star\| \le C \|\mathbf{x}^{(t)} - \mathbf{x}^\star\|^2.
-$$</p>
-</li>
-<li><p>Example: $f(x) = \frac 13 x^3 - 4x$ with $\nabla f(x) = x^2 - 4$ and $\nabla^2 f(x) = 2x$. Newton's iterates are 
-$$
-x^{(t+1)} = x^{(t)} - \frac{x^{(t)2}-4}{2x^{(t)}} = \frac{1}{2} \left( x^{(t)} + \frac{4}{x^{(t)}} \right).
-$$
-Let's start from $x^{(0)}=2.5$.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">2.5</span>
-<span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">x</span><span class="p">)</span>
-    <span class="nd">@show</span> <span class="n">x</span>
-<span class="k">end</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>x = 2.05
-x = 2.000609756097561
-x = 2.0000000929222947
-x = 2.000000000000002
-x = 2.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-$$
-x^{(t+1)} - 2 = \frac 12 \left( x^{(t)} + \frac{4}{x^{(t)}} \right) - 2 = \frac{1}{2x^{(t)}} \left( x^{(t)} - 2 \right)^2
-$$<ul>
-<li>In practice, the Newton's method may suffer from <strong>instability</strong>; the iterates may escape into infinities or a local maximum. Two remedies are needed:  <ol>
-<li>Use a positive definite matrix in the quadratic approximation (automatically satisfied by the Hessian of a convex function). </li>
-<li>Line search (backtracking) to guarantee sufficient drop in the objective function
-$$
-f(\mathbf{x}^{(t)} + s \Delta \mathbf{x}) \le f(\mathbf{x}^{(t)}) - \alpha s \Delta \mathbf{x}' [\nabla^2 f(\mathbf{x}^{(t)})] \Delta \mathbf{x}.
-$$</li>
-</ol>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Gradient-descent">Gradient descent<a class="anchor-link" href="#Gradient-descent">&#182;</a></h2><ul>
-<li><p>If we use the identity matrix as a very crude approximation of the Hessian matrix, we obtain the classical <strong>gradient descent</strong>, or <strong>steepest descent</strong>, algorithm:
-$$
-\mathbf{x}^{(t+1)} = \mathbf{x}^{(t)} - s^{(t)} \nabla f(\mathbf{x}^{(t)}).
-$$</p>
-</li>
-<li><p>Gradient descent algorithm is gaining tremendous of interest in modern, large scale optimization problems, because calculation of Hessian is usually quite expensive.</p>
-</li>
-<li><p>Example: minimize a bivariate quadratic function:
-$$
-f(x_1, x_2) = \frac 12 (x_1^2 + bx_2^2).
-$$
-Gradient:
-$$
-\nabla f(x_1, x_2) = \begin{pmatrix} x_1 \\ bx_2 \end{pmatrix}.
-$$
-Gradient descent algorithm:
-\begin{eqnarray*}
-\begin{pmatrix} x_1^{(t+1)} \\ x_2^{(t+1)} \end{pmatrix} &amp;=&amp; \begin{pmatrix} x_1^{(t)} \\ x_2^{(t)} \end{pmatrix} - s^{(t)} \begin{pmatrix} x_1^{(t)} \\ bx_2^{(t)} \end{pmatrix} \\
-&amp;=&amp; \begin{pmatrix} (1 - s^{(t)}) x_1^{(t)} \\ (1 - bs^{(t)})x_2^{(t)} \end{pmatrix}.
-\end{eqnarray*}
-What's the optimal step length $s$ (exact line search)? The objective function
-$$
-f(s) = \frac 12 \left[(1-s)^2 x_1^{(t)2} + b(1-bs)^2x_2^{(t)2} \right]
-$$
-is minimized at
-$$
-s^{(t)} = \frac{x_1^{(t)2} + b^2 x_2^{(t)2}}{x_1^{(t)2} + b^3 x_2^{(t)2}}.
-$$
-Let's assume starting point $(x_1^{(0)}, x_2^{(0)}) = (b, 1)$ to simplify analysis. Then
-$$
-s^{(0)} = \frac{b^2 + b^2}{b^2 + b^3} = \frac{2}{b + 1}
-$$
-and
-$$
-\begin{pmatrix} x_1^{(1)} \\ x_2^{(1)} \end{pmatrix} = \begin{pmatrix} \left( \frac{b-1}{b+1} \right) x_1^{(1)} \\ \left( \frac{1-b}{b+1} \right) x_2^{(1)} \end{pmatrix} = \begin{pmatrix} b \left( \frac{b-1}{b+1} \right) \\ \left( \frac{1-b}{b+1} \right) \end{pmatrix}.
-$$
-Continuing this way, we found
-$$
-\begin{pmatrix} x_1^{(t)} \\ x_2^{(t)} \end{pmatrix} = \begin{pmatrix} b \left( \frac{b-1}{b+1} \right)^t \\ \left( \frac{1-b}{b+1} \right)^t \end{pmatrix}
-$$
-and
-$$
-f(x_1^{(t)}, x_2^{(t)}) = \frac 12 (1 + b^2) \left( \frac{b-1}{b+1} \right)^{2t} = \left( \frac{b-1}{b+1} \right)^{2t} f(x_1^{(0)}, x_2^{(0)}).
-$$</p>
-<p>Following graph shows the zig-zagging pattern of the gradient descent iterates:<br>
-<img src="./gd.gif" width=600 align="center"/></p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Plots</span><span class="p">;</span> <span class="n">gr</span><span class="p">()</span>
-<span class="k">using</span> <span class="n">LaTeXStrings</span>
-
-<span class="n">b</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x2</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="c"># optimal step length</span>
-<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="mf">1.0</span>   <span class="c"># start point</span>
-<span class="n">x1iter</span><span class="p">,</span> <span class="n">x2iter</span><span class="p">,</span> <span class="n">fiter</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">],</span> <span class="p">[</span><span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)]</span>  <span class="c"># store function values</span>
-<span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">15</span>
-    <span class="n">x1</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span>
-    <span class="n">x2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">x1iter</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">x2iter</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">fiter</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="k">end</span>
-
-<span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">1</span>
-<span class="n">x2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">1</span>
-<span class="n">X1</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">),</span> <span class="n">length</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">X2</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">contour</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">fiter</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="n">L</span><span class="s">&quot;x_1&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="n">L</span><span class="s">&quot;x_2&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;GD&quot;</span><span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">anim</span> <span class="o">=</span> <span class="nd">@animate</span> <span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">x1iter</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-    <span class="n">Plots</span><span class="o">.</span><span class="n">plot!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x1iter</span><span class="p">[</span><span class="n">iter</span><span class="o">:</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">x2iter</span><span class="p">[</span><span class="n">iter</span><span class="o">:</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">shape</span><span class="o">=:</span><span class="n">circle</span><span class="p">)</span>
-    <span class="n">Plots</span><span class="o">.</span><span class="n">annotate!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x1iter</span><span class="p">[</span><span class="n">iter</span><span class="p">],</span> <span class="n">x2iter</span><span class="p">[</span><span class="n">iter</span><span class="p">],</span> <span class="n">text</span><span class="p">(</span><span class="n">latexstring</span><span class="p">(</span><span class="s">&quot;x^{(</span><span class="si">$iter</span><span class="s">)}&quot;</span><span class="p">),</span> <span class="o">:</span><span class="n">right</span><span class="p">))</span>
-<span class="k">end</span>
-<span class="n">gif</span><span class="p">(</span><span class="n">anim</span><span class="p">,</span> <span class="s">&quot;./gd.gif&quot;</span><span class="p">,</span> <span class="n">fps</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>┌ Info: Saved animation to 
-│   fn = /Users/huazhou/Documents/github.com/ucla-biostat216-2019fall.github.io/slides/14-optim/gd.gif
-└ @ Plots /Users/huazhou/.julia/packages/Plots/Iuc9S/src/animation.jl:95
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><p>Above analysis can be generalized to a general <strong>strongly convex</strong> function that satisfies
-$$
-m \mathbf{I}_n \preceq \nabla^2 f(\mathbf{x}) \preceq M \mathbf{I}_n \text{ for all } \mathbf{x}
-$$
-for some constants $M &gt; m &gt; 0$. Or equivalently all eigenvalues of $\nabla^2 f(\mathbf{x})$ are in $[m, M]$.</p>
-<p>Theorem: for any strongly convex function $f$, the gradient descent with exact line search satisfies
-$$
-f(\mathbf{x}^{(t+1)}) - f(\mathbf{x}^\star) \le \left( 1 - \frac mM \right) [f(\mathbf{x}^{(t)}) - f(\mathbf{x}^\star)],
-$$
-where $\mathbf{x}^\star$ is the optimum.</p>
-</li>
-<li><p>In practice, we often perform inexact line search such as backtracking, because exact line search is expensive.</p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Gradient-descent-with-momentum">Gradient descent with momentum<a class="anchor-link" href="#Gradient-descent-with-momentum">&#182;</a></h2><ul>
-<li><p>To mitigate the frustrating zig-zagging of gradient descent, Polyak proposed to add a <strong>momentum</strong> with coefficient $\beta$ to the gradient. The idea is that a heavy ball rolling downhill has less zig-zagging.</p>
-</li>
-<li><p><strong>Gradient descent with momentum</strong>:<br>
-\begin{eqnarray*}
-  \mathbf{x}^{(t+1)} &amp;=&amp; \mathbf{x}^{(t)} - s \mathbf{z}^{(t)} \text{ with } \\
-  \mathbf{z}^{(t)} &amp;=&amp; \nabla f(\mathbf{x}^{(t)}) + \beta \mathbf{z}^{(t-1)}.
-\end{eqnarray*}</p>
-</li>
-<li><p>For a quadratic objective function
-$$
-f(\mathbf{x}) = \frac 12 \mathbf{x}' \mathbf{S} \mathbf{x}.
-$$
-The optimal step length $s$ and  momentum coefficient $\beta$ are given by (derivation omitted)
-\begin{eqnarray*}
-s = \left( \frac{2}{\sqrt{\lambda_{\text{max}}} +  \sqrt{\lambda_{\text{min}}}} \right)^2 \\
-\beta = \left( \frac{\sqrt{\lambda_{\text{max}}} -  \sqrt{\lambda_{\text{min}}}}{\sqrt{\lambda_{\text{max}}} +  \sqrt{\lambda_{\text{min}}}} \right)^2,
-\end{eqnarray*}
-where $\lambda_{\text{min}}$ and $\lambda_{\text{max}}$ are the minimum and maximum eigenvalues of $\mathbf{S}$.</p>
-</li>
-<li><p>Back to our 2-dimensional example $f(x_1, x_2) = \frac 12 (x_1^2 + b x_2^2)$. We have
-$$
-s = \left( \frac{2}{1+\sqrt b} \right)^2, \quad \beta = \left( \frac{1 - \sqrt b}{1 + \sqrt b} \right)^2,
-$$
-and
-$$
-f(x_1^{(t)}, x_2^{(t)}) = \left( \frac{1 - \sqrt b}{1 + \sqrt b} \right)^{2t} f(x_1^{(0)}, x_2^{(0)}).
-$$
-The convergence rate improves from $\left( \frac{1 - b}{1 + b} \right)^{2}$ to $\left( \frac{1 - \sqrt b}{1 + \sqrt b} \right)^{2}$.</p>
-<p>Following graph shows the iterates of gradient descent with momentum:<br>
-<img src="./gd_momentum.gif" width=600 align="center"/></p>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x2</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span><span class="o">^</span><span class="mi">2</span>             <span class="c"># optimal step length</span>
-<span class="n">β</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span><span class="o">^</span><span class="mi">2</span> <span class="c"># optimal momentum coefficient</span>
-<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="mf">1.0</span>   <span class="c"># start point</span>
-<span class="n">z1</span><span class="p">,</span> <span class="n">z2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
-<span class="n">x1iter</span><span class="p">,</span> <span class="n">x2iter</span><span class="p">,</span> <span class="n">fiter</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">],</span> <span class="p">[</span><span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)]</span>  <span class="c"># store function values</span>
-<span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">15</span>
-    <span class="n">z1</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">β</span> <span class="o">*</span> <span class="n">z1</span>
-    <span class="n">z2</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">β</span> <span class="o">*</span> <span class="n">z2</span>
-    <span class="n">x1</span> <span class="o">-=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">z1</span>
-    <span class="n">x2</span> <span class="o">-=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">z2</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">x1iter</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">x2iter</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">fiter</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="k">end</span>
-
-<span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">1</span>
-<span class="n">x2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">1</span>
-<span class="n">X1</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">),</span> <span class="n">length</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">X2</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">contour</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">fiter</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="n">L</span><span class="s">&quot;x_1&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="n">L</span><span class="s">&quot;x_2&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;GD with Momentum&quot;</span><span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">anim</span> <span class="o">=</span> <span class="nd">@animate</span> <span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">x1iter</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-    <span class="n">Plots</span><span class="o">.</span><span class="n">plot!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x1iter</span><span class="p">[</span><span class="n">iter</span><span class="o">:</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">x2iter</span><span class="p">[</span><span class="n">iter</span><span class="o">:</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">shape</span><span class="o">=:</span><span class="n">circle</span><span class="p">)</span>
-    <span class="n">Plots</span><span class="o">.</span><span class="n">annotate!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x1iter</span><span class="p">[</span><span class="n">iter</span><span class="p">],</span> <span class="n">x2iter</span><span class="p">[</span><span class="n">iter</span><span class="p">],</span> <span class="n">text</span><span class="p">(</span><span class="n">latexstring</span><span class="p">(</span><span class="s">&quot;x^{(</span><span class="si">$iter</span><span class="s">)}&quot;</span><span class="p">),</span> <span class="o">:</span><span class="n">right</span><span class="p">))</span>
-<span class="k">end</span>
-<span class="n">gif</span><span class="p">(</span><span class="n">anim</span><span class="p">,</span> <span class="s">&quot;./gd_momentum.gif&quot;</span><span class="p">,</span> <span class="n">fps</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>┌ Info: Saved animation to 
-│   fn = /Users/huazhou/Documents/github.com/ucla-biostat216-2019fall.github.io/slides/14-optim/gd_momentum.gif
-└ @ Plots /Users/huazhou/.julia/packages/Plots/Iuc9S/src/animation.jl:95
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Nesterov-acceleration-of-gradient-descent">Nesterov acceleration of gradient descent<a class="anchor-link" href="#Nesterov-acceleration-of-gradient-descent">&#182;</a></h2><ul>
-<li><p>Yuri Nesterov proposed that, instead of evaluating the gradient $\nabla f$ at current iterate $\mathbf{x}^{(t)}$, we shift the evaluation point to $\mathbf{x}^{(t)} + \gamma (\mathbf{x}^{(t)} - \mathbf{x}^{(t-1)})$.</p>
-</li>
-<li><p><strong>Nesetrov accelerated gradient descent</strong>
-\begin{eqnarray*}
-\mathbf{x}^{(t+1)} &amp;=&amp; \mathbf{x}^{(t)} - s \nabla f(\mathbf{y}^{(t)}) \\
-\mathbf{y}^{(t+1)} &amp;=&amp; \mathbf{x}^{(t+1)} + \gamma (\mathbf{x}^{(t+1)} - \mathbf{x}^{(t)}).
-\end{eqnarray*}</p>
-</li>
-<li><p>For a quadratic objective function
-$$
-f(\mathbf{x}) = \frac 12 \mathbf{x}' \mathbf{S} \mathbf{x}.
-$$
-The optimal step length $s$ and $\gamma$ are given by (derivation omitted)
-\begin{eqnarray*}
-s &amp;=&amp; \frac{1}{\lambda_{\text{max}}} \\
-\gamma &amp;=&amp; \frac{\sqrt{\lambda_{\text{max}}} -  \sqrt{\lambda_{\text{min}}}}{\sqrt{\lambda_{\text{max}}} +  \sqrt{\lambda_{\text{min}}}},
-\end{eqnarray*}
-where $\lambda_{\text{min}}$ and $\lambda_{\text{max}}$ are the minimum and maximum eigenvalues of $\mathbf{S}$.</p>
-</li>
-<li><p>The convergence rate improves from $\left( \frac{1 - b}{1 + b} \right)^{2}$ to $1 - \sqrt b$.</p>
-</li>
-</ul>
-<p><img src="./gd_nesterov.gif" width=600 align="center"/></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x2</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="mf">1.0</span>                           <span class="c"># optimal step length</span>
-<span class="nb">γ</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="c"># optimal Nesterov constant</span>
-<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="mf">1.0</span>   <span class="c"># start point</span>
-<span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span>
-<span class="n">x1iter</span><span class="p">,</span> <span class="n">x2iter</span><span class="p">,</span> <span class="n">fiter</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">],</span> <span class="p">[</span><span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)]</span>  <span class="c"># store iterates</span>
-<span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">15</span>
-    <span class="n">x1prev</span><span class="p">,</span> <span class="n">x2prev</span> <span class="o">=</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span>
-    <span class="n">x1</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">s</span> <span class="o">*</span> <span class="n">y1</span>
-    <span class="n">x2</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">s</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y2</span>
-    <span class="n">y1</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="nb">γ</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x1prev</span><span class="p">)</span>
-    <span class="n">y2</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">+</span> <span class="nb">γ</span> <span class="o">*</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x2prev</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">x1iter</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">x2iter</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-    <span class="n">push!</span><span class="p">(</span><span class="n">fiter</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="k">end</span>
-
-<span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">1</span>
-<span class="n">x2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">1</span>
-<span class="n">X1</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">:</span><span class="p">),</span> <span class="n">length</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">X2</span> <span class="o">=</span> <span class="n">repeat</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">contour</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">fiter</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="n">L</span><span class="s">&quot;x_1&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="n">L</span><span class="s">&quot;x_2&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;GD with Nesterov&quot;</span><span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">anim</span> <span class="o">=</span> <span class="nd">@animate</span> <span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">x1iter</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-    <span class="n">Plots</span><span class="o">.</span><span class="n">plot!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x1iter</span><span class="p">[</span><span class="n">iter</span><span class="o">:</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">x2iter</span><span class="p">[</span><span class="n">iter</span><span class="o">:</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">shape</span><span class="o">=:</span><span class="n">circle</span><span class="p">)</span>
-    <span class="n">Plots</span><span class="o">.</span><span class="n">annotate!</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x1iter</span><span class="p">[</span><span class="n">iter</span><span class="p">],</span> <span class="n">x2iter</span><span class="p">[</span><span class="n">iter</span><span class="p">],</span> <span class="n">text</span><span class="p">(</span><span class="n">latexstring</span><span class="p">(</span><span class="s">&quot;x^{(</span><span class="si">$iter</span><span class="s">)}&quot;</span><span class="p">),</span> <span class="o">:</span><span class="n">right</span><span class="p">))</span>
-<span class="k">end</span>
-<span class="n">gif</span><span class="p">(</span><span class="n">anim</span><span class="p">,</span> <span class="s">&quot;./gd_nesterov.gif&quot;</span><span class="p">,</span> <span class="n">fps</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>┌ Info: Saved animation to 
-│   fn = /Users/huazhou/Documents/github.com/ucla-biostat216-2019fall.github.io/slides/14-optim/gd_nesterov.gif
-└ @ Plots /Users/huazhou/.julia/packages/Plots/Iuc9S/src/animation.jl:95
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stochastic-gradient-descent">Stochastic gradient descent<a class="anchor-link" href="#Stochastic-gradient-descent">&#182;</a></h2><ul>
-<li><p>In machine learning and statistics, we need to minimize the loss function of training data
-$$
-L(\mathbf{x}) = \frac 1N \sum_{i=1}^N \ell(\mathbf{x}, \mathbf{v}_i),
-$$
-where $\mathbf{x}$ is the parameter to be fitted, $N$ is the training sample size, and $\mathbf{v}_i$ is the $i$-th sample.</p>
-<p>For example, in leasts squares problem, we minimize
-$$
-L(\mathbf{x}) = \frac 1N \|\mathbf{b} - \mathbf{A} \mathbf{x}\|^2 = \frac 1N \sum_{i=1}^N (b_i - \mathbf{a}_i' x)^2.
-$$</p>
-</li>
-<li><p>Issues of the (classical) gradient descent scheme
-$$
-\mathbf{x}^{(t+1)} = \mathbf{x}^{(t)} - s^{(t)} \nabla L(\mathbf{x}).
-$$
-include:</p>
+where $\boldsymbol{\beta} \in \mathbb{R}^p$, $\boldsymbol{\Sigma} \in \mathbb{R}^{q \times q}$ is positive definite, and $\sigma_0^2&gt;0$.</p>
 <ol>
-<li>Evaluating $\nabla L(\mathbf{x}) = \frac 1N \sum_{i=1}^N \nabla \ell(\mathbf{x}, \mathbf{v}_i)$ can be expensive when $N$ is large.  </li>
-<li>The solution found by gradient descent does not generalize well on the test data.  </li>
+<li>Show that the matrix $\mathbf{Z} \boldsymbol{\Sigma} \mathbf{Z}' + \sigma_0^2 \mathbf{I}_n$ is positive definite.  </li>
+<li><p>The maximum likelihood estimate (MLE) is the maximizer of the log-likelihood. It is traditionally difficult to incorporate the positive definiteness constraint in optimization algorithms. The trick is to work with the Cholesky factor $\mathbf{L}$ of $\boldsymbol{\Sigma}$. Recall that the Cholesky decomposition of $\boldsymbol{\Sigma}$ is
+$$
+\boldsymbol{\Sigma} = \mathbf{L} \mathbf{L}',
+$$
+where the Cholesky factor $\mathbf{L}$ is a lower triangular matrix with positive diagonal entries. Derive the derivatives
+\begin{eqnarray*}
+\operatorname{D}_{\boldsymbol{\beta}} \ell(\boldsymbol{\beta}, \mathbf{L}, \sigma_0^2) &amp;=&amp; \frac{\partial \ell(\boldsymbol{\beta}, \mathbf{L}, \sigma_0^2)}{\partial \boldsymbol{\beta}'}, \\
+\operatorname{D}_{\operatorname{vech} \mathbf{L}} \ell(\boldsymbol{\beta}, \mathbf{L}, \sigma_0^2) &amp;=&amp; \frac{\partial \ell(\boldsymbol{\beta}, \mathbf{L}, \sigma_0^2)}{\partial (\operatorname{vech} \mathbf{L})'}, \\
+\operatorname{D}_{\sigma_0^2} \ell(\boldsymbol{\beta}, \mathbf{L}, \sigma_0^2) &amp;=&amp; \frac{\partial \ell(\boldsymbol{\beta}, \mathbf{L}, \sigma_0^2)}{\partial \sigma_0^2}.
+\end{eqnarray*}
+Write your solution in the most compact way possible.</p>
+<p>Hint: (1) Write $\ell$ as a composition of a sequence of functions, (2) find the Jaocbian matrix for each function (feel free to use the formulas in <a href="https://ucla-biostat216-2019fall.github.io/slides/16-matrixcalc/16-matrixcalc.html">lecture notes</a>), (3) use the Chain rule to assemble the pieces, and (4) simplify the expression using various formulas regarding Kronecker product, commutation matrix and duplication matrix (reviewed in this <a href="https://ucla-biostat216-2019fall.github.io/slides/13-kron/13-kron.html">lecture notes</a>).</p>
+</li>
 </ol>
 </li>
-<li><p>The <strong>stochastic gradient descent</strong> uses only a mini-batch (of size $B$) of the training data at each step:<br>
-$$
-\mathbf{x}^{(t+1)} = \mathbf{x}^{(t)} - s^{(t)} \frac{1}{B} \sum_{i \in \text{mini-batch}} \nabla \ell(\mathbf{x}, \mathbf{v}_i).
-$$</p>
-</li>
-<li><p>Stochastic gradient descent solves the two issues of gradient descent. It is the workhorse in deep learning.</p>
-</li>
-</ul>
+</ol>
 
 </div>
 </div>
