@@ -14690,7 +14690,7 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="SVD-and-generalized-inverse">SVD and generalized inverse<a class="anchor-link" href="#SVD-and-generalized-inverse">&#182;</a></h2><p>Using the SVD, the <a href="https://ucla-biostat216-2019fall.github.io/slides/06-matinv/06-matinv.html#Generalized-inverse-and-Moore-Penrose-inverse">Moore-Penrose inverse</a> is given by
 $$
-\mathbf{A}^+ = \mathbf{V} \boldsymbol{\Sigma}^+ \mathbf{U}^T,
+\mathbf{A}^+ = \mathbf{V} \boldsymbol{\Sigma}^+ \mathbf{U}^T = \mathbf{V}_r \boldsymbol{\Sigma}_r^{-1} \mathbf{U}_r' = \sum_{i=1}^r \sigma_i^{-1} \mathbf{v}_i \mathbf{u}_i',
 $$
 where $\boldsymbol{\Sigma}^+ = \text{diag}(\sigma_1^{-1}, \ldots, \sigma_r^{-1}, 0, \ldots, 0)$, $r= \text{rank}(\mathbf{A})$. This is how the <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.pinv"><code>pinv</code></a> function is implemented in Julia, Matlab, Python, or R.</p>
 
