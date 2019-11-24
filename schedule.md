@@ -19,4 +19,4 @@ BIOSTAT 216 tentative schedule and handouts (expect frequent updates)
 | 8 | [11/14](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/14/week8.html) Kronecker product, vec, vech, communtation, duplication \[[slide](./slides/13-kron/13-kron.html)\] | |   
 | 9 | [11/21](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/11/21/week9.html) optimization and multivariate calculus \[[slide](./slides/14-optim/14-optim.html)\], neural network and backpropagation \[[slide](./slides/15-nn/15-nn.html)\] | [HW5+Final](./hw/hw5/hw5.html) |   
 |   | **Thanksgiving** (no class) | |  
-| 10 | [12/5](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/12/05/week10.html) matrix calculus: chain rule for Jacobian \[[slide](./slides/16-matrixcalc/16-matcalc.html)\] | |   
+| 10 | [12/5](https://ucla-biostat216-2019fall.github.io/biostat216fall2019/2019/12/05/week10.html) matrix calculus: chain rule for Jacobian \[[slide](./slides/16-matrixcalc/16-matrixcalc.html)\] | |   
