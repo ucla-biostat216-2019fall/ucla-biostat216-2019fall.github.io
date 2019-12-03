@@ -13511,10 +13511,11 @@ $$
 \operatorname{D} f(\mathbf{X}) = \mathbf{I}_{nq}.
 $$</p>
 </li>
-<li><p>If $f(\mathbf{X}) = \operatorname{vech} \mathbf{X}$ where $\mathbf{X} \in \mathbb{R}^{n \times q}$, then
+<li><p>If $f(\mathbf{X}) = \operatorname{vech} \mathbf{X}$ where $\mathbf{X} \in \mathbb{R}^{n \times n}$ is symmetric, then
 $$
-\operatorname{D} f(\mathbf{X}) = \mathbf{I}_{nq}.
-$$</p>
+\operatorname{D} f(\mathbf{X}) = \mathbf{D}_{n}^+ = (\mathbf{D}_{n}'\mathbf{D}_{n})^{-1} \mathbf{D}_{n}',
+$$
+where $\mathbf{D}_n \in \mathbb{R}^{n^2 \times \frac{n(n+1)}{2}}$ is the <a href="https://ucla-biostat216-2019fall.github.io/slides/13-kron/13-kron.html#Duplication-matrix">Duplication matrix</a>.</p>
 </li>
 <li><p>If $f(\mathbf{x}) = (\mathbf{x}' \mathbf{x}) \mathbf{a}$, then
 $$
@@ -13540,10 +13541,11 @@ $$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Matrix-functions">Matrix functions<a class="anchor-link" href="#Matrix-functions">&#182;</a></h2><ul>
-<li><p>If $F(\mathbf{x}) = \mathbf{x} \mathbf{x}'$, then
+<li><p>If $F(\mathbf{X}) = $ the $n \times n$ symmetric matrix with lower triangular part determined from $\operatorname{vech} \mathbf{X}$, then
 $$
-\operatorname{D} F(\mathbf{x}) = \mathbf{I} \otimes \mathbf{x} + \mathbf{x} \otimes \mathbf{I}.
-$$</p>
+\operatorname{D} F(\mathbf{X}) = \mathbf{D}_{n},
+$$
+where $\mathbf{D}_{n} \in \mathbb{R}^{n^2 \times \frac{n(n+1)}{2}}$ is the <a href="https://ucla-biostat216-2019fall.github.io/slides/13-kron/13-kron.html#Duplication-matrix">Duplication matrix</a>.</p>
 </li>
 <li><p>If $F(\mathbf{X}) = \mathbf{X}$ where $\mathbf{X} \in \mathbb{R}^{n \times q}$, then
 $$
@@ -13552,12 +13554,18 @@ $$</p>
 </li>
 <li><p>If $F(\mathbf{X}) = \mathbf{X}'$ where $\mathbf{X} \in \mathbb{R}^{n \times q}$, then
 $$
-\operatorname{D} F(\mathbf{X}) = \mathbf{K}_{nq}. \quad \text{(commutation matrix)}.
-$$</p>
+\operatorname{D} F(\mathbf{X}) = \mathbf{K}_{nq},
+$$
+where $\mathbf{K}_{nq} \in \mathbb{R}^{nq \times nq}$ is the commutation matrix.</p>
 </li>
 <li><p>If $F(\mathbf{X})= \mathbf{A} \mathbf{X} \mathbf{B}$, then
 $$
 \operatorname{D} F(\mathbf{X}) = \mathbf{B}' \otimes \mathbf{A}.
+$$</p>
+</li>
+<li><p>If $F(\mathbf{x}) = \mathbf{x} \mathbf{x}'$, then
+$$
+\operatorname{D} F(\mathbf{x}) = \mathbf{I} \otimes \mathbf{x} + \mathbf{x} \otimes \mathbf{I}.
 $$</p>
 </li>
 <li><p>If $F(\mathbf{X}) = \mathbf{X} \mathbf{X}'$ where $\mathbf{X} \in \mathbb{R}^{n \times q}$, then
