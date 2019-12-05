@@ -13391,34 +13391,32 @@ The MLE is achieved by
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example:-MLE-of-multinomial-model">Example: MLE of multinomial model<a class="anchor-link" href="#Example:-MLE-of-multinomial-model">&#182;</a></h2><p>Consider a multinomial experiment with $n$ trials and observed outcomes $n_1, \ldots, n_m$ over $m$ categories. The maximum likelihood estimate (MLE) seeks maximizer of likelihood
+<h2 id="Example:-MLE-of-multinomial-model">Example: MLE of multinomial model<a class="anchor-link" href="#Example:-MLE-of-multinomial-model">&#182;</a></h2><p>Consider a multinomial experiment with $n$ trials and observed outcomes $n_1, \ldots, n_m$ over $m$ categories. The maximum likelihood estimate (MLE) seeks maximizer of likelihood<br>
 $$
 L(p_1,\ldots,p_m) = \binom{n}{n_1 \cdots n_m} \prod_{i=1}^m p_i^{n_i}.
 $$
-To minimize the negative log-likelihood
-$$</p>
-<ul>
-<li>\log L(p_1,\ldots,p_m) = - \log \binom{n}{n_1 \cdots n<em>m} - \sum</em>{i=1}^m n_i \log p_i
+To minimize the negative log-likelihood<br>
 $$
-subject to constraint $p_1 + \cdots + p_m = 1$, we find the statinary point of Lagrangian
+\log L(p_1,\ldots,p_m) = \log \binom{n}{n_1 \cdots n_m} + \sum_{i=1}^m n_i \log p_i
 $$
-L(\mathbf{p}, \lambda) = - \log \binom{n}{n_1 \cdots n<em>m} - \sum</em>{i=1}^m n_i \log p<em>i + \lambda \left( \sum</em>{i=1}^m p_i - 1 \right).
+subject to the constraint $p_1 + \cdots + p_m = 1$, we find the statinary point of Lagrangian<br>
 $$
-Solving
+L(p_1,\ldots,p_m, \lambda) = - \log \binom{n}{n_1 \cdots n_m} - \sum_{i=1}^m n_i \log p_i + \lambda \left( \sum_{i=1}^m p_i - 1 \right).
+$$<br>
+Solving<br>
 $$
 \frac{\partial}{\partial p_i} L = - \frac{n_i}{p_i} + \lambda = 0
-$$
-gives
+$$<br>
+gives<br>
 $$
 \frac{n_i}{p_i} = \lambda.
-$$
-Combining with constraint $\sum_i p_i=1$ yields
+$$<br>
+Combining with the constraint $\sum_i p_i=1$ yields<br>
 \begin{eqnarray*}
 p_i^\star &amp;=&amp; \frac{n_i}{n}, \quad i=1,\ldots,m, \\
 \lambda^\star &amp;=&amp; n.
 \end{eqnarray*}
-Note the nonnegativity constraint is automatically satisfied.</li>
-</ul>
+Note the nonnegativity constraint is automatically satisfied.</p>
 
 </div>
 </div>
@@ -13468,7 +13466,7 @@ Let's start from $x^{(0)}=2.5$.</p>
 <div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">2.5</span>
 <span class="k">for</span> <span class="n">iter</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">x</span><span class="p">)</span>
-    <span class="nd">@show</span> <span class="n">x</span>
+    <span class="nd">@show</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">4</span><span class="n">x</span>
 <span class="k">end</span>
 </pre></div>
 
@@ -13486,11 +13484,11 @@ Let's start from $x^{(0)}=2.5$.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>x = 2.05
-x = 2.000609756097561
-x = 2.0000000929222947
-x = 2.000000000000002
-x = 2.0
+<pre>(x, x ^ 3 / 3 - 4x) = (2.05, -5.328291666666667)
+(x, x ^ 3 / 3 - 4x) = (2.000609756097561, -5.333332589652766)
+(x, x ^ 3 / 3 - 4x) = (2.0000000929222947, -5.333333333333316)
+(x, x ^ 3 / 3 - 4x) = (2.000000000000002, -5.333333333333334)
+(x, x ^ 3 / 3 - 4x) = (2.0, -5.333333333333334)
 </pre>
 </div>
 </div>
@@ -13608,6 +13606,25 @@ $$</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>┌ Info: Recompiling stale cache file /Users/huazhou/.julia/compiled/v1.2/Plots/ld3vC.ji for Plots [91a5bcdd-55d7-5caf-9e0b-520d859cae80]
+└ @ Base loading.jl:1240
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13637,7 +13654,7 @@ $$</p>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>┌ Info: Saved animation to 
 │   fn = /Users/huazhou/Documents/github.com/ucla-biostat216-2019fall.github.io/slides/14-optim/gd.gif
-└ @ Plots /Users/huazhou/.julia/packages/Plots/Iuc9S/src/animation.jl:95
+└ @ Plots /Users/huazhou/.julia/packages/Plots/AXUqs/src/animation.jl:98
 </pre>
 </div>
 </div>
@@ -13772,7 +13789,7 @@ The convergence rate improves from $\left( \frac{1 - b}{1 + b} \right)^{2}$ to $
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>┌ Info: Saved animation to 
 │   fn = /Users/huazhou/Documents/github.com/ucla-biostat216-2019fall.github.io/slides/14-optim/gd_momentum.gif
-└ @ Plots /Users/huazhou/.julia/packages/Plots/Iuc9S/src/animation.jl:95
+└ @ Plots /Users/huazhou/.julia/packages/Plots/AXUqs/src/animation.jl:98
 </pre>
 </div>
 </div>
@@ -13877,7 +13894,7 @@ where $\lambda_{\text{min}}$ and $\lambda_{\text{max}}$ are the minimum and maxi
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>┌ Info: Saved animation to 
 │   fn = /Users/huazhou/Documents/github.com/ucla-biostat216-2019fall.github.io/slides/14-optim/gd_nesterov.gif
-└ @ Plots /Users/huazhou/.julia/packages/Plots/Iuc9S/src/animation.jl:95
+└ @ Plots /Users/huazhou/.julia/packages/Plots/AXUqs/src/animation.jl:98
 </pre>
 </div>
 </div>

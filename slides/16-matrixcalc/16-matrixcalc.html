@@ -13144,7 +13144,7 @@ $( document ).ready(function(){
 <li><em>Matrix Differential Calculus With Applications in Statistics and Econometrics</em> (3rd edition) by Magnus and Neudecker, John Wiley &amp; Sons, Inc. (2019), <a href="https://catalog.library.ucla.edu/vwebv/holdingsInfo?searchId=970&amp;recCount=50&amp;recPointer=1&amp;bibId=8893048">UCLA library link</a><br>
 We will refer to this book as MN3 in this note. </li>
 </ul>
-<p>This note collects formulas for Jacobian matrices (first derivatives). A separate note collects those for Hessian matrices (second derivatives).</p>
+<p>Below we collect formulas for the Jacobian matrices (first derivatives). A separate note collects those for the Hessian matrices (second derivatives).</p>
 
 </div>
 </div>
@@ -13210,7 +13210,7 @@ F(\mathbf{X}) &amp;:&amp; \mathbf{A} \mathbf{X} \mathbf{B}, \mathbf{X}^+
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bad-notations-for-Jacobian-matrix">Bad notations for Jacobian matrix<a class="anchor-link" href="#Bad-notations-for-Jacobian-matrix">&#182;</a></h3><ul>
-<li><p>For vector/matrix variables and vector/matrix functions, there is a question of how to organize all the partial derivatives in the Jacobian matrix. Following are a few popular notation for the Jacobian matrix. Unfortunately, <strong>none of them leads to a useful chain rule</strong>.</p>
+<li><p>For vector/matrix variables and vector/matrix functions, there is a question of how to organize all the partial derivatives in the Jacobian matrix. Following are a few popular notations for the Jacobian matrix. Unfortunately, <strong>none of them leads to a useful chain rule</strong>.</p>
 </li>
 <li><p>Defintion 1: For a differentiable scalar function: $\phi: \mathbb{R}^{n \times q} \mapsto \mathbb{R}$, 
 $$
@@ -13289,7 +13289,11 @@ $$
 $$
 where $\mathbf{X}$, $\mathbf{Y}$, and $\mathbf{Z}$ can have abitrary shapes (scalar, vector, matrix), we have
 $$
-\operatorname{D} h(\mathbf{X}) = (\operatorname{D} g(\mathbf{Y})) (\operatorname{D} f(\mathbf{X})).
+\operatorname{D} h(\mathbf{X}) = (\operatorname{D} g(\mathbf{Y})) (\operatorname{D} f(\mathbf{X})),
+$$
+or
+$$
+\operatorname{D}_{\mathbf{X}} \mathbf{Z} = \operatorname{D}_{\mathbf{Y}} \mathbf{Z} \cdot \operatorname{D}_{\mathbf{X}} \mathbf{Y}.
 $$</p>
 
 </div>
@@ -13335,7 +13339,7 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Scalar-functions-of-a-matrix-(MN3-Sections-9.10-9.12)">Scalar functions of a matrix (MN3 Sections 9.10-9.12)<a class="anchor-link" href="#Scalar-functions-of-a-matrix-(MN3-Sections-9.10-9.12)">&#182;</a></h2><p>Following list for scalar functions only gives formulas for $\frac{\partial \phi(\mathbf{X})}{\partial \mathbf{X}}$. To obtain the Jacobian matrix (a single row), apply the formula
+<h2 id="Scalar-functions-of-a-matrix-(MN3-Sections-9.10-9.12)">Scalar functions of a matrix (MN3 Sections 9.10-9.12)<a class="anchor-link" href="#Scalar-functions-of-a-matrix-(MN3-Sections-9.10-9.12)">&#182;</a></h2><p>Following list for scalar functions gives formulas for $\frac{\partial \phi(\mathbf{X})}{\partial \mathbf{X}}$. To obtain the Jacobian matrix (a single row), apply the formula
 $$
 \operatorname{D} \phi(\mathbf{X}) = \left( \text{vec} \, \frac{\partial \phi(\mathbf{X})}{\partial \mathbf{X}} \right)'.
 $$</p>
@@ -13646,7 +13650,7 @@ for any matrix $\mathbf{A}$ having $m$ rows.</p>
 </li>
 <li><p>Hadamard product: If $F(\mathbf{X}, \mathbf{Y}) = \mathbf{X} \odot \mathbf{Y}$, then
 $$
-\operatorname{D} F(\mathbf{X}, \mathbf{Y}) = [\operatorname{diag} (\operatorname{vec} \mathbf{Y}) : \operatorname{diag} (\operatorname{vec} \mathbf{X})].
+\operatorname{D} F(\mathbf{X}, \mathbf{Y}) = (\operatorname{diag} (\operatorname{vec} \mathbf{Y}) : \operatorname{diag} (\operatorname{vec} \mathbf{X})).
 $$</p>
 </li>
 </ul>
