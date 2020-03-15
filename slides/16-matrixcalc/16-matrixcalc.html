@@ -13515,12 +13515,24 @@ $$
 \operatorname{D} f(\mathbf{X}) = \mathbf{I}_{nq}.
 $$</p>
 </li>
-<li><p>If $f(\mathbf{X}) = \operatorname{vech} \mathbf{X}$ where $\mathbf{X} \in \mathbb{R}^{n \times n}$ is symmetric, then
+<li><p>If $f(\mathbf{X}) = \operatorname{vech} \mathbf{X}$, where $\mathbf{X} \in \mathbb{R}^{n \times n}$ is symmetric, then
 $$
 \operatorname{D} f(\mathbf{X}) = \mathbf{D}_{n}^+ = (\mathbf{D}_{n}'\mathbf{D}_{n})^{-1} \mathbf{D}_{n}',
 $$
 where $\mathbf{D}_n \in \mathbb{R}^{n^2 \times \frac{n(n+1)}{2}}$ is the <a href="https://ucla-biostat216-2019fall.github.io/slides/13-kron/13-kron.html#Duplication-matrix">Duplication matrix</a>.</p>
 </li>
+<li><p>If $f(\mathbf{X}) = \operatorname{diag} \mathbf{X}$, where $\mathbf{X} \in \mathbb{R}^{n \times n}$, then
+$$
+\operatorname{D} f(\mathbf{X}) = \begin{pmatrix}
+\mathbf{e}_1' \otimes \mathbf{e}_1' \\
+\vdots \\
+\mathbf{e}_n' \otimes \mathbf{e}_n'
+\end{pmatrix} = (\mathbf{I}_n \odot \mathbf{I}_n)',
+$$
+where $\odot$ denotes the Khatri-Rao (column-wise Kronecker) product.</p>
+</li>
+</ul>
+<ul>
 <li><p>If $f(\mathbf{x}) = (\mathbf{x}' \mathbf{x}) \mathbf{a}$, then
 $$
 \operatorname{D} f(\mathbf{x}) = 2 \mathbf{a} \mathbf{x}'.
