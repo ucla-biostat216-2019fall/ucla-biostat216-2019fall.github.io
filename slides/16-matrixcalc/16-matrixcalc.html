@@ -13529,6 +13529,12 @@ $$
 $$
 where $\mathbf{D}_{n} \in \mathbb{R}^{n^2 \times \frac{n(n+1)}{2}}$ is the <a href="https://ucla-biostat216-2019fall.github.io/slides/13-kron/13-kron.html#Duplication-matrix">Duplication matrix</a>.</p>
 </li>
+<li><p>If $F(\mathbf{X}) = $ the $n \times n$ lower triangular matrix with lower triangular part determined from $\operatorname{vech} \mathbf{X}$, then
+$$
+\operatorname{D} F(\mathbf{X}) = \mathbf{C}_{n},
+$$
+where $\mathbf{C}_{n} \in \mathbb{R}^{n^2 \times \frac{n(n+1)}{2}}$ is the <strong>copying matrix</strong> such that $\operatorname{vec} \mathbf{X} = \mathbf{C}_n \operatorname{vech} \mathbf{X}$.</p>
+</li>
 <li><p>If $F(\mathbf{X}) = \mathbf{X}$ where $\mathbf{X} \in \mathbb{R}^{n \times q}$, then
 $$
 \operatorname{D} F(\mathbf{X}) = \mathbf{I}_{nq}.
@@ -13641,6 +13647,19 @@ $$</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
